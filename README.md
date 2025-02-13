@@ -1,6 +1,6 @@
 # IRS Validation/Perfection Prototype
 
-A prototype system for validating IRS Form 1040 using decision rules and validation engine.
+A prototype system for validating different approaches for capturing rules and corrections to various IRS forms.
 
 ## Structure
 
