@@ -1,0 +1,9 @@
+services:
+  kie-extended-services:
+    image: docker.io/apache/incubator-kie-sandbox-extended-services:10.0.0
+    ports:
+      - "21345:21345"
+  kie-sandbox-webapp:
+    image: docker.io/apache/incubator-kie-sandbox-webapp:10.0.0
+    ports:
+      - "8080:8080"

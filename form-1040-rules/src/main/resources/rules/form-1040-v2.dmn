@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="https://kie.org/dmn/_58D7112E-788F-4200-8E27-258EC9686025" id="_8FC4035F-3829-4C3A-9CA3-B3E9648FE919" name="Form-1040-v1">
+  <itemDefinition id="_938CE942-BD64-4F09-92C3-C0076924DB3F" name="BankAccount" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_36BB410D-5667-4F14-AF9F-79F419172BE2" name="value" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <itemDefinition id="_264D6019-0D67-48BD-B156-6FA060479434" name="TenNineNine" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_7C4EE6AC-EFCB-47FB-9ADD-EA7E6D939352" name="income" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+    <itemComponent id="_EC919AB7-CB08-40AC-BC9A-7587C8F192C1" name="loss" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <itemDefinition id="_E18DE614-F003-4449-B1EB-6BCCE0713795" name="W2" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_AFCAA19C-3945-4624-8D5C-CB8901829A8C" name="income" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <itemDefinition id="_EF59672F-A393-4CB8-AC00-0D015137DDE2" name="Dependent" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_C0492B02-60D4-4049-92D4-D7B0E56A1952" name="dateOfBirth" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>date</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <itemDefinition id="_411D59DC-A359-415A-9086-CDA20AD0FA4A" name="RuleError" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <typeRef>string</typeRef>
+    <typeConstraint id="_B2343E2A-89B2-488F-9F81-C12C2245D185" kie:constraintType="enumeration">
+      <text>&quot;Invalid Date of Birth&quot;, &quot;Invalid Dollar Value&quot;</text>
+    </typeConstraint>
+  </itemDefinition>
+  <itemDefinition id="_0C2CB61D-BA1D-47AF-814E-9443DD7F4A4A" name="Schedule" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <typeRef>string</typeRef>
+    <typeConstraint id="_448AFEF6-7DBA-490F-84C8-C9BDB69C0574" kie:constraintType="enumeration">
+      <text>&quot;Schedule9999&quot;, &quot;Schedule8888&quot;, &quot;Schedule7777&quot;, &quot;Schedule6666&quot;</text>
+    </typeConstraint>
+  </itemDefinition>
+  <itemDefinition id="_83024B13-84AE-445A-A83C-D3217AF1CA51" name="Form1040" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_6CCD1A32-0D18-429B-A9EA-D6BCD549D2FB" name="dependents" isCollection="true" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>Dependent</typeRef>
+    </itemComponent>
+    <itemComponent id="_B436A62B-7035-49C9-851A-56134992E7FE" name="w2s" isCollection="true" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>W2</typeRef>
+    </itemComponent>
+    <itemComponent id="_7F0B23D2-7AFD-4CFC-B9DF-6418FA0749E2" name="bankAccounts" isCollection="true" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>BankAccount</typeRef>
+    </itemComponent>
+    <itemComponent id="_9C520DFB-E41D-43A0-BB51-02A7079B3CB5" name="tenNineNines" isCollection="true" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>TenNineNine</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <inputData name="Form 1040" id="_DDFF822E-41E9-4FCC-97D0-DF1F5FADE045">
+    <variable name="Form 1040" id="_7A99EBCA-9BC1-4548-A0A6-6E3BEBC0B1D2" typeRef="Form1040" />
+  </inputData>
+  <knowledgeSource name="Dependent DOB Rules" id="_A14A6E86-1A4F-4CCE-B396-296D41DE0D15" />
+  <businessKnowledgeModel name="Earliest Valid DOB" id="_19A42222-E320-4210-957F-19EB0BA8D2B7">
+    <variable name="Earliest Valid DOB" id="_D997240B-CF2C-49D7-AD63-87BA925213E2" typeRef="date" />
+    <encapsulatedLogic label="Earliest Valid DOB" typeRef="date" id="_7F02F408-BC9B-4D0B-AAF4-CD181E7CCA8C" kind="FEEL">
+      <literalExpression id="_DB330458-A46C-4C1C-B439-85EFA509F148" label="Return">
+        <text>date(1970,1,1)</text>
+      </literalExpression>
+    </encapsulatedLogic>
+  </businessKnowledgeModel>
+  <decision name="Are dependents valid?" id="_6E47584B-F4A4-4E2D-AAF9-FC2F9524F8C8">
+    <variable name="Are dependents valid?" id="_79223DE3-D20F-402D-B6B6-415974CDA6D6" typeRef="boolean" />
+    <informationRequirement id="_B55C9D63-D11B-495F-9DC2-7FC0E1345070">
+      <requiredInput href="#_DDFF822E-41E9-4FCC-97D0-DF1F5FADE045" />
+    </informationRequirement>
+    <knowledgeRequirement id="_D12F7146-175C-4565-8FBB-ED41D04E69FD">
+      <requiredKnowledge href="#_824687D4-560F-4013-B8B7-0B635468CFFD" />
+    </knowledgeRequirement>
+    <knowledgeRequirement id="_AFB67E4C-2156-4074-A76C-3274362BB002">
+      <requiredKnowledge href="#_19A42222-E320-4210-957F-19EB0BA8D2B7" />
+    </knowledgeRequirement>
+    <authorityRequirement id="_FD1E7C16-D3D8-4EC9-8D07-5CE7AE521C5C">
+      <requiredAuthority href="#_A14A6E86-1A4F-4CCE-B396-296D41DE0D15" />
+    </authorityRequirement>
+    <context id="_C6FF27F6-0279-4BCE-A6A6-CE0739DBD9DB" typeRef="boolean" label="Are dependents valid?">
+      <contextEntry id="_D4F6DB12-88E0-4B7A-9E8B-D08EDE02C391">
+        <variable id="_2D1D63B5-DBD0-4133-A065-8F97B9DE4C46" name="dependentHasInvalidDateOfBirth" typeRef="boolean" />
+        <every id="_4FB27B62-544B-4BA9-AD7C-5372C104D6B7" label="dependentHasInvalidDateOfBirth" iteratorVariable="dependent">
+          <in id="_E35A49FE-F806-463C-A8AE-881B29FFA1D9">
+            <list id="_343FF4C7-2994-4B72-8AFC-DE9DFDF50C7F" label="Expression Name">
+              <literalExpression id="_5BDBA46C-8605-4CED-AC3F-C6E224C5716C" label="Expression Name">
+                <text>Form 1040.dependents</text>
+              </literalExpression>
+            </list>
+          </in>
+          <satisfies id="_B6C97FFB-6838-4FC2-B717-7C9ED274CD95">
+            <literalExpression id="_34929684-7604-48C4-8BDD-B09DEC58A959" label="Expression Name">
+              <text>Is Valid DOB(dependent, Earliest Valid DOB())</text>
+            </literalExpression>
+          </satisfies>
+        </every>
+      </contextEntry>
+      <contextEntry id="_FA81A79C-CD83-4BB9-8D9A-0A5ABFCEF805">
+        <literalExpression id="_5130074B-0D2E-4A99-9954-0B792B577C01" typeRef="boolean" label="Are dependents valid?">
+          <text>dependentHasInvalidDateOfBirth</text>
+        </literalExpression>
+      </contextEntry>
+    </context>
+  </decision>
+  <businessKnowledgeModel name="Is Valid DOB" id="_824687D4-560F-4013-B8B7-0B635468CFFD">
+    <extensionElements />
+    <variable name="Is Valid DOB" id="_8015D9AE-93C8-4C85-87BE-1C76E5077536" typeRef="boolean" />
+    <encapsulatedLogic label="Is Valid DOB" typeRef="boolean" id="_C02952DF-5AD7-42E4-AABD-533557F85255" kind="FEEL">
+      <formalParameter id="_5ECC870F-DC28-42E4-B56D-60F2EB83215C" name="Dependent" typeRef="Dependent" />
+      <formalParameter id="_A68B900F-A0A8-4A30-B2D4-464DBBB29EAF" name="Earliest Valid DOB" typeRef="date" />
+      <literalExpression id="_593BD99C-A1D9-4F45-8728-BD2BAEEBE37E" typeRef="boolean" label="Return">
+        <text>(Dependent.dateOfBirth.year &gt; Earliest Valid DOB.year) and (Dependent.dateOfBirth.year &lt; today().year)</text>
+      </literalExpression>
+    </encapsulatedLogic>
+  </businessKnowledgeModel>
+  <decision name="Correct Bank Accounts" id="_E91CB997-DDD8-4703-B74C-8D08BC9431BD">
+    <variable id="_900F4771-CE3D-424A-82EA-8CAD7F003ED8" typeRef="Any" name="Correct Bank Accounts" />
+    <informationRequirement id="_05A702D2-C55D-4873-9272-AA47E4048215">
+      <requiredInput href="#_DDFF822E-41E9-4FCC-97D0-DF1F5FADE045" />
+    </informationRequirement>
+    <for id="_848A5BA6-E563-4E16-AF9D-60BA6EAE0FF3" label="Correct Bank Accounts" typeRef="Any" iteratorVariable="BankAccount">
+      <in id="_88DFBAF0-242B-440C-AE6E-C597B7E7A54A">
+        <literalExpression id="_5C0CEC96-9108-4868-AD8B-CDCB5B78989A" label="Expression Name">
+          <text>Form 1040.bankAccounts</text>
+        </literalExpression>
+      </in>
+      <return id="_CDAF5399-74EC-4FD6-BE31-7F98660420DF">
+        <context id="_30218BE2-93C4-4D21-BAFE-1F8383B1D2EB" label="Expression Name">
+          <contextEntry id="_B35DDF29-D895-49A9-8722-A8D3B5D04D03">
+            <variable id="_6418694F-EA70-4780-885A-CA4E28F46B3C" name="IsPositiveValue" typeRef="boolean" />
+            <literalExpression id="_B188CD3D-D4D4-4C68-AA48-75019C1FD5A8" typeRef="boolean" label="IsPositiveValue">
+              <text>BankAccount.value &gt;= 0</text>
+            </literalExpression>
+          </contextEntry>
+          <contextEntry id="_70EF759A-44EB-426E-91AF-FED0AD9ABF19">
+            <decisionTable id="_50A055DB-AEFB-4C4F-B44B-1603A052285E" hitPolicy="UNIQUE" label="Expression Name">
+              <input id="_2659E48D-5CB5-4450-BD6F-3376B80C113D">
+                <inputExpression id="_972BF7CB-10FA-47E5-A25F-2C7B4302CB56" typeRef="boolean">
+                  <text>IsPositiveValue</text>
+                </inputExpression>
+              </input>
+              <output id="_24486027-D6A1-4CBC-A45B-DFC48F02875B" name="Valid" typeRef="boolean" />
+              <output id="_63788372-A453-4BE2-9DBE-F42FB75091BD" name="Corrected Value" typeRef="number" />
+              <annotation name="Annotations" />
+              <rule id="_12892804-2AB6-4526-B15A-54AC26C10BC8">
+                <inputEntry id="_57052F17-56BE-4CE4-BDE8-14E756D096D0">
+                  <text>true</text>
+                </inputEntry>
+                <outputEntry id="_C0D824B2-4187-4E26-82E4-B6F0915EA7B4">
+                  <text>true</text>
+                </outputEntry>
+                <outputEntry id="_A2E65F50-7A2C-4BA4-A3C6-10960C0D76A5">
+                  <text>round up(BankAccount.value, 0)</text>
+                </outputEntry>
+                <annotationEntry>
+                  <text>// Your annotations here</text>
+                </annotationEntry>
+              </rule>
+              <rule id="_49247003-7471-4F78-AA20-A9FB60E21F09">
+                <inputEntry id="_AC0ECB05-2FFF-4D34-909F-666A5423B79E">
+                  <text>false</text>
+                </inputEntry>
+                <outputEntry id="_BEBE0B6A-408E-4902-8D3B-6D0CEAE571B9">
+                  <text>false</text>
+                </outputEntry>
+                <outputEntry id="_46548879-72AF-4139-A7D6-3B2854CFC559">
+                  <text>0</text>
+                </outputEntry>
+                <annotationEntry>
+                  <text></text>
+                </annotationEntry>
+              </rule>
+            </decisionTable>
+          </contextEntry>
+        </context>
+      </return>
+    </for>
+  </decision>
+  <decision name="Calculate Total Wages" id="_4BF7E6A3-82BB-48BE-840C-FB4F67E67B4D">
+    <variable id="_C5238B55-346E-4631-B93F-8E6AF606CF77" typeRef="number" name="Calculate Total Wages" />
+    <informationRequirement id="_6AB75B7C-F220-4D45-8356-C632DAEF1B68">
+      <requiredDecision href="#_653C5122-6D16-42A9-A088-DFA4EDE3F7ED" />
+    </informationRequirement>
+    <literalExpression id="_09440CF1-CAF1-451C-B7EF-E83C93B53112" typeRef="number" label="Calculate Total Wages">
+      <text>sum(Correct W2s.Corrected)</text>
+    </literalExpression>
+  </decision>
+  <decision name="Correct W2s" id="_653C5122-6D16-42A9-A088-DFA4EDE3F7ED">
+    <variable id="_89FC6EC6-232E-46AB-9CAB-2D5D96A4DE8F" name="Correct W2s" />
+    <informationRequirement id="_B1EC8B37-801F-4C23-BBE0-16E3941A3223">
+      <requiredInput href="#_DDFF822E-41E9-4FCC-97D0-DF1F5FADE045" />
+    </informationRequirement>
+    <for id="_81054FED-5CD4-4D3E-A8C2-DE3DAA6289D7" label="Correct W2s" iteratorVariable="w2">
+      <in id="_6CB0F501-8B43-4304-8A8B-2B5F85500A48">
+        <literalExpression id="_4F011F2B-EBBA-41C0-9013-7DA8F9FADF8F" label="Expression Name">
+          <text>Form 1040.w2s</text>
+        </literalExpression>
+      </in>
+      <return id="_E64A6DAE-D933-40E4-9598-682A2B30C143">
+        <context id="_793EC878-8F86-492D-8EFF-305EF6CBE948" label="Expression Name">
+          <contextEntry id="_3F6BB7A8-4775-4360-9D0E-452F72286512">
+            <variable id="_D8F23B42-A816-4D69-A132-587A4C8ABEDA" name="IsPositiveValue" typeRef="boolean" />
+            <literalExpression id="_FFAA44EA-F6FB-46A3-92F8-817847617131" typeRef="boolean" label="IsPositiveValue">
+              <text>w2.income &gt; 0</text>
+            </literalExpression>
+          </contextEntry>
+          <contextEntry id="_5EAA2D94-CA0B-49FF-A6B8-DBD41CE906C8">
+            <decisionTable id="_AB7871DF-0443-4FD9-918C-5FF8008075D6" hitPolicy="UNIQUE" label="Expression Name">
+              <input id="_E85EBE14-5CE9-40C9-91C5-5D96765BC524">
+                <inputExpression id="_42FE6C0B-5009-427F-A6D4-3924E23769C4" typeRef="boolean">
+                  <text>IsPositiveValue</text>
+                </inputExpression>
+              </input>
+              <output id="_997B1772-A21D-438B-85B1-5E4E355406C0" name="Valid" typeRef="boolean" />
+              <output id="_31B41A1E-D252-4A75-B889-27CB5DD2E73B" name="Corrected" typeRef="number" />
+              <annotation name="Annotations" />
+              <rule id="_2F92BE5B-4897-4286-B7AD-4D75F836D149">
+                <inputEntry id="_E49A757A-CB5D-42A7-9178-7D28595632CC">
+                  <text>true</text>
+                </inputEntry>
+                <outputEntry id="_506D43C9-E6F4-464B-9E57-68BEC3BF853E">
+                  <text>true</text>
+                </outputEntry>
+                <outputEntry id="_EFF9F23E-620F-45D1-87D4-C5F774B11461">
+                  <text>round up(w2.income, 0)</text>
+                </outputEntry>
+                <annotationEntry>
+                  <text>// Your annotations here</text>
+                </annotationEntry>
+              </rule>
+              <rule id="_7E49B2F8-30E3-485C-B560-F411AFBD34CD">
+                <inputEntry id="_CD226572-E2C2-4A16-A871-13F44ACE5D12">
+                  <text>false</text>
+                </inputEntry>
+                <outputEntry id="_B6EBDDC2-43C5-476F-92B2-9D3E04C07D48">
+                  <text>false</text>
+                </outputEntry>
+                <outputEntry id="_579437A2-1831-4222-94EC-ECFE034C4475">
+                  <text>0</text>
+                </outputEntry>
+                <annotationEntry>
+                  <text></text>
+                </annotationEntry>
+              </rule>
+            </decisionTable>
+          </contextEntry>
+        </context>
+      </return>
+    </for>
+  </decision>
+  <decision name="Calculate 1099 income" id="_B4D4989F-EB0F-42A9-A84A-76B491C7C897">
+    <variable id="_C1D1FE0B-6EE7-48CA-A5EC-0C580C0C7B5E" name="Calculate 1099 income" />
+    <informationRequirement id="_B54243D2-BAB5-4140-8CAA-8563BCB8CB45">
+      <requiredInput href="#_DDFF822E-41E9-4FCC-97D0-DF1F5FADE045" />
+    </informationRequirement>
+    <context id="_583045DC-6B96-4417-9910-B2620CC172D7" label="Calculate 1099 income">
+      <contextEntry id="_3A6E5CD8-125F-49B5-87E6-BA986065C829">
+        <variable id="_DE19F461-80EC-4AF1-8942-4DF70B28B337" name="Incomes">
+          <description></description>
+        </variable>
+        <for id="_16B106FD-9004-4469-826C-DA07E7864A40" label="Incomes" iteratorVariable="ten">
+          <in id="_895B0E60-675F-418A-AA90-4103E1456843">
+            <literalExpression id="_DF7963E1-2A9B-4745-9E8D-6C7A4A5B632B" label="Expression Name">
+              <text>Form 1040.tenNineNines</text>
+            </literalExpression>
+          </in>
+          <return id="_0F0E2EFA-21BA-427F-A1B7-FF210897EC1E">
+            <literalExpression id="_065C6AD6-85B5-455D-A9D3-677D2A813B80" label="Expression Name">
+              <text>ten.income</text>
+            </literalExpression>
+          </return>
+        </for>
+      </contextEntry>
+      <contextEntry id="_E819C9B2-EBE3-45E3-9D93-B66782C2C709">
+        <variable id="_1CB1E95D-B406-447D-ACAA-92DD3043D985" name="Losses">
+          <description></description>
+        </variable>
+        <for id="_A4B69A78-09D1-449B-9BF6-AAE0619BB8AA" label="Losses" iteratorVariable="ten">
+          <in id="_88F2E65F-BA52-42D4-B476-F62314E0ABC9">
+            <literalExpression id="_C4F94B1B-4F63-4A38-B998-53033FFE0ACF" label="Expression Name">
+              <text>Form 1040.tenNineNines</text>
+            </literalExpression>
+          </in>
+          <return id="_FA6301AE-D974-4519-ACD9-544D489E8736">
+            <literalExpression id="_803EC799-9BD0-49E2-AC03-181965A6D079" label="Expression Name">
+              <text>ten.loss</text>
+            </literalExpression>
+          </return>
+        </for>
+      </contextEntry>
+      <contextEntry id="_1F7F2908-ABE9-4EF1-9DF2-F41C01985D26">
+        <literalExpression id="_426B00B0-76A8-4E4A-8A91-FD34888FC796" label="Calculate 1099 income">
+          <text>sum(Incomes) - sum(Losses)</text>
+        </literalExpression>
+      </contextEntry>
+    </context>
+  </decision>
+  <decision name="Rules" id="_74BE199A-E18F-492C-B048-B7A19EB272E2">
+    <variable name="Rules" id="_C28D4224-47E2-4E6F-B00A-4E7D11792719" typeRef="Any" />
+    <informationRequirement id="_92F7757C-AF3E-4B4F-BF43-878209861FB1">
+      <requiredDecision href="#_6E47584B-F4A4-4E2D-AAF9-FC2F9524F8C8" />
+    </informationRequirement>
+    <informationRequirement id="_A58D0027-4CBA-4FA7-B06C-3DD128935C4B">
+      <requiredDecision href="#_653C5122-6D16-42A9-A088-DFA4EDE3F7ED" />
+    </informationRequirement>
+    <informationRequirement id="_0DF75285-1E84-4005-988E-65333F481B2C">
+      <requiredDecision href="#_E91CB997-DDD8-4703-B74C-8D08BC9431BD" />
+    </informationRequirement>
+    <context id="_087527B9-0873-493B-B3A3-755C424CEA3D" label="Rules" typeRef="Any">
+      <contextEntry id="_7CC2AB1F-B314-405E-9717-D66F399647A0">
+        <variable id="_B11D0D6D-E886-4970-B456-3429707A19B9" name="BankAccountsAreValid" typeRef="boolean" />
+        <every id="_D6D45830-2224-4121-B81D-9C80D5A031B3" label="BankAccountsAreValid" iteratorVariable="BankAccount">
+          <in id="_732572F6-A2D8-4D66-95BB-409F8EBFCAE5">
+            <literalExpression id="_85E1C858-4B1B-4E70-9883-CB95064B733A" label="Expression Name">
+              <text>Correct Bank Accounts</text>
+            </literalExpression>
+          </in>
+          <satisfies id="_4AD4BE5C-743B-4102-84E8-A0CE49178CF6">
+            <literalExpression id="_8E3B3A7D-DCAB-49DB-979A-C70FF4F5E761" label="Expression Name">
+              <text>BankAccount.Valid</text>
+            </literalExpression>
+          </satisfies>
+        </every>
+      </contextEntry>
+      <contextEntry id="_B2B2A666-87C7-44FE-B31C-E04083B59EB2">
+        <variable id="_F1A3383C-B878-404A-B5B6-13155C5D28ED" name="W2sAreValid" typeRef="boolean">
+          <description></description>
+        </variable>
+        <every id="_F64B49E0-709F-4B7C-9F7B-9356D62093FE" label="W2sAreValid" iteratorVariable="W2">
+          <in id="_5EEE0915-D702-4445-B6B1-4E297DB558D8">
+            <literalExpression id="_7C39661E-9B6F-430F-842D-FB5D7CDE63F0" label="Expression Name">
+              <text>Correct W2s</text>
+            </literalExpression>
+          </in>
+          <satisfies id="_2D6CAE9B-4481-47B0-AFA2-9BDB4F069BA6">
+            <literalExpression id="_D54562AD-4FB0-4E47-9E8A-50DD4E598892" label="Expression Name">
+              <text>W2.Valid</text>
+            </literalExpression>
+          </satisfies>
+        </every>
+      </contextEntry>
+      <contextEntry id="_5415901C-B6C0-4E27-ADD8-833AB7F36365">
+        <variable id="_0CEAE7AC-8C55-4939-BD0D-49D5D2B18DF6" name="AreDependentsValid" typeRef="boolean">
+          <description></description>
+        </variable>
+        <literalExpression id="_FEDC4738-0C08-4E2E-BE75-9B13ABF9D0B2" typeRef="boolean" label="AreDependentsValid">
+          <text>Are dependents valid?</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_5983EF1A-EDF9-479A-93C3-4762DAEAE48C">
+        <decisionTable id="_8665B51E-663F-4685-A3FA-953635631D8C" typeRef="Any" hitPolicy="COLLECT" label="Error">
+          <input id="_4B4993C6-6AD6-4DAD-9709-84EDE9B58042">
+            <inputExpression id="_B65457F3-330D-4F94-B901-F34D1494ABE3" typeRef="boolean">
+              <text>BankAccountsAreValid</text>
+            </inputExpression>
+          </input>
+          <input id="_9EFFEA2A-F61B-409F-BC54-68F108A6754C">
+            <inputExpression id="_A08169F0-326E-4FD3-85A0-996485D7CD51" typeRef="boolean">
+              <text>W2sAreValid</text>
+            </inputExpression>
+          </input>
+          <input id="_4AA96D4A-CB47-40D3-B783-6C74EBE8C25A">
+            <inputExpression id="_20AEE0C7-BD1A-4C2E-BD3B-11EDA283434B" typeRef="boolean">
+              <text>AreDependentsValid</text>
+            </inputExpression>
+          </input>
+          <output id="_431CD7BB-CC4C-4396-858F-21E54DC85B38" name="Error" typeRef="RuleError" />
+          <output id="_89C3D559-5D06-45D9-9539-BA7F1841DACC" name="Error Code" typeRef="string" />
+          <output id="_298B47BF-A64C-4A40-8F2E-ED4D6C46069A" name="Schedule" typeRef="Schedule" />
+          <annotation name="Annotations" />
+          <rule id="_5C46FCC8-6F8A-40F8-AB8E-F82EAB7271AA">
+            <inputEntry id="_8E9F8A7C-AA90-4E9E-9C26-865A7D35BFA7">
+              <text>true</text>
+            </inputEntry>
+            <inputEntry id="_B97A5D8C-851B-43BE-A148-14F510592552">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_6A16D6EA-8CC0-48F7-85AA-88F80CD951FF">
+              <text>-</text>
+            </inputEntry>
+            <outputEntry id="_800915D0-733B-474C-91E5-2987B5EC5FF5">
+              <text>&quot;&quot;</text>
+            </outputEntry>
+            <outputEntry id="_75D997D9-5471-4BEF-AB51-E14B1DC1E070">
+              <text>&quot;&quot;</text>
+            </outputEntry>
+            <outputEntry id="_F3FE1AEA-2852-4E6D-B35C-D080A9390FE6">
+              <text>&quot;Schedule 8888&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text>// Your annotations here</text>
+            </annotationEntry>
+          </rule>
+          <rule id="_3981CE17-A48F-4077-B4E7-6E526CC986E2">
+            <inputEntry id="_E5CAF38D-7DE3-4BC7-A8E0-873A6FAC1443">
+              <text>false</text>
+            </inputEntry>
+            <inputEntry id="_98F2AA00-C21A-4056-9401-A079E7448B0B">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_B0BD062A-FCA5-4264-BA44-19E4789B596A">
+              <text>-</text>
+            </inputEntry>
+            <outputEntry id="_E4F23A8F-4FD4-42AA-AABD-BF05DEC27BE7">
+              <text>&quot;Invalid Dollar Value&quot;</text>
+            </outputEntry>
+            <outputEntry id="_7787B58D-2350-4EBF-A250-CD9D9C834F42">
+              <text>&quot;88A&quot;</text>
+            </outputEntry>
+            <outputEntry id="_8A77304D-3A22-45AE-9DA5-2FF8E5962C62">
+              <text>&quot;Schedule8888&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+          <rule id="_1C34E1B1-8E74-449C-AA66-04A44C2CC791">
+            <inputEntry id="_1638818D-648D-488E-B85E-988A6FFB38D4">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_9BA8D808-B670-4E82-9B9B-A7C6E4DA9116">
+              <text>true</text>
+            </inputEntry>
+            <inputEntry id="_36CB7955-E9F4-41A6-88F9-AFEAFF6737E7">
+              <text>-</text>
+            </inputEntry>
+            <outputEntry id="_DF6065C8-310D-4F0A-AA11-B3967F36640C">
+              <text>&quot;&quot;</text>
+            </outputEntry>
+            <outputEntry id="_FB20D2D4-52F3-4626-B548-94749DF0C610">
+              <text>&quot;&quot;</text>
+            </outputEntry>
+            <outputEntry id="_725D38A7-303E-4BA3-A9C7-59AADC5BC55F">
+              <text>&quot;Schedule7777&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+          <rule id="_630F1EAC-D685-433A-8BCF-DF1ECCBA82D8">
+            <inputEntry id="_C53694EE-D36E-4EC3-A44A-815308CCC58F">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_57E575F3-D6AB-4D87-BCE8-F40218A91637">
+              <text>false</text>
+            </inputEntry>
+            <inputEntry id="_5D00B71C-11EC-42A9-84FD-6E2DA5C15A3A">
+              <text>-</text>
+            </inputEntry>
+            <outputEntry id="_5C73AAAE-E40D-4851-8879-F8710B570965">
+              <text>&quot;Invalid Dollar Value&quot;</text>
+            </outputEntry>
+            <outputEntry id="_A9028A37-71A9-4A0B-BDE5-4099E9C1DD52">
+              <text>&quot;88A&quot;</text>
+            </outputEntry>
+            <outputEntry id="_EC5407AC-4B8D-45CD-B05A-33209D6F06DC">
+              <text>&quot;Schedule7777&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+          <rule id="_BFFE956F-98D3-4C21-BC88-17EF719F5155">
+            <inputEntry id="_51BFD1D5-5EFA-4E88-9A2D-D1E0F64A40FE">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_E941AFD8-0A88-4116-B967-556B064E745E">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_CA6808D6-1902-4C60-8547-EF7F7F7F3AC0">
+              <text>true</text>
+            </inputEntry>
+            <outputEntry id="_FD89287E-64AE-4D0F-94DC-A4CD255D581E">
+              <text>&quot;&quot;</text>
+            </outputEntry>
+            <outputEntry id="_5E9CC73A-7C3B-43DB-A8D3-1F92EEAD1A1B">
+              <text>&quot;&quot;</text>
+            </outputEntry>
+            <outputEntry id="_85423406-5B25-4609-A6DF-1A945A4554FE">
+              <text>&quot;Schedule6666&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+          <rule id="_65EDCC29-F9B3-4D37-A58C-3D507EE09716">
+            <inputEntry id="_979A7F2A-DB68-4D18-96F1-34A9C2D27A44">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_321E0F35-2E5A-4133-A30F-B63D86B30F39">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_780BCA60-A845-4903-8445-C6F3ECEF7768">
+              <text>false</text>
+            </inputEntry>
+            <outputEntry id="_F7EF3087-8CD9-421F-8829-8943D92D2D44">
+              <text>&quot;Invalid Date of Birth&quot;</text>
+            </outputEntry>
+            <outputEntry id="_74EDD1D0-FC4C-4BE7-A0C7-744BC90C2400">
+              <text>&quot;CX1&quot;</text>
+            </outputEntry>
+            <outputEntry id="_8C1EFA14-51F2-4788-84BA-9D00CCDD32A2">
+              <text>&quot;Schedule6666&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+        </decisionTable>
+      </contextEntry>
+    </context>
+  </decision>
+  <decision name="Aggregate Income" id="_CC55C8B8-3F65-44D3-9AD8-2167A4F0D202">
+    <variable name="Aggregate Income" id="_1001E61E-C040-4915-85A1-4FB5FDE1DEAC" />
+    <informationRequirement id="_4FABEB66-5FC6-42F9-BB35-34BF0FC9347D">
+      <requiredDecision href="#_B4D4989F-EB0F-42A9-A84A-76B491C7C897" />
+    </informationRequirement>
+    <informationRequirement id="_719A5C61-BE7D-4C2B-AC0F-717763641820">
+      <requiredDecision href="#_4BF7E6A3-82BB-48BE-840C-FB4F67E67B4D" />
+    </informationRequirement>
+    <literalExpression id="_4BB47177-24A9-4E7D-AB48-B982DAB648F2" label="Aggregate Income">
+      <text>Calculate Total Wages +  Calculate 1099 income</text>
+    </literalExpression>
+  </decision>
+  <decision name="Evaluate 1040" id="_4C422190-1425-4BB6-A66D-C07BD12B3395">
+    <variable id="_C9E9A80C-18EA-457C-A930-13B2ECBB58F7" name="Evaluate 1040" />
+    <informationRequirement id="_BCE300E3-9CE3-4089-B2D0-FF6B4559F550">
+      <requiredDecision href="#_CC55C8B8-3F65-44D3-9AD8-2167A4F0D202" />
+    </informationRequirement>
+    <informationRequirement id="_737DB940-BE23-4BB5-9EE9-8CF7C4F0CD2F">
+      <requiredDecision href="#_74BE199A-E18F-492C-B048-B7A19EB272E2" />
+    </informationRequirement>
+    <context id="_E9BD4814-E1E1-4805-926C-F83E0967A959" label="Evaluate 1040">
+      <contextEntry id="_EE7586B4-BB9B-43B7-9155-FDBB8141D050">
+        <variable id="_1DCFF8E3-5520-421F-B994-B2C7AFDF6303" name="IsValid" typeRef="boolean" />
+        <every id="_8E9E8D8B-34B0-40C9-9534-C45739E2AD71" label="IsValid" iteratorVariable="Rule">
+          <in id="_D060F08E-0985-40E2-A1BB-F46FF765DB22">
+            <literalExpression id="_4D64B679-41F5-4A16-B6BA-ABD965852188" label="Expression Name">
+              <text>Rules</text>
+            </literalExpression>
+          </in>
+          <satisfies id="_437FF215-1CE5-496E-8A2C-CD00E8E8BE6C">
+            <literalExpression id="_A1E0C5DD-9A7E-43FC-B504-9C1A3D0786AD" label="Expression Name">
+              <text>Rule.Error Code = &quot;&quot;</text>
+            </literalExpression>
+          </satisfies>
+        </every>
+      </contextEntry>
+      <contextEntry id="_7819D301-E806-41BD-BE8D-44DA9E5B6599">
+        <variable id="_49A1930F-EC7B-48A3-949B-4D0F826E97CE" name="Errors">
+          <description></description>
+        </variable>
+        <filter id="_DA989A44-BCA3-4173-B527-8A48376A9DCA" label="Errors">
+          <in id="_86BDE311-4A05-41BA-BFB2-3302730BB3DA">
+            <literalExpression id="_73F39C7F-2003-4CBC-99EB-F9274FFA07FD" label="Expression Name">
+              <text>Rules</text>
+            </literalExpression>
+          </in>
+          <match id="_C77A1796-FC65-4601-B16B-8F030FF72BF8">
+            <literalExpression id="_FBC25D0B-2CC6-434D-AB2D-41F1250E3F76" label="Expression Name">
+              <text>item.Error != &quot;&quot;</text>
+            </literalExpression>
+          </match>
+        </filter>
+      </contextEntry>
+      <contextEntry id="_23821875-9C48-4539-BB45-D0215CC824CE">
+        <decisionTable id="_821C2329-9CA7-4779-B848-A5AAC36258F1" hitPolicy="UNIQUE" label="Evaluate 1040">
+          <input id="_C70D3E4C-1C0F-4C2D-8D7F-D714FB5E8053">
+            <inputExpression id="_F675AF5A-0647-4250-8E72-4AFEE66C9118" typeRef="boolean">
+              <text>IsValid</text>
+            </inputExpression>
+          </input>
+          <output id="_90F99CBC-10E9-444B-B7F8-C3C53FEEE4AA" name="Valid" typeRef="boolean" />
+          <output id="_D2CA964E-2B34-44E6-9817-6F318A9AE621" name="Aggregate Income" typeRef="number" />
+          <output id="_1D0A4A9E-25A1-4BD1-AFE7-08E2019F7BAF" name="Errors" typeRef="Any" />
+          <annotation name="Annotations" />
+          <rule id="_5F79226B-5FDF-47DF-9549-1728E0B8C9EC">
+            <inputEntry id="_E606B8BD-E9F2-4BAA-BAD5-FE00628DF84F">
+              <text>true</text>
+            </inputEntry>
+            <outputEntry id="_247EB17F-271F-43BD-A55F-38C89A889C73">
+              <text>true</text>
+            </outputEntry>
+            <outputEntry id="_9F1D4524-DB00-4115-A0AF-AB78B51D1553">
+              <text>Aggregate Income</text>
+            </outputEntry>
+            <outputEntry id="_E87FEC4F-8278-47C8-A873-2A399DF0A72D">
+              <text>Errors</text>
+            </outputEntry>
+            <annotationEntry>
+              <text>// Your annotations here</text>
+            </annotationEntry>
+          </rule>
+          <rule id="_A09EB663-EBF6-40DD-921A-82F6366B6B76">
+            <inputEntry id="_BF6C035F-3763-4982-B67D-055D59D8531A">
+              <text>false</text>
+            </inputEntry>
+            <outputEntry id="_04559789-D318-45B9-95CD-3EAE003C7BAE">
+              <text>false</text>
+            </outputEntry>
+            <outputEntry id="_B82F66AC-B241-4DBF-B945-96EA75E9F9E9">
+              <text>Aggregate Income</text>
+            </outputEntry>
+            <outputEntry id="_F014524A-F503-4979-A24E-F8953610BDF1">
+              <text>Errors</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+        </decisionTable>
+      </contextEntry>
+    </context>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_5CF11ED1-7658-4E6E-BAB2-8421DEE1066E" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths />
+          <kie:ComponentWidths dmnElementRef="_593BD99C-A1D9-4F45-8728-BD2BAEEBE37E">
+            <kie:width>616</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_C6FF27F6-0279-4BCE-A6A6-CE0739DBD9DB">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_5BDBA46C-8605-4CED-AC3F-C6E224C5716C">
+            <kie:width>666</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_5130074B-0D2E-4A99-9954-0B792B577C01">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_34929684-7604-48C4-8BDD-B09DEC58A959">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DB330458-A46C-4C1C-B439-85EFA509F148">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_5C0CEC96-9108-4868-AD8B-CDCB5B78989A">
+            <kie:width>557</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_30218BE2-93C4-4D21-BAFE-1F8383B1D2EB">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_50A055DB-AEFB-4C4F-B44B-1603A052285E">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B188CD3D-D4D4-4C68-AA48-75019C1FD5A8">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4F011F2B-EBBA-41C0-9013-7DA8F9FADF8F">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_793EC878-8F86-492D-8EFF-305EF6CBE948">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_FFAA44EA-F6FB-46A3-92F8-817847617131">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_AB7871DF-0443-4FD9-918C-5FF8008075D6">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_09440CF1-CAF1-451C-B7EF-E83C93B53112">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_583045DC-6B96-4417-9910-B2620CC172D7">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DF7963E1-2A9B-4745-9E8D-6C7A4A5B632B">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_065C6AD6-85B5-455D-A9D3-677D2A813B80">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_C4F94B1B-4F63-4A38-B998-53033FFE0ACF">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_803EC799-9BD0-49E2-AC03-181965A6D079">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_426B00B0-76A8-4E4A-8A91-FD34888FC796">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_087527B9-0873-493B-B3A3-755C424CEA3D">
+            <kie:width>266</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_8665B51E-663F-4685-A3FA-953635631D8C">
+            <kie:width>60</kie:width>
+            <kie:width>124</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>123</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>101</kie:width>
+            <kie:width>251</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_85E1C858-4B1B-4E70-9883-CB95064B733A">
+            <kie:width>857</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_8E3B3A7D-DCAB-49DB-979A-C70FF4F5E761">
+            <kie:width>857</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_7C39661E-9B6F-430F-842D-FB5D7CDE63F0">
+            <kie:width>857</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D54562AD-4FB0-4E47-9E8A-50DD4E598892">
+            <kie:width>857</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_FEDC4738-0C08-4E2E-BE75-9B13ABF9D0B2">
+            <kie:width>939</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4BB47177-24A9-4E7D-AB48-B982DAB648F2">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_E9BD4814-E1E1-4805-926C-F83E0967A959">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4D64B679-41F5-4A16-B6BA-ABD965852188">
+            <kie:width>791</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A1E0C5DD-9A7E-43FC-B504-9C1A3D0786AD">
+            <kie:width>791</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_821C2329-9CA7-4779-B848-A5AAC36258F1">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>257</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_73F39C7F-2003-4CBC-99EB-F9274FFA07FD">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_FBC25D0B-2CC6-434D-AB2D-41F1250E3F76">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_EC51180B-64C2-4159-AA2C-D9B8E9C73035" dmnElementRef="_DDFF822E-41E9-4FCC-97D0-DF1F5FADE045" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="880" y="980" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_6D662FC2-AC9C-47F2-B820-4F137C2D49CD" dmnElementRef="_824687D4-560F-4013-B8B7-0B635468CFFD" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="380" y="720" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_21E89D7C-1E62-42EC-B59C-FA5ED0BE6620" dmnElementRef="_6E47584B-F4A4-4E2D-AAF9-FC2F9524F8C8" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="380" y="540" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_23C07C9A-2D9D-4624-B098-267BC73CF1FF" dmnElementRef="_19A42222-E320-4210-957F-19EB0BA8D2B7" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="160" y="720" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_0B2A10C5-41B5-4F53-B1E3-7B54236CCB62" dmnElementRef="_A14A6E86-1A4F-4CCE-B396-296D41DE0D15" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="620" y="540" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_28704A29-4A5F-4C60-8282-43B28995D2DF" dmnElementRef="_D12F7146-175C-4565-8FBB-ED41D04E69FD" sourceElement="_6D662FC2-AC9C-47F2-B820-4F137C2D49CD" targetElement="_21E89D7C-1E62-42EC-B59C-FA5ED0BE6620">
+        <di:waypoint x="460" y="720" />
+        <di:waypoint x="460" y="620" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_6AB71D16-4C48-4B02-8C24-6B8CB7BE193B" dmnElementRef="_AFB67E4C-2156-4074-A76C-3274362BB002" sourceElement="_23C07C9A-2D9D-4624-B098-267BC73CF1FF" targetElement="_21E89D7C-1E62-42EC-B59C-FA5ED0BE6620">
+        <di:waypoint x="240" y="720" />
+        <di:waypoint x="460" y="620" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_ABB9235F-CB89-4878-8AD6-B2580A00C335" dmnElementRef="_FD1E7C16-D3D8-4EC9-8D07-5CE7AE521C5C" sourceElement="_0B2A10C5-41B5-4F53-B1E3-7B54236CCB62" targetElement="_21E89D7C-1E62-42EC-B59C-FA5ED0BE6620">
+        <di:waypoint x="700" y="580" />
+        <di:waypoint x="540" y="580" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_E0D4EFB6-1236-4A99-A8BD-C3E3EEA43C2A" dmnElementRef="_B55C9D63-D11B-495F-9DC2-7FC0E1345070" sourceElement="_EC51180B-64C2-4159-AA2C-D9B8E9C73035" targetElement="_21E89D7C-1E62-42EC-B59C-FA5ED0BE6620">
+        <di:waypoint x="960" y="1020" />
+        <di:waypoint x="460" y="620" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_39AF866B-DAD5-4F03-93F9-78EBDA67C794" dmnElementRef="_E91CB997-DDD8-4703-B74C-8D08BC9431BD" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="960" y="580" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_72F41C2B-C937-4014-9277-7D85E0574044" dmnElementRef="_05A702D2-C55D-4873-9272-AA47E4048215" sourceElement="_EC51180B-64C2-4159-AA2C-D9B8E9C73035" targetElement="_39AF866B-DAD5-4F03-93F9-78EBDA67C794">
+        <di:waypoint x="960" y="1020" />
+        <di:waypoint x="1040" y="660" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_6EF95714-649D-4114-BB82-B6264D3661B2" dmnElementRef="_653C5122-6D16-42A9-A088-DFA4EDE3F7ED" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1600" y="660" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_ED133986-F778-40DE-A193-5AC3D33C7CF5" dmnElementRef="_4BF7E6A3-82BB-48BE-840C-FB4F67E67B4D" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1600" y="480" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_CC20A62E-EB13-447F-8AD7-B5DB3C3FB80C" dmnElementRef="_6AB75B7C-F220-4D45-8356-C632DAEF1B68" sourceElement="_6EF95714-649D-4114-BB82-B6264D3661B2" targetElement="_ED133986-F778-40DE-A193-5AC3D33C7CF5">
+        <di:waypoint x="1680" y="660" />
+        <di:waypoint x="1680" y="560" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_2F0E33AE-A524-4773-941B-8E30F7856217" dmnElementRef="_B1EC8B37-801F-4C23-BBE0-16E3941A3223" sourceElement="_EC51180B-64C2-4159-AA2C-D9B8E9C73035" targetElement="_6EF95714-649D-4114-BB82-B6264D3661B2">
+        <di:waypoint x="960" y="1020" />
+        <di:waypoint x="1680" y="740" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_9A1884C3-BFE7-4D65-8A23-BE786A2E975D" dmnElementRef="_B4D4989F-EB0F-42A9-A84A-76B491C7C897" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1300" y="560" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_FA38C24F-BE57-4025-8392-022D65D17AC3" dmnElementRef="_B54243D2-BAB5-4140-8CAA-8563BCB8CB45" sourceElement="_EC51180B-64C2-4159-AA2C-D9B8E9C73035" targetElement="_9A1884C3-BFE7-4D65-8A23-BE786A2E975D">
+        <di:waypoint x="960" y="1020" />
+        <di:waypoint x="1380" y="640" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_4D5A40BA-213E-495B-8167-337BF6BCC6AF" dmnElementRef="_74BE199A-E18F-492C-B048-B7A19EB272E2" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="400" y="80" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_91E62513-A2AB-472B-9EB4-A36593AD9AF5" dmnElementRef="_92F7757C-AF3E-4B4F-BF43-878209861FB1" sourceElement="_21E89D7C-1E62-42EC-B59C-FA5ED0BE6620" targetElement="_4D5A40BA-213E-495B-8167-337BF6BCC6AF">
+        <di:waypoint x="460" y="580" />
+        <di:waypoint x="480" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_9B72B0B4-9823-4290-9126-C169C4BC12EB" dmnElementRef="_A58D0027-4CBA-4FA7-B06C-3DD128935C4B" sourceElement="_6EF95714-649D-4114-BB82-B6264D3661B2" targetElement="_4D5A40BA-213E-495B-8167-337BF6BCC6AF">
+        <di:waypoint x="1680" y="700" />
+        <di:waypoint x="480" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_46CFD6D8-706D-499D-A510-1C32BBD57B56" dmnElementRef="_0DF75285-1E84-4005-988E-65333F481B2C" sourceElement="_39AF866B-DAD5-4F03-93F9-78EBDA67C794" targetElement="_4D5A40BA-213E-495B-8167-337BF6BCC6AF">
+        <di:waypoint x="1040" y="620" />
+        <di:waypoint x="480" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_A7E986F8-40E9-4A28-B880-2E9C8513BECC" dmnElementRef="_CC55C8B8-3F65-44D3-9AD8-2167A4F0D202" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1280" y="80" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_EA1714F4-3E8D-445D-A860-20E6D14200B0" dmnElementRef="_4FABEB66-5FC6-42F9-BB35-34BF0FC9347D" sourceElement="_9A1884C3-BFE7-4D65-8A23-BE786A2E975D" targetElement="_A7E986F8-40E9-4A28-B880-2E9C8513BECC">
+        <di:waypoint x="1380" y="600" />
+        <di:waypoint x="1360" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_54C43E04-7A3A-4178-B9B5-601B716C2854" dmnElementRef="_719A5C61-BE7D-4C2B-AC0F-717763641820" sourceElement="_ED133986-F778-40DE-A193-5AC3D33C7CF5" targetElement="_A7E986F8-40E9-4A28-B880-2E9C8513BECC">
+        <di:waypoint x="1680" y="520" />
+        <di:waypoint x="1360" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_91BC0C79-0F70-447C-B17C-2E533F6F0386" dmnElementRef="_4C422190-1425-4BB6-A66D-C07BD12B3395" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="840" y="-120" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_D4CCC209-874D-4797-B0EE-94DA66783487" dmnElementRef="_BCE300E3-9CE3-4089-B2D0-FF6B4559F550" sourceElement="_A7E986F8-40E9-4A28-B880-2E9C8513BECC" targetElement="_91BC0C79-0F70-447C-B17C-2E533F6F0386">
+        <di:waypoint x="1360" y="120" />
+        <di:waypoint x="920" y="-40" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_F255ABBE-4737-41A6-B87F-1AA6687172EC" dmnElementRef="_737DB940-BE23-4BB5-9EE9-8CF7C4F0CD2F" sourceElement="_4D5A40BA-213E-495B-8167-337BF6BCC6AF" targetElement="_91BC0C79-0F70-447C-B17C-2E533F6F0386">
+        <di:waypoint x="480" y="120" />
+        <di:waypoint x="920" y="-40" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
