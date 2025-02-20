@@ -21,14 +21,14 @@
             <dependency>
                 <groupId>org.kie.kogito</groupId>
                 <artifactId>kogito-spring-boot-bom</artifactId>
-                <version>999-SNAPSHOT</version>
+                <version>10.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.kie.kogito</groupId>
                 <artifactId>kogito-bom</artifactId>
-                <version>999-SNAPSHOT</version>
+                <version>10.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
