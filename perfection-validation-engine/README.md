@@ -8,6 +8,10 @@ This directory serves as the home for various prototypes focused on building dec
 
 - Java process
 
+### Filing Status
+
+- Implement as a single DMN decision -> Is valid file status?
+
 ### Dependents
 
 - Implement as a single DMN decision -> Is valid dependent?
