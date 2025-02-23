@@ -27,3 +27,7 @@ This directory serves as the home for various prototypes focused on building dec
 ### TBD
 
 - Implement as a custom work item handler to invoke a series of DMN rules
+
+## Troubleshooting/Gotchas
+
+- The kogito editor seems to only noticed staged or committed items
