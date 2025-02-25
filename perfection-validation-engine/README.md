@@ -8,25 +8,15 @@ This directory serves as the home for various prototypes focused on building dec
 
 - Java process
 
-### Filing Status
+### Standard deduction
 
-- Implement as a single DMN decision -> Is valid file status?
-
-### Dependents
-
-- Implement as a single DMN decision -> Is valid dependent?
-
-### Schedule A
-
-- Implement as a DRL rule unit
-
-### Schedule E
-
-- Implement as a separate project invoked as a web service
-
-### TBD
-
-- Implement as a custom work item handler to invoke a series of DMN rules
+- Determined via a DMN decision
+  - Inputs:
+    - Filing Status
+    - Is Blind?
+    - Is over 65?
+  - Outputs
+    - Standard deduction amount
 
 ## Troubleshooting/Gotchas
 

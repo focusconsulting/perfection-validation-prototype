@@ -4,6 +4,11 @@ import org.kie.kogito.internal.process.runtime.KogitoWorkItem;
 import org.kie.kogito.internal.process.runtime.KogitoWorkItemHandler;
 import org.kie.kogito.internal.process.runtime.KogitoWorkItemManager;
 
+/**
+ * This custom handler can run several different DMN decisions and then
+ * consolidate them into a single output
+ * 
+ */
 public class DMNRulesTaskWorkItemHandler implements KogitoWorkItemHandler {
 
     @Override
