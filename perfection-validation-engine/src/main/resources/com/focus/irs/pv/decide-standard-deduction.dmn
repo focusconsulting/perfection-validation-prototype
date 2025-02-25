@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="https://kie.org/dmn/_D64F2B2E-4F2A-4A08-8B10-96769DCC49C3" id="_18E77AB4-FF7F-4EE2-988A-C75F39FFAEC7" name="decide-standard-deduction">
+  <itemDefinition id="_94021FA9-CC91-4E82-8F64-74A827D43403" name="FilingStatus" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <description>Single
+Married Filing Jointly
+Married Filing Separately
+Head of Househol
+Qualifying Widow(er)</description>
+    <typeRef>string</typeRef>
+  </itemDefinition>
+  <inputData name="Filing Status" id="_1F78B11A-C165-4AF9-A0A3-12524BB3944F">
+    <variable name="Filing Status" id="_DC27C3BA-4562-4678-B5D5-5E576DD0D442" typeRef="FilingStatus" />
+  </inputData>
+  <inputData name="Is older than 65?" id="_A09CE6EF-089D-46BD-90CD-772BB5405A6A">
+    <variable name="Is older than 65?" id="_8BDA495F-5362-429F-ADB1-DBB6EA6B350E" typeRef="boolean" />
+  </inputData>
+  <inputData name="Is Blind?" id="_25C36522-4FCA-4059-943C-D7D0866CDBF4">
+    <variable name="Is Blind?" id="_70BF84AB-F7AD-4538-8DE4-748F1EF50E6E" typeRef="boolean" />
+  </inputData>
+  <decision name="Determine standard deduction" id="_DC01A75D-7986-4C5F-9A30-BDA258AEE35F">
+    <variable name="Determine standard deduction" id="_10909EFA-65C8-4A2C-B3EA-43F9BA1084DC" typeRef="number" />
+    <informationRequirement id="_14977169-C018-4F8E-B881-AE8026981D3A">
+      <requiredInput href="#_A09CE6EF-089D-46BD-90CD-772BB5405A6A" />
+    </informationRequirement>
+    <informationRequirement id="_3BFB77FA-4319-4C9F-A9DA-9631DE8A44D5">
+      <requiredInput href="#_25C36522-4FCA-4059-943C-D7D0866CDBF4" />
+    </informationRequirement>
+    <informationRequirement id="_2637173B-4836-4A8B-8C1A-40A87D60AB62">
+      <requiredInput href="#_1F78B11A-C165-4AF9-A0A3-12524BB3944F" />
+    </informationRequirement>
+    <context id="_E50C8257-DFFB-48A9-9643-3DF10E815671" typeRef="number" label="Determine standard deduction">
+      <contextEntry id="_B81ED3B0-C837-4E98-A6F7-CBDD1B510A1C">
+        <variable id="_E26AE795-FCA4-4255-95D6-48F04C6AA466" name="Single Deduction" typeRef="number" />
+        <literalExpression id="_C1AE487E-4E06-4A7D-825B-0830E3B6CF1C" typeRef="number" label="Single Deduction">
+          <text>14600</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_2EBF00FF-11BB-4F1E-84AE-480308F6E467">
+        <variable id="_44316533-6477-4718-BA29-30342E130D94" name="Married File Jointly Deduction" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_590B7013-78C2-4303-A021-DFD7382A0C80" typeRef="number" label="Married File Jointly Deduction">
+          <text>29200</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_2E9E2957-B35C-4496-B883-FAE3B1D19E1B">
+        <variable id="_54C33EAD-CFF9-4A5D-808C-A08B8B90F9FA" name="Head of Household Deduction" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_81841AA6-F710-459C-8F74-84C6290E7249" typeRef="number" label="Head of Household Deduction">
+          <text>21900</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_49B588B7-911F-49D5-8165-DC59F8A93C4D">
+        <variable id="_92FEE563-3699-4E82-A8DE-67B688423DC1" name="Blind Deduction" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_9A14470B-3923-450B-BFB7-38C443873D64" typeRef="number" label="Blind Deduction">
+          <text>1950</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_0D81C010-5D83-43AC-BC57-836EB32B53A2">
+        <variable id="_EF201F03-D2C7-4E9E-8156-09C243259AF0" name="Old Deduction" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_ED01886E-25D0-4929-9837-D2C18E0E4542" typeRef="number" label="Old Deduction">
+          <text>1950</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_CD275EE3-C39F-4B4C-AE60-7D62015CCFFE">
+        <decisionTable id="_7C9F40EB-57F6-49BB-B58D-7E77567B4889" typeRef="number" hitPolicy="UNIQUE" label="Determine standard deduction">
+          <input id="_3727F940-B456-4A32-ACBE-B58DAFEF8F02">
+            <inputExpression id="_A6AB116E-4EDC-405C-BC09-63DD055882CD" typeRef="FilingStatus">
+              <text>Filing Status</text>
+            </inputExpression>
+          </input>
+          <input id="_6C3CA8EE-5227-4947-91D6-9B54AA49801E">
+            <inputExpression id="_FE4DE7A1-303A-4CA8-80A4-354514600DC1" typeRef="boolean">
+              <text>Is older than 65?</text>
+            </inputExpression>
+          </input>
+          <input id="_0CF0F1D1-6C0C-467F-B20D-846C47999F22">
+            <inputExpression id="_3B5642A1-CF16-4072-80D8-F9FE0A10407E" typeRef="boolean">
+              <text>Is Blind?</text>
+            </inputExpression>
+          </input>
+          <output id="_20A25638-52D2-4129-884F-705C03111DBE" name="Output-1" />
+          <annotation name="Annotations" />
+          <rule id="_F7E5ACC9-D23C-421A-B44A-197B7673E4FE">
+            <inputEntry id="_D3DD8453-7875-4733-B7F3-8F10CA204CF1">
+              <text>&quot;S&quot;</text>
+            </inputEntry>
+            <inputEntry id="_B3A0EC3F-0E7B-4051-8991-3D41AF67FFC4">
+              <text>true</text>
+            </inputEntry>
+            <inputEntry id="_DF2E0C01-9A96-4628-BBDF-D547893E9B62">
+              <text>true</text>
+            </inputEntry>
+            <outputEntry id="_C33C34B9-C05D-452A-BD14-B9CD5CAC5183">
+              <text>Single Deduction + Blind Deduction + Old Deduction</text>
+            </outputEntry>
+            <annotationEntry>
+              <text>// Your annotations here</text>
+            </annotationEntry>
+          </rule>
+          <rule id="_0B6D4B45-A784-406A-9BDF-2AF1A3ECDF25">
+            <inputEntry id="_7B53BF0D-A42D-4906-85EE-A22AD67C39E0">
+              <text>&quot;S&quot;</text>
+            </inputEntry>
+            <inputEntry id="_853CDA13-4CFD-41FD-A95A-0B856C4CDAFA">
+              <text>true</text>
+            </inputEntry>
+            <inputEntry id="_44F5B4E3-3247-4B15-85F9-563A75014431">
+              <text>false</text>
+            </inputEntry>
+            <outputEntry id="_D4688931-774E-4598-B803-253202B8BE08">
+              <text>Single Deduction + Old Deduction</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+        </decisionTable>
+      </contextEntry>
+    </context>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_5F6A2C55-802C-4EDB-A4C1-395A8151076C" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_9D2595A7-BA5C-4FAE-91CE-AAC286C0F37F">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>133</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_E50C8257-DFFB-48A9-9643-3DF10E815671">
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_7C9F40EB-57F6-49BB-B58D-7E77567B4889">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>101</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>411</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_C1AE487E-4E06-4A7D-825B-0830E3B6CF1C">
+            <kie:width>1010</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_590B7013-78C2-4303-A021-DFD7382A0C80">
+            <kie:width>1010</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_81841AA6-F710-459C-8F74-84C6290E7249">
+            <kie:width>1010</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_9A14470B-3923-450B-BFB7-38C443873D64">
+            <kie:width>1010</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_ED01886E-25D0-4929-9837-D2C18E0E4542">
+            <kie:width>1010</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_725B541C-B89F-4B81-8D7B-C8D2708A99CF" dmnElementRef="_1F78B11A-C165-4AF9-A0A3-12524BB3944F" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="200" y="280" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_DF5F46C2-F966-408B-A577-2962F1FECAE8" dmnElementRef="_A09CE6EF-089D-46BD-90CD-772BB5405A6A" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="400" y="280" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_7D50A631-D95E-4236-8126-E21AFE6AB869" dmnElementRef="_25C36522-4FCA-4059-943C-D7D0866CDBF4" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="600" y="280" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_3DE37735-1734-40F8-8C80-E4A1668C0839" dmnElementRef="_DC01A75D-7986-4C5F-9A30-BDA258AEE35F" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="380" y="-40" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_8949C8EE-DA07-47BA-9C38-3BE3F2EC09FC" dmnElementRef="_14977169-C018-4F8E-B881-AE8026981D3A" sourceElement="_DF5F46C2-F966-408B-A577-2962F1FECAE8" targetElement="_3DE37735-1734-40F8-8C80-E4A1668C0839">
+        <di:waypoint x="480" y="320" />
+        <di:waypoint x="460" y="40" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_A194FE58-CD5B-469B-9613-301FD1D58E58" dmnElementRef="_3BFB77FA-4319-4C9F-A9DA-9631DE8A44D5" sourceElement="_7D50A631-D95E-4236-8126-E21AFE6AB869" targetElement="_3DE37735-1734-40F8-8C80-E4A1668C0839">
+        <di:waypoint x="680" y="320" />
+        <di:waypoint x="460" y="40" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_F0A6BEB9-3BE6-40E7-923A-73479FD604BE" dmnElementRef="_2637173B-4836-4A8B-8C1A-40A87D60AB62" sourceElement="_725B541C-B89F-4B81-8D7B-C8D2708A99CF" targetElement="_3DE37735-1734-40F8-8C80-E4A1668C0839">
+        <di:waypoint x="280" y="320" />
+        <di:waypoint x="460" y="40" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
