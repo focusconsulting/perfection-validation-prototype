@@ -5,6 +5,10 @@ import java.util.List;
 
 public class ItemizedDeductions {
 
+    public ItemizedDeductions(List<Deduction> submittedDeductions) {
+        this.submittedDeductions = submittedDeductions;
+    }
+
     private List<Deduction> submittedDeductions;
 
     private List<Deduction> validOrCorrectedDeductions;

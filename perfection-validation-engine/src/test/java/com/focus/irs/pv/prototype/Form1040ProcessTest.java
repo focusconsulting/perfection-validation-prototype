@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,8 +31,10 @@ public class Form1040ProcessTest {
 
         Model model = form1040Process.createModel();
         Map<String, Object> parameters = new HashMap<>();
-        Form1040Data data = new Form1040Data(false, false, FilingStatus.S);
         Form1040ProcessingOutput output = new Form1040ProcessingOutput();
+        Deduction teacherExpenseDeduction = new Deduction(BigDecimal.valueOf(200), "teacher-expense");
+        ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList(teacherExpenseDeduction));
+        Form1040Data data = new Form1040Data(false, false, FilingStatus.S, itemizedDeductions);
         parameters.put("Form1040", data);
         parameters.put("output", output);
         model.fromMap(parameters);
@@ -49,7 +53,9 @@ public class Form1040ProcessTest {
 
         Model model = form1040Process.createModel();
         Map<String, Object> parameters = new HashMap<>();
-        Form1040Data data = new Form1040Data(false, false, FilingStatus.MFJ);
+        Deduction teacherExpenseDeduction = new Deduction(BigDecimal.valueOf(200), "teacher-expense");
+        ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList(teacherExpenseDeduction));
+        Form1040Data data = new Form1040Data(false, false, FilingStatus.MFJ, itemizedDeductions);
         Form1040ProcessingOutput output = new Form1040ProcessingOutput();
         parameters.put("Form1040", data);
         parameters.put("output", output);

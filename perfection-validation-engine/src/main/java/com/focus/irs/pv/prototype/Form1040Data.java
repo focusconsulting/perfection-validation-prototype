@@ -10,10 +10,11 @@ public class Form1040Data {
 
     private ItemizedDeductions deductions;
 
-    public Form1040Data(Boolean isBlind, Boolean isOver65, FilingStatus filingStatus) {
+    public Form1040Data(Boolean isBlind, Boolean isOver65, FilingStatus filingStatus, ItemizedDeductions deductions) {
         this.isBlind = isBlind;
         this.isOver65 = isOver65;
         this.filingStatus = filingStatus;
+        this.deductions = deductions;
     }
 
     public Boolean getIsBlind() {

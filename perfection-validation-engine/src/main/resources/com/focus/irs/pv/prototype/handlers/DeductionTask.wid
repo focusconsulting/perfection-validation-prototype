@@ -1,7 +1,7 @@
 [
     [
-        "name" : "DeductionsTask",
-        "displayName" : "DMNRulesTask",
+        "name" : "DeductionTask",
+        "displayName" : "Deduction Task",
         "icon" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
         "category" : "Custom Task",
         "documentation" : "Deduction task",
