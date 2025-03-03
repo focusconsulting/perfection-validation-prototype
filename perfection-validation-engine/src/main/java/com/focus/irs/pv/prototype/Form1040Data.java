@@ -8,6 +8,8 @@ public class Form1040Data {
 
     private FilingStatus filingStatus;
 
+    private ItemizedDeductions deductions;
+
     public Form1040Data(Boolean isBlind, Boolean isOver65, FilingStatus filingStatus) {
         this.isBlind = isBlind;
         this.isOver65 = isOver65;
@@ -24,6 +26,10 @@ public class Form1040Data {
 
     public FilingStatus getFilingStatus() {
         return filingStatus;
+    }
+
+    public ItemizedDeductions getDeductions() {
+        return deductions;
     }
 
 }
