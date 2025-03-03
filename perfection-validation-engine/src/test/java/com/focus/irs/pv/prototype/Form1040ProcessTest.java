@@ -35,6 +35,8 @@ public class Form1040ProcessTest {
         ProcessInstance<?> processInstance = form1040Process.createInstance(model);
         processInstance.start();
         assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.status());
+        Model result = (Model) processInstance.variables();
+        assertEquals(result.toMap().get("agi"), 0);
     }
 
 }
