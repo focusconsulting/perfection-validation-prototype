@@ -11,6 +11,7 @@ import org.kie.kogito.internal.process.runtime.KogitoWorkItemHandler;
 import org.kie.kogito.internal.process.runtime.KogitoWorkItemManager;
 
 import com.focus.irs.pv.prototype.Deduction;
+import com.focus.irs.pv.prototype.Form1040Data;
 
 public class DeductionsTaskWorkItemHandler implements KogitoWorkItemHandler {
     @Override
@@ -21,12 +22,14 @@ public class DeductionsTaskWorkItemHandler implements KogitoWorkItemHandler {
 
         String dmnFile = (String) workItem.getParameter("dmnFile");
         Deduction deduction = (Deduction) workItem.getParameter("deduction");
+        Form1040Data form1040Data = (Form1040Data) workItem.getParameter("form1040Data");
 
         DMNModel dmnModel = dmnRuntime.getModel(dmnFile, dmnFile);
         DMNContext dmnContext = dmnRuntime.newContext();
 
         // Set the deduction as input
         dmnContext.set("deduction", deduction);
+        dmnContext.set("form1040Data", form1040Data);
 
         // Execute the decision
         DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);

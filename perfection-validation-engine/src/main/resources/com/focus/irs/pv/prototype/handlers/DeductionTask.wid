@@ -6,8 +6,9 @@
         "category" : "Custom Task",
         "documentation" : "Deduction task",
         "parameters" : [
-          "dmnFile" : new StringDataType(),
-          "deduction" : new ObjectDataType(),
+          "DmnFile" : new StringDataType(),
+          "Deduction" : new ObjectDataType(),
+          "Form1040Data": new ObjectDataType(),
         ],
         "results" : [
             "result": new ObjectDataType()
