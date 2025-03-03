@@ -4,9 +4,10 @@ import org.kie.kogito.process.impl.DefaultWorkItemHandlerConfig;
 import org.springframework.web.context.annotation.ApplicationScope;
 
 @ApplicationScope
-public class DMNRulesTaskWorkItemConfig extends DefaultWorkItemHandlerConfig {
+public class CustomTaskWorkItemConfig extends DefaultWorkItemHandlerConfig {
     {
         register("DMNRulesTask", new DMNRulesTaskWorkItemHandler());
+        register("DeductionsTask", new DeductionsTaskWorkItemHandler());
     }
 
 }

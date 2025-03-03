@@ -1,0 +1,16 @@
+[
+    [
+        "name" : "Deductions Task",
+        "displayName" : "DMNRulesTask",
+        "icon" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+        "category" : "Custom Task",
+        "documentation" : "Deduction task",
+        "parameters" : [
+          "dmnFile" : new StringDataType(),
+          "deduction" : new ObjectDataType(),
+        ],
+        "results" : [
+            "result": new ObjectDataType()
+        ]
+    ]
+]
