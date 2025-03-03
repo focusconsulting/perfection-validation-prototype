@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="https://kie.org/dmn/_D64F2B2E-4F2A-4A08-8B10-96769DCC49C3" id="_18E77AB4-FF7F-4EE2-988A-C75F39FFAEC7" name="decide-standard-deduction">
-  <itemDefinition id="_94021FA9-CC91-4E82-8F64-74A827D43403" name="FilingStatus" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
-    <description>Single
-Married Filing Jointly
-Married Filing Separately
-Head of Househol
-Qualifying Widow(er)</description>
+  <itemDefinition id="_1B368543-241F-4E54-B45C-7D53042233E6" name="tFilingStatus" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
     <typeRef>string</typeRef>
   </itemDefinition>
-  <inputData name="Filing Status" id="_1F78B11A-C165-4AF9-A0A3-12524BB3944F">
-    <variable name="Filing Status" id="_DC27C3BA-4562-4678-B5D5-5E576DD0D442" typeRef="FilingStatus" />
-  </inputData>
-  <inputData name="Is older than 65?" id="_A09CE6EF-089D-46BD-90CD-772BB5405A6A">
-    <variable name="Is older than 65?" id="_8BDA495F-5362-429F-ADB1-DBB6EA6B350E" typeRef="boolean" />
-  </inputData>
-  <inputData name="Is Blind?" id="_25C36522-4FCA-4059-943C-D7D0866CDBF4">
-    <variable name="Is Blind?" id="_70BF84AB-F7AD-4538-8DE4-748F1EF50E6E" typeRef="boolean" />
-  </inputData>
+  <itemDefinition id="_B302AFB2-052E-4ED2-BCF7-8A348448B54A" name="tForm1040Data" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_843FBD77-A1A5-47BB-9F4E-0F996A8FE0BC" name="isBlind" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>boolean</typeRef>
+    </itemComponent>
+    <itemComponent id="_E9BC3224-F9D5-44F8-92D2-213DBC26401C" name="isOver65" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>boolean</typeRef>
+    </itemComponent>
+    <itemComponent id="_3CB06901-143B-4AE9-8DA2-883CB18F43C0" name="filingStatus" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>tFilingStatus</typeRef>
+    </itemComponent>
+  </itemDefinition>
   <decision name="Determine standard deduction" id="_DC01A75D-7986-4C5F-9A30-BDA258AEE35F">
     <variable name="Determine standard deduction" id="_10909EFA-65C8-4A2C-B3EA-43F9BA1084DC" typeRef="number" />
-    <informationRequirement id="_14977169-C018-4F8E-B881-AE8026981D3A">
-      <requiredInput href="#_A09CE6EF-089D-46BD-90CD-772BB5405A6A" />
-    </informationRequirement>
-    <informationRequirement id="_3BFB77FA-4319-4C9F-A9DA-9631DE8A44D5">
-      <requiredInput href="#_25C36522-4FCA-4059-943C-D7D0866CDBF4" />
-    </informationRequirement>
-    <informationRequirement id="_2637173B-4836-4A8B-8C1A-40A87D60AB62">
-      <requiredInput href="#_1F78B11A-C165-4AF9-A0A3-12524BB3944F" />
+    <informationRequirement id="_EAA97B0C-3721-4006-8080-EB6452D3ED0A">
+      <requiredInput href="#_4E75F656-1655-43C7-8DE3-1E0C247D2396" />
     </informationRequirement>
     <context id="_E50C8257-DFFB-48A9-9643-3DF10E815671" typeRef="number" label="Determine standard deduction">
       <contextEntry id="_B81ED3B0-C837-4E98-A6F7-CBDD1B510A1C">
@@ -67,10 +58,34 @@ Qualifying Widow(er)</description>
           <text>1950</text>
         </literalExpression>
       </contextEntry>
+      <contextEntry id="_38D4DE24-9EB4-4158-984F-2FFEDDAEE4A5">
+        <variable id="_904C2655-54D3-4B8A-ACCF-1972D9D21747" name="Is Blind?" typeRef="boolean">
+          <description></description>
+        </variable>
+        <literalExpression id="_BE1835E1-BD89-4AF5-A8E9-B9C8F1691367" typeRef="boolean" label="Is Blind?">
+          <text>Form 1040 Data.isBlind</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_31C4E9CC-3BD6-4917-9386-811E45476576">
+        <variable id="_EBCB330A-08BE-45A2-96F4-855940643F2D" name="Is older than 65?" typeRef="boolean">
+          <description></description>
+        </variable>
+        <literalExpression id="_03F914CD-65F5-4DB0-8AA3-4AC9E3BFDE2A" typeRef="boolean" label="Is older than 65?">
+          <text>Form 1040 Data.isOver65</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_8B2E2DA3-02C6-4BB9-A7C9-8C2D900FBAD5">
+        <variable id="_0971CF3D-BD1C-46B0-AA10-56CEE14A1ABF" name="Filing Status" typeRef="tFilingStatus">
+          <description></description>
+        </variable>
+        <literalExpression id="_C50CC641-7822-414C-9BFE-7B59988566F4" typeRef="tFilingStatus" label="Filing Status">
+          <text>Form 1040 Data.filingStatus</text>
+        </literalExpression>
+      </contextEntry>
       <contextEntry id="_CD275EE3-C39F-4B4C-AE60-7D62015CCFFE">
         <decisionTable id="_7C9F40EB-57F6-49BB-B58D-7E77567B4889" typeRef="number" hitPolicy="UNIQUE" label="Determine standard deduction">
           <input id="_3727F940-B456-4A32-ACBE-B58DAFEF8F02">
-            <inputExpression id="_A6AB116E-4EDC-405C-BC09-63DD055882CD" typeRef="FilingStatus">
+            <inputExpression id="_A6AB116E-4EDC-405C-BC09-63DD055882CD" typeRef="tFilingStatus">
               <text>Filing Status</text>
             </inputExpression>
           </input>
@@ -103,6 +118,23 @@ Qualifying Widow(er)</description>
               <text>// Your annotations here</text>
             </annotationEntry>
           </rule>
+          <rule id="_1F8FEA4D-1D57-46E6-B2D5-545FE67711C3">
+            <inputEntry id="_EE53E8D8-CB20-4F8A-B844-FE23D7673994">
+              <text>&quot;S&quot;</text>
+            </inputEntry>
+            <inputEntry id="_BA85BF05-1081-40D2-9EB3-2C133E91E813">
+              <text>false</text>
+            </inputEntry>
+            <inputEntry id="_5FAC7219-500F-48D4-84AA-58560E0462F3">
+              <text>false</text>
+            </inputEntry>
+            <outputEntry id="_1A626DA6-1268-43CF-A377-D5C70FA609CF">
+              <text>Single Deduction</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
           <rule id="_0B6D4B45-A784-406A-9BDF-2AF1A3ECDF25">
             <inputEntry id="_7B53BF0D-A42D-4906-85EE-A22AD67C39E0">
               <text>&quot;S&quot;</text>
@@ -120,10 +152,30 @@ Qualifying Widow(er)</description>
               <text></text>
             </annotationEntry>
           </rule>
+          <rule id="_D3D06A0A-98F3-411B-ABD5-054F7E112BDD">
+            <inputEntry id="_7DB943F0-39A8-4D89-B9D2-757916368D4C">
+              <text>&quot;MFJ&quot;</text>
+            </inputEntry>
+            <inputEntry id="_439D225B-C4C2-42B5-A23F-57F8C17367F4">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_D2724161-E506-4B80-A051-08B98FEAA200">
+              <text>-</text>
+            </inputEntry>
+            <outputEntry id="_0241FD7A-5BD1-4E58-8363-9F66D3BE1B9B">
+              <text>Married File Jointly Deduction</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
         </decisionTable>
       </contextEntry>
     </context>
   </decision>
+  <inputData name="Form 1040 Data" id="_4E75F656-1655-43C7-8DE3-1E0C247D2396">
+    <variable name="Form 1040 Data" id="_1AD80E1B-0A23-4726-8090-0949491E884F" typeRef="tForm1040Data" />
+  </inputData>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_5F6A2C55-802C-4EDB-A4C1-395A8151076C" name="Default DRD" useAlternativeInputDataShape="false">
       <di:extension>
@@ -162,30 +214,25 @@ Qualifying Widow(er)</description>
           <kie:ComponentWidths dmnElementRef="_ED01886E-25D0-4929-9837-D2C18E0E4542">
             <kie:width>1010</kie:width>
           </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_BE1835E1-BD89-4AF5-A8E9-B9C8F1691367">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_03F914CD-65F5-4DB0-8AA3-4AC9E3BFDE2A">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_C50CC641-7822-414C-9BFE-7B59988566F4">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
       </di:extension>
-      <dmndi:DMNShape id="_725B541C-B89F-4B81-8D7B-C8D2708A99CF" dmnElementRef="_1F78B11A-C165-4AF9-A0A3-12524BB3944F" isCollapsed="false" isListedInputData="false">
-        <dc:Bounds x="200" y="280" width="160" height="80" />
-      </dmndi:DMNShape>
-      <dmndi:DMNShape id="_DF5F46C2-F966-408B-A577-2962F1FECAE8" dmnElementRef="_A09CE6EF-089D-46BD-90CD-772BB5405A6A" isCollapsed="false" isListedInputData="false">
-        <dc:Bounds x="400" y="280" width="160" height="80" />
-      </dmndi:DMNShape>
-      <dmndi:DMNShape id="_7D50A631-D95E-4236-8126-E21AFE6AB869" dmnElementRef="_25C36522-4FCA-4059-943C-D7D0866CDBF4" isCollapsed="false" isListedInputData="false">
-        <dc:Bounds x="600" y="280" width="160" height="80" />
-      </dmndi:DMNShape>
       <dmndi:DMNShape id="_3DE37735-1734-40F8-8C80-E4A1668C0839" dmnElementRef="_DC01A75D-7986-4C5F-9A30-BDA258AEE35F" isCollapsed="false" isListedInputData="false">
         <dc:Bounds x="380" y="-40" width="160" height="80" />
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="_8949C8EE-DA07-47BA-9C38-3BE3F2EC09FC" dmnElementRef="_14977169-C018-4F8E-B881-AE8026981D3A" sourceElement="_DF5F46C2-F966-408B-A577-2962F1FECAE8" targetElement="_3DE37735-1734-40F8-8C80-E4A1668C0839">
-        <di:waypoint x="480" y="320" />
-        <di:waypoint x="460" y="40" />
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="_A194FE58-CD5B-469B-9613-301FD1D58E58" dmnElementRef="_3BFB77FA-4319-4C9F-A9DA-9631DE8A44D5" sourceElement="_7D50A631-D95E-4236-8126-E21AFE6AB869" targetElement="_3DE37735-1734-40F8-8C80-E4A1668C0839">
-        <di:waypoint x="680" y="320" />
-        <di:waypoint x="460" y="40" />
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="_F0A6BEB9-3BE6-40E7-923A-73479FD604BE" dmnElementRef="_2637173B-4836-4A8B-8C1A-40A87D60AB62" sourceElement="_725B541C-B89F-4B81-8D7B-C8D2708A99CF" targetElement="_3DE37735-1734-40F8-8C80-E4A1668C0839">
-        <di:waypoint x="280" y="320" />
+      <dmndi:DMNShape id="_09BE569F-A40C-4309-B479-03FC70092DB4" dmnElementRef="_4E75F656-1655-43C7-8DE3-1E0C247D2396" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="380" y="220" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_08AE3B9B-F0CD-4F98-A685-FC8264DEB1D6" dmnElementRef="_EAA97B0C-3721-4006-8080-EB6452D3ED0A" sourceElement="_09BE569F-A40C-4309-B479-03FC70092DB4" targetElement="_3DE37735-1734-40F8-8C80-E4A1668C0839">
+        <di:waypoint x="460" y="260" />
         <di:waypoint x="460" y="40" />
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
