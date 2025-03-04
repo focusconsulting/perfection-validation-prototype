@@ -2,10 +2,10 @@ package com.focus.irs.pv.prototype;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +32,8 @@ public class Form1040ProcessTest {
         Model model = form1040Process.createModel();
         Map<String, Object> parameters = new HashMap<>();
         Form1040ProcessingOutput output = new Form1040ProcessingOutput();
-        Deduction teacherExpenseDeduction = new Deduction(BigDecimal.valueOf(200), "teacher-expense");
+        Deduction teacherExpenseDeduction = new Deduction(BigDecimal.valueOf(800), "teacher-expense");
+        assertNull(teacherExpenseDeduction.getCorrectedAmount());
         ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList(teacherExpenseDeduction));
         Form1040Data data = new Form1040Data(false, false, FilingStatus.S, itemizedDeductions);
         parameters.put("Form1040", data);
@@ -45,6 +46,7 @@ public class Form1040ProcessTest {
         Float expectedAgi = 0.0F;
         assertEquals(result.toMap().get("agi"), expectedAgi);
         assertEquals(output.getTaxesOwed(), BigDecimal.valueOf(-14600.0));
+        assertEquals(teacherExpenseDeduction.getCorrectedAmount(), BigDecimal.valueOf(300));
     }
 
     @Test
@@ -53,8 +55,7 @@ public class Form1040ProcessTest {
 
         Model model = form1040Process.createModel();
         Map<String, Object> parameters = new HashMap<>();
-        Deduction teacherExpenseDeduction = new Deduction(BigDecimal.valueOf(200), "teacher-expense");
-        ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList(teacherExpenseDeduction));
+        ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList());
         Form1040Data data = new Form1040Data(false, false, FilingStatus.MFJ, itemizedDeductions);
         Form1040ProcessingOutput output = new Form1040ProcessingOutput();
         parameters.put("Form1040", data);

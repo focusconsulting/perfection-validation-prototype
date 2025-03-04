@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="deductions" id="teacher-expense" name="teacher-expense">
+  <itemDefinition id="_ABCE052B-59AF-4CD5-A863-5137810188C1" name="tFilingStatus" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <typeRef>string</typeRef>
+  </itemDefinition>
+  <itemDefinition id="_DA2D5016-03BC-4EE4-B739-DBECD91E214C" name="tCorrectedDeduction" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_31D9BDD6-AA10-4D9E-AFB3-28F44405B5F6" name="amount" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+    <itemComponent id="_A82D9209-1A81-4E99-B915-9733A6AB3443" name="code" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>string</typeRef>
+    </itemComponent>
+  </itemDefinition>
   <itemDefinition id="_47EEB33C-716A-40C3-8593-76CE8B65BF9E" name="tDeduction" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
     <itemComponent id="_DFED1B4C-ADF8-4832-8028-0F460855EA26" name="amount" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
       <typeRef>number</typeRef>
     </itemComponent>
   </itemDefinition>
   <itemDefinition id="_7928803E-54CD-45BB-B827-B85F7DA147F8" name="tForm1040Data" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
-    <itemComponent id="_B0D9846E-9CB0-46D5-B2BA-0225A935541B" name="filingStatus" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
-      <typeRef>string</typeRef>
+    <itemComponent id="_182500EE-3379-424D-AC17-4F8DA416D2CB" name="filingStatus" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>tFilingStatus</typeRef>
     </itemComponent>
   </itemDefinition>
-  <inputData name="Form 1040 Data" id="_4584C8A9-59E8-4BE0-9F1F-196C8EB85EEC">
-    <variable name="Form 1040 Data" id="_86940E15-826A-4AE4-B624-17B8F6B0F7F1" typeRef="tForm1040Data" />
-  </inputData>
-  <decision name="Evaulate Teacher Expense Deduction" id="_842E4EBB-B9BF-41F6-98EF-8151FB570616">
-    <variable name="Evaulate Teacher Expense Deduction" id="_DEF281C4-B23B-4EB0-9FBE-E737E1B295B4" typeRef="number" />
-    <informationRequirement id="_A7731AF9-7437-4678-9592-D33CC4CEC7AC">
-      <requiredInput href="#_4584C8A9-59E8-4BE0-9F1F-196C8EB85EEC" />
-    </informationRequirement>
+  <decision name="Deduction Result" id="_842E4EBB-B9BF-41F6-98EF-8151FB570616">
+    <variable name="Deduction Result" id="_DEF281C4-B23B-4EB0-9FBE-E737E1B295B4" typeRef="tCorrectedDeduction" />
     <informationRequirement id="_A13A9DA5-2A20-4292-AD99-4228104239B3">
       <requiredInput href="#_00B78453-11A4-47F2-995A-EE7998300ECC" />
     </informationRequirement>
-    <context id="_451C4FC1-C6D6-48C3-955E-BC4C3B186A1D" typeRef="number" label="Evaulate Teacher Expense Deduction">
+    <informationRequirement id="_C9AECC0F-FECE-4DF4-984C-0215FFF06A2C">
+      <requiredInput href="#_B48019F1-31C4-4BE2-B9A6-BF186AA6C606" />
+    </informationRequirement>
+    <context id="_451C4FC1-C6D6-48C3-955E-BC4C3B186A1D" typeRef="tCorrectedDeduction" label="Deduction Result">
       <contextEntry id="_E7075637-7E0F-49CC-B346-8B0314F61E7B">
-        <variable id="_5DEC2489-4950-46D5-8A36-E6FC93671B1F" name="Filing Status" typeRef="string" />
-        <literalExpression id="_76156265-B009-4BF2-90C0-5F28AB25D5EC" label="Filing Status" typeRef="string">
-          <text>Form 1040 Data.filingStatus</text>
+        <variable id="_5DEC2489-4950-46D5-8A36-E6FC93671B1F" name="Filing Status" typeRef="tFilingStatus" />
+        <literalExpression id="_76156265-B009-4BF2-90C0-5F28AB25D5EC" label="Filing Status" typeRef="tFilingStatus">
+          <text>Form.filingStatus</text>
         </literalExpression>
       </contextEntry>
       <contextEntry id="_8BB9355E-8191-4944-88CD-995303443AF7">
@@ -36,21 +44,49 @@
           <text>Deduction.amount</text>
         </literalExpression>
       </contextEntry>
+      <contextEntry id="_2665ED2D-0874-4911-B480-18AEDCA3272A">
+        <variable id="_5215379B-67AB-476E-B730-C9383678A199" name="Single Max" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_6641EAEE-CB48-40C9-801A-DACEDBDC7E95" typeRef="number" label="Single Max">
+          <text>300</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_2D29B1B7-D1DD-407A-982D-E1699231A6BF">
+        <variable id="_840E137D-A9C7-4898-AAA9-4C4119DF9C9C" name="Other Status Max" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_1FE05ACD-4168-4D3F-9A3B-45B71047FCDF" typeRef="number" label="Other Status Max">
+          <text>600</text>
+        </literalExpression>
+      </contextEntry>
       <contextEntry id="_EB5F357E-1A6F-4CA9-974E-BC87ED2FDF66">
-        <decisionTable id="_0F1D81A1-293C-4F71-B7E5-4F74BDAE0EF8" typeRef="number" hitPolicy="FIRST" label="Evaulate Teacher Expense Deduction">
+        <decisionTable id="_0F1D81A1-293C-4F71-B7E5-4F74BDAE0EF8" typeRef="number" hitPolicy="UNIQUE" label="Amount">
           <input id="_487661AF-4846-4724-B1F7-46FE75E87C5B">
-            <inputExpression id="_82D317CF-E9C6-4F64-AA05-3E613363AC71" typeRef="string">
+            <inputExpression id="_82D317CF-E9C6-4F64-AA05-3E613363AC71" typeRef="tFilingStatus">
               <text>Filing Status</text>
             </inputExpression>
           </input>
-          <output id="_BD67C5BD-32B1-4983-8745-0E5AC037335F" name="Output-1" />
+          <input id="_01F88C01-9A6E-4C29-AC78-CA783ABCE6B1">
+            <inputExpression id="_309973E3-7083-42BF-AC7D-97836D267918" typeRef="number">
+              <text>Amount</text>
+            </inputExpression>
+          </input>
+          <output id="_BD67C5BD-32B1-4983-8745-0E5AC037335F" name="amount" typeRef="number" />
+          <output id="_F2E5C1E4-2B2A-4C1C-8E2B-29127DD4A380" name="code" typeRef="string" />
           <annotation name="Annotations" />
           <rule id="_FDC0EF6B-F860-467F-824E-5B31FF8AB6D5">
             <inputEntry id="_E04CD9D2-88E0-4E22-8CC2-2E18C9975762">
               <text>&quot;S&quot;</text>
             </inputEntry>
+            <inputEntry id="_3396A04A-0B94-4E71-8912-E5B817F28B40">
+              <text>&gt;300</text>
+            </inputEntry>
             <outputEntry id="_8A8DE052-DF81-4D12-A891-43DA9A52C37B">
-              <text>max(Amount, 300)</text>
+              <text>Single Max</text>
+            </outputEntry>
+            <outputEntry id="_4861F958-5581-4F44-B793-F3973E342EB6">
+              <text>&quot;CORRECT_DEDUCTION&quot;</text>
             </outputEntry>
             <annotationEntry>
               <text>// Your annotations here</text>
@@ -58,10 +94,50 @@
           </rule>
           <rule id="_CF63ABC0-72A5-4BF6-BACA-23DB7961B58C">
             <inputEntry id="_CF639A4B-89CE-45CE-9936-C03F2C59F5DC">
-              <text>-</text>
+              <text>&quot;S&quot;</text>
+            </inputEntry>
+            <inputEntry id="_39C57554-E510-4EF2-A1A1-949A6C75F261">
+              <text>&lt;300</text>
             </inputEntry>
             <outputEntry id="_1D03DB85-F5E7-405A-9881-A35B646E352B">
-              <text>max(Amount, 600)</text>
+              <text>Amount</text>
+            </outputEntry>
+            <outputEntry id="_AF3918F7-BDB7-4764-97B7-B58BF71EF082">
+              <text>&quot;&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+          <rule id="_2C79525D-9BE0-49A9-812C-F6D86728EECD">
+            <inputEntry id="_CD6B6DC5-95BB-47F7-9559-C115C07236E5">
+              <text>&quot;MFJ&quot;</text>
+            </inputEntry>
+            <inputEntry id="_7CA0AA07-CCB8-4F72-9EEE-BE098719E5C1">
+              <text>&gt;Other Status Max</text>
+            </inputEntry>
+            <outputEntry id="_55DF288E-1D1C-4251-A055-8E30B9EFFE7C">
+              <text>Other Status Max</text>
+            </outputEntry>
+            <outputEntry id="_18C16364-2D6E-473C-8735-AE2DC0CFFDD2">
+              <text>&quot;CORRECT_DEDUCTION&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+          <rule id="_AEF90210-1271-48D0-A804-60E7DD133693">
+            <inputEntry id="_39EE0C90-4222-4BD3-9642-D68A8749C66D">
+              <text>&quot;MFJ&quot;</text>
+            </inputEntry>
+            <inputEntry id="_66C3B7D8-D93D-49B4-BAD0-E994C1CDFC91">
+              <text>&lt;Other Status Max</text>
+            </inputEntry>
+            <outputEntry id="_1ED1387B-ECCF-4212-AA5A-C6E407FAA4CF">
+              <text>Amount</text>
+            </outputEntry>
+            <outputEntry id="_2DEE53A6-3269-4969-BEE7-15BD42411A1A">
+              <text>&quot;&quot;</text>
             </outputEntry>
             <annotationEntry>
               <text></text>
@@ -74,6 +150,9 @@
   <inputData name="Deduction" id="_00B78453-11A4-47F2-995A-EE7998300ECC">
     <variable name="Deduction" id="_4C2E2475-2D9E-486B-9435-4D974846E57E" typeRef="tDeduction" />
   </inputData>
+  <inputData name="Form" id="_B48019F1-31C4-4BE2-B9A6-BF186AA6C606">
+    <variable name="Form" id="_B794960C-9370-445C-AFC5-9AD17C9708E5" typeRef="tForm1040Data" />
+  </inputData>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_BBE221AC-93EA-4058-A703-907B39951AF3" name="Default DRD" useAlternativeInputDataShape="false">
       <di:extension>
@@ -84,7 +163,9 @@
           <kie:ComponentWidths dmnElementRef="_0F1D81A1-293C-4F71-B7E5-4F74BDAE0EF8">
             <kie:width>60</kie:width>
             <kie:width>118</kie:width>
+            <kie:width>100</kie:width>
             <kie:width>118</kie:width>
+            <kie:width>100</kie:width>
             <kie:width>240</kie:width>
           </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_76156265-B009-4BF2-90C0-5F28AB25D5EC">
@@ -93,24 +174,30 @@
           <kie:ComponentWidths dmnElementRef="_5A155400-9732-474B-A07A-28609C10802F">
             <kie:width>190</kie:width>
           </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_6641EAEE-CB48-40C9-801A-DACEDBDC7E95">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1FE05ACD-4168-4D3F-9A3B-45B71047FCDF">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
       </di:extension>
-      <dmndi:DMNShape id="_0B8D7D2B-DF27-451B-A9BD-CE2FCB18401F" dmnElementRef="_4584C8A9-59E8-4BE0-9F1F-196C8EB85EEC" isCollapsed="false" isListedInputData="false">
-        <dc:Bounds x="340" y="280" width="160" height="80" />
-      </dmndi:DMNShape>
       <dmndi:DMNShape id="_1B174CD9-FD4E-4411-AC62-84EC42A85C5B" dmnElementRef="_842E4EBB-B9BF-41F6-98EF-8151FB570616" isCollapsed="false" isListedInputData="false">
-        <dc:Bounds x="520" y="80" width="160" height="80" />
+        <dc:Bounds x="112" y="112" width="160" height="80" />
       </dmndi:DMNShape>
       <dmndi:DMNShape id="_9EB8A56C-8C0B-428F-9147-2646605CFD9A" dmnElementRef="_00B78453-11A4-47F2-995A-EE7998300ECC" isCollapsed="false" isListedInputData="false">
-        <dc:Bounds x="700" y="280" width="160" height="80" />
+        <dc:Bounds x="332" y="292" width="160" height="80" />
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="_1D84061C-2EAB-4698-9A3C-4BC2BCEC4502" dmnElementRef="_A7731AF9-7437-4678-9592-D33CC4CEC7AC" sourceElement="_0B8D7D2B-DF27-451B-A9BD-CE2FCB18401F" targetElement="_1B174CD9-FD4E-4411-AC62-84EC42A85C5B">
-        <di:waypoint x="420" y="320" />
-        <di:waypoint x="600" y="160" />
-      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_B56ADD70-4DBB-4F4E-A740-5C46D7E1D7BD" dmnElementRef="_B48019F1-31C4-4BE2-B9A6-BF186AA6C606" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="0" y="280" width="160" height="80" />
+      </dmndi:DMNShape>
       <dmndi:DMNEdge id="_2FF4E2E4-729B-4542-A6C6-A95A5A89ACF1" dmnElementRef="_A13A9DA5-2A20-4292-AD99-4228104239B3" sourceElement="_9EB8A56C-8C0B-428F-9147-2646605CFD9A" targetElement="_1B174CD9-FD4E-4411-AC62-84EC42A85C5B">
-        <di:waypoint x="780" y="320" />
-        <di:waypoint x="600" y="160" />
+        <di:waypoint x="412" y="292" />
+        <di:waypoint x="192" y="192" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_6DA0A993-92B1-431C-AE5F-95C16712633C" dmnElementRef="_C9AECC0F-FECE-4DF4-984C-0215FFF06A2C" sourceElement="_B56ADD70-4DBB-4F4E-A740-5C46D7E1D7BD" targetElement="_1B174CD9-FD4E-4411-AC62-84EC42A85C5B">
+        <di:waypoint x="80" y="280" />
+        <di:waypoint x="192" y="192" />
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
