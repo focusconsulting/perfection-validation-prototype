@@ -2,7 +2,8 @@ package com.focus.irs.pv.prototype;
 
 public enum ErrorCode {
 
-    CORRECT_W2("1", "W2 Value corrected");
+    CORRECT_W2("1", "W2 Value corrected"),
+    CORRECT_DEDUCTION("2", "Deduction was corrected");
 
     private String code;
     private String humanReadableString;
