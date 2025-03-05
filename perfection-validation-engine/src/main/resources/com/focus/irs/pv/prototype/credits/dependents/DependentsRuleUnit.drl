@@ -1,0 +1,10 @@
+package com.focus.irs.pv.prototype.credits.dependents;
+unit DependentsUnit;
+
+import package com.focus.irs.pv.prototype.credits.dependents.Dependent;
+
+rule ChildOlderThan18 when
+    $l: /dependents[ age > 18]
+then
+    modify($l) { setIsChildTaxCreditAllowed(false) };
+end
