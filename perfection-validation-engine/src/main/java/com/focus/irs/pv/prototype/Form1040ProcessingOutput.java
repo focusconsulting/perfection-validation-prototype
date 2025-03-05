@@ -6,7 +6,26 @@ import java.util.List;
 public class Form1040ProcessingOutput {
 
     private BigDecimal taxesOwed;
+    private Integer standardDeduction;
+    private Integer itemizedDeduction;
     private List<Correction<?>> correctionsMade;
+
+    public Integer getStandardDeduction() {
+        return standardDeduction;
+    }
+
+    public void setStandardDeduction(Integer standardDeduction) {
+        this.standardDeduction = standardDeduction;
+    }
+
+    public Integer getItemizedDeduction() {
+        return itemizedDeduction;
+    }
+
+    public void setItemizedDeduction(Integer itemizedDeduction) {
+        this.itemizedDeduction = itemizedDeduction;
+    }
+
     private List<ProcessingError<?>> errors;
 
     public void addCorrection(Correction<?> correction) {

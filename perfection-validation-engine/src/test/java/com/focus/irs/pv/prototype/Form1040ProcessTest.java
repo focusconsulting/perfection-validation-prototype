@@ -3,7 +3,6 @@ package com.focus.irs.pv.prototype;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -41,6 +40,7 @@ public class Form1040ProcessTest {
         model.fromMap(parameters);
         ProcessInstance<?> processInstance = form1040Process.createInstance(model);
         processInstance.start();
+
         assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.status());
         Model result = (Model) processInstance.variables();
         Float expectedAgi = 0.0F;
