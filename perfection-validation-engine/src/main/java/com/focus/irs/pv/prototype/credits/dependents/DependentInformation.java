@@ -5,8 +5,8 @@ import java.util.List;
 public class DependentInformation {
 
     private List<Dependent> dependents;
-    private Boolean isChildTaxCreditAllowed;
-    private Boolean isOtherDependentsCreditAllowed;
+    private Boolean isChildTaxCreditAllowed = false;
+    private Boolean isOtherDependentsCreditAllowed = false;
 
     public DependentInformation(List<Dependent> dependents) {
         this.dependents = dependents;

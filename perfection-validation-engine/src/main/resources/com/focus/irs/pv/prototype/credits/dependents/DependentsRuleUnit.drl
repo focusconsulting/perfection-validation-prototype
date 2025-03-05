@@ -1,17 +1,18 @@
 package com.focus.irs.pv.prototype.credits.dependents
 unit DependentInformationUnit
 
-rule "All dependents older than 18" when
+// First check if any dependents qualify based on age
+rule "Allow child tax credit for dependents under 18" when
     $info: /dependentInformation
-    $dependent: Dependent(age > 18) from $info.dependents
+    exists Dependent(age < 18) from $info.dependents
 then
-    modify($info) { setIsChildTaxCreditAllowed(false) };
+    modify($info) { setIsChildTaxCreditAllowed(true) };
 end
 
-rule "Dependents claimed on another return" when
+// Then check disqualifying conditions
+rule "Disallow credit if dependent claimed on another return" when
     $info: /dependentInformation
-    $dependent: Dependent(isClaimedOnAnotherReturn == true) from $info.dependents
+    exists Dependent(isClaimedOnAnotherReturn == true) from $info.dependents
 then
-    modify($info) { setIsChildTaxCreditAllowed(false) };
     modify($info) { setIsChildTaxCreditAllowed(false) };
 end
