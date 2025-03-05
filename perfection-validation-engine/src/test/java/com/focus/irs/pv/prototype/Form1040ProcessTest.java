@@ -1,8 +1,10 @@
 package com.focus.irs.pv.prototype;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -16,6 +18,9 @@ import org.kie.kogito.process.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.focus.irs.pv.prototype.credits.dependents.Dependent;
+import com.focus.irs.pv.prototype.credits.dependents.DependentInformation;
 
 @SpringBootTest(classes = PerfectionAndValidationPrototype.class)
 public class Form1040ProcessTest {
@@ -34,7 +39,9 @@ public class Form1040ProcessTest {
         Deduction teacherExpenseDeduction = new Deduction(BigDecimal.valueOf(800), "teacher-expense");
         assertNull(teacherExpenseDeduction.getCorrectedAmount());
         ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList(teacherExpenseDeduction));
-        Form1040Data data = new Form1040Data(false, false, FilingStatus.S, itemizedDeductions);
+        Dependent dependent = new Dependent(21, false);
+        Form1040Data data = new Form1040Data(false, false, FilingStatus.S, itemizedDeductions,
+                new DependentInformation(Arrays.asList(dependent)));
         parameters.put("Form1040", data);
         parameters.put("output", output);
         model.fromMap(parameters);
@@ -47,6 +54,7 @@ public class Form1040ProcessTest {
         assertEquals(result.toMap().get("agi"), expectedAgi);
         assertEquals(output.getTaxesOwed(), BigDecimal.valueOf(-14600.0));
         assertEquals(teacherExpenseDeduction.getCorrectedAmount(), BigDecimal.valueOf(300));
+        assertFalse(data.getDependentInformation().getIsChildTaxCreditAllowed());
     }
 
     @Test
@@ -56,7 +64,9 @@ public class Form1040ProcessTest {
         Model model = form1040Process.createModel();
         Map<String, Object> parameters = new HashMap<>();
         ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList());
-        Form1040Data data = new Form1040Data(false, false, FilingStatus.MFJ, itemizedDeductions);
+        Dependent dependent = new Dependent(15, false);
+        Form1040Data data = new Form1040Data(false, false, FilingStatus.MFJ, itemizedDeductions,
+                new DependentInformation(Arrays.asList(dependent)));
         Form1040ProcessingOutput output = new Form1040ProcessingOutput();
         parameters.put("Form1040", data);
         parameters.put("output", output);
@@ -68,6 +78,7 @@ public class Form1040ProcessTest {
         Float expectedAgi = 0.0F;
         assertEquals(result.toMap().get("agi"), expectedAgi);
         assertEquals(output.getTaxesOwed(), BigDecimal.valueOf(-29200.0));
+        assertTrue(data.getDependentInformation().getIsChildTaxCreditAllowed());
     }
 
 }
