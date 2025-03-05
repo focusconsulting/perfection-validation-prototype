@@ -1,10 +1,17 @@
-package com.focus.irs.pv.prototype.credits.dependents;
-unit DependentsUnit;
+package com.focus.irs.pv.prototype.credits.dependents
+unit DependentInformationUnit
 
-import package com.focus.irs.pv.prototype.credits.dependents.Dependent;
-
-rule ChildOlderThan18 when
-    $l: /dependents[ age > 18]
+rule "All dependents older than 18" when
+    $info: /dependentInformation
+    $dependent: Dependent(age > 18) from $info.dependents
 then
-    modify($l) { setIsChildTaxCreditAllowed(false) };
+    modify($info) { setIsChildTaxCreditAllowed(false) };
+end
+
+rule "Dependents claimed on another return" when
+    $info: /dependentInformation
+    $dependent: Dependent(isClaimedOnAnotherReturn == true) from $info.dependents
+then
+    modify($info) { setIsChildTaxCreditAllowed(false) };
+    modify($info) { setIsChildTaxCreditAllowed(false) };
 end

@@ -1,5 +1,10 @@
 package com.focus.irs.pv.prototype;
 
+import java.util.List;
+
+import com.focus.irs.pv.prototype.credits.dependents.Dependent;
+import com.focus.irs.pv.prototype.credits.dependents.DependentInformation;
+
 public class Form1040Data {
 
     private Boolean isBlind;
@@ -10,11 +15,15 @@ public class Form1040Data {
 
     private ItemizedDeductions deductions;
 
-    public Form1040Data(Boolean isBlind, Boolean isOver65, FilingStatus filingStatus, ItemizedDeductions deductions) {
+    private DependentInformation dependentInformation;
+
+    public Form1040Data(Boolean isBlind, Boolean isOver65, FilingStatus filingStatus, ItemizedDeductions deductions,
+            DependentInformation dependentInformation) {
         this.isBlind = isBlind;
         this.isOver65 = isOver65;
         this.filingStatus = filingStatus;
         this.deductions = deductions;
+        this.dependentInformation = dependentInformation;
     }
 
     public Boolean getIsBlind() {
@@ -31,6 +40,10 @@ public class Form1040Data {
 
     public ItemizedDeductions getDeductions() {
         return deductions;
+    }
+
+    public DependentInformation getDependentInformation() {
+        return dependentInformation;
     }
 
 }

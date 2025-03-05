@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.focus.irs.pv.prototype.credits.dependents.Dependent;
+import com.focus.irs.pv.prototype.credits.dependents.DependentInformation;
+
 @SpringBootTest(classes = PerfectionAndValidationPrototype.class)
 public class Form1040ProcessTest {
 
@@ -34,7 +37,9 @@ public class Form1040ProcessTest {
         Deduction teacherExpenseDeduction = new Deduction(BigDecimal.valueOf(800), "teacher-expense");
         assertNull(teacherExpenseDeduction.getCorrectedAmount());
         ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList(teacherExpenseDeduction));
-        Form1040Data data = new Form1040Data(false, false, FilingStatus.S, itemizedDeductions);
+        Dependent dependent = new Dependent(21, false);
+        Form1040Data data = new Form1040Data(false, false, FilingStatus.S, itemizedDeductions,
+                new DependentInformation(Arrays.asList(dependent)));
         parameters.put("Form1040", data);
         parameters.put("output", output);
         model.fromMap(parameters);
@@ -56,7 +61,8 @@ public class Form1040ProcessTest {
         Model model = form1040Process.createModel();
         Map<String, Object> parameters = new HashMap<>();
         ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList());
-        Form1040Data data = new Form1040Data(false, false, FilingStatus.MFJ, itemizedDeductions);
+        Form1040Data data = new Form1040Data(false, false, FilingStatus.MFJ, itemizedDeductions,
+                new DependentInformation(Arrays.asList()));
         Form1040ProcessingOutput output = new Form1040ProcessingOutput();
         parameters.put("Form1040", data);
         parameters.put("output", output);
