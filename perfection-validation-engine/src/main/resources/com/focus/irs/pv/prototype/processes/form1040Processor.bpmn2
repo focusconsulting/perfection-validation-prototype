@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_XoBQ4Ny8ED2Y0POUXAflUA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_PANboNy-ED2NKPVPIajljg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_isBlindItem" structureRef="Boolean"/>
   <bpmn2:itemDefinition id="_isOver65Item" structureRef="Boolean"/>
   <bpmn2:itemDefinition id="_filingStatusItem" structureRef="String"/>
@@ -30,8 +30,8 @@
       <bpmn2:outMessageRef>_AFB96D64-CC97-4653-B69C-BDB2ADFE332D_OutMessage</bpmn2:outMessageRef>
     </bpmn2:operation>
   </bpmn2:interface>
-  <bpmn2:collaboration id="_D3060350-9566-4FC7-BE4C-EE143EE43274" name="Default Collaboration">
-    <bpmn2:participant id="_7E147C2C-D26D-4579-B711-76DFA11006C7" name="Pool Participant" processRef="pv.form1040processor"/>
+  <bpmn2:collaboration id="_1D10DEF2-26A3-4F1F-B705-A0C636EEC43A" name="Default Collaboration">
+    <bpmn2:participant id="_CD3626E1-7415-4F1C-95FB-1320A3AB1220" name="Pool Participant" processRef="pv.form1040processor"/>
   </bpmn2:collaboration>
   <bpmn2:process id="pv.form1040processor" drools:packageName="com.focus.irs.pv.prototype" drools:version="1.0" drools:adHoc="false" name="Form1040Processor" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
@@ -59,11 +59,11 @@
     <bpmn2:sequenceFlow id="_054B4234-4375-4007-A93B-563A33910D6F" sourceRef="_35EA58C2-48BB-4A15-A8AB-6C4322DBE066" targetRef="_A0274275-94F6-4EB7-9578-AF0D5DB20353"/>
     <bpmn2:sequenceFlow id="_83197D06-46AE-4AF7-B318-88CD7AB19EA5" sourceRef="_6F1E572C-D469-4415-8C65-BA709D541DBB" targetRef="_D0B5CF04-8C33-45C9-A8F7-431394CBED59"/>
     <bpmn2:sequenceFlow id="_DCC5F6E9-07CA-452D-9E58-F75079874271" sourceRef="_55E51961-F717-4691-B02F-DD359D955427" targetRef="_D0B5CF04-8C33-45C9-A8F7-431394CBED59"/>
-    <bpmn2:sequenceFlow id="_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_6F1E572C-D469-4415-8C65-BA709D541DBB">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction >= itemizedDeductions;]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_4E5F895B-1578-4892-9852-66D0FC64F9B0" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_55E51961-F717-4691-B02F-DD359D955427">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction < itemizedDeductions;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_6F1E572C-D469-4415-8C65-BA709D541DBB">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction >= itemizedDeductions;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_1A5D9960-4011-4C99-9288-0A30ED049F52" sourceRef="_A0274275-94F6-4EB7-9578-AF0D5DB20353" targetRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0"/>
     <bpmn2:sequenceFlow id="_3994E2BD-BEDC-4FA2-AFCB-B3A55EECC611" sourceRef="_0C214E50-6C8C-4049-A0E6-54400AFCE2C7" targetRef="_35EA58C2-48BB-4A15-A8AB-6C4322DBE066"/>
@@ -155,11 +155,8 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA</bpmn2:incoming>
       <bpmn2:outgoing>_83197D06-46AE-4AF7-B318-88CD7AB19EA5</bpmn2:outgoing>
-      <bpmn2:script>System.out.println(standardDeduction);
-System.out.println(itemizedDeductions);
-
-kcontext.setVariable("deduction", standardDeduction);
-System.out.println("set standard");</bpmn2:script>
+      <bpmn2:script>kcontext.setVariable("deduction", standardDeduction);
+</bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:scriptTask id="_55E51961-F717-4691-B02F-DD359D955427" name="Use Itemized deduction" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
@@ -169,10 +166,7 @@ System.out.println("set standard");</bpmn2:script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_4E5F895B-1578-4892-9852-66D0FC64F9B0</bpmn2:incoming>
       <bpmn2:outgoing>_DCC5F6E9-07CA-452D-9E58-F75079874271</bpmn2:outgoing>
-      <bpmn2:script>System.out.println(standardDeduction);
-System.out.println(itemizedDeductions);
-System.out.println("itemized");
-kcontext.setVariable("deduction", itemizedDeductions);</bpmn2:script>
+      <bpmn2:script>kcontext.setVariable("deduction", itemizedDeductions);</bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:exclusiveGateway id="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" name="Choose itemized or standard deduction" gatewayDirection="Diverging">
       <bpmn2:extensionElements>
@@ -181,8 +175,8 @@ kcontext.setVariable("deduction", itemizedDeductions);</bpmn2:script>
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_1A5D9960-4011-4C99-9288-0A30ED049F52</bpmn2:incoming>
-      <bpmn2:outgoing>_4E5F895B-1578-4892-9852-66D0FC64F9B0</bpmn2:outgoing>
       <bpmn2:outgoing>_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA</bpmn2:outgoing>
+      <bpmn2:outgoing>_4E5F895B-1578-4892-9852-66D0FC64F9B0</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:callActivity id="_0C214E50-6C8C-4049-A0E6-54400AFCE2C7" drools:independent="false" drools:waitForCompletion="true" name="Process itemized deductions" calledElement="pv.deductions">
       <bpmn2:extensionElements>
@@ -398,15 +392,15 @@ kcontext.setVariable("deduction", itemizedDeductions);</bpmn2:script>
         <di:waypoint x="1006" y="167"/>
         <di:waypoint x="1196" y="168"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__664C01B4-6AFF-4536-AAEE-8B57CCCA67E0_to_shape__55E51961-F717-4691-B02F-DD359D955427" bpmnElement="_4E5F895B-1578-4892-9852-66D0FC64F9B0">
-        <di:waypoint x="1224" y="168"/>
-        <di:waypoint x="1224" y="293"/>
-        <di:waypoint x="1304" y="293"/>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__664C01B4-6AFF-4536-AAEE-8B57CCCA67E0_to_shape__6F1E572C-D469-4415-8C65-BA709D541DBB" bpmnElement="_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA">
         <di:waypoint x="1224" y="168"/>
         <di:waypoint x="1224" y="88.99561733032805"/>
         <di:waypoint x="1304" y="88.00000000000001"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__664C01B4-6AFF-4536-AAEE-8B57CCCA67E0_to_shape__55E51961-F717-4691-B02F-DD359D955427" bpmnElement="_4E5F895B-1578-4892-9852-66D0FC64F9B0">
+        <di:waypoint x="1224" y="168"/>
+        <di:waypoint x="1224" y="293"/>
+        <di:waypoint x="1304" y="293"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__55E51961-F717-4691-B02F-DD359D955427_to_shape__D0B5CF04-8C33-45C9-A8F7-431394CBED59" bpmnElement="_DCC5F6E9-07CA-452D-9E58-F75079874271">
         <di:waypoint x="1381" y="293"/>
@@ -611,7 +605,7 @@ kcontext.setVariable("deduction", itemizedDeductions);</bpmn2:script>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_XoBQ4Ny8ED2Y0POUXAflUA</bpmn2:source>
-    <bpmn2:target>_XoBQ4Ny8ED2Y0POUXAflUA</bpmn2:target>
+    <bpmn2:source>_PANboNy-ED2NKPVPIajljg</bpmn2:source>
+    <bpmn2:target>_PANboNy-ED2NKPVPIajljg</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
