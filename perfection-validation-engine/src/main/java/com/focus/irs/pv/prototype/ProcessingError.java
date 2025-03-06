@@ -2,6 +2,10 @@ package com.focus.irs.pv.prototype;
 
 import java.util.Optional;
 
+/**
+ * Utility class that is created when a processing error occurs. It contains
+ * the value that caused the error and the error code
+ */
 public class ProcessingError<T> {
 
     private Optional<T> value;

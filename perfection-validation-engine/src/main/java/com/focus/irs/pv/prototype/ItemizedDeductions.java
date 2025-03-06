@@ -1,15 +1,24 @@
 package com.focus.irs.pv.prototype;
 
-import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/**
+ * This class holds all the submitted deductions for a 1040.
+ */
 public class ItemizedDeductions {
 
-    public ItemizedDeductions(List<Deduction> submittedDeductions) {
-        this.submittedDeductions = submittedDeductions;
+    private List<Deduction> submittedDeductions;
+
+    // Default constructor for Jackson
+    public ItemizedDeductions() {
     }
 
-    private List<Deduction> submittedDeductions;
+    @JsonCreator
+    public ItemizedDeductions(@JsonProperty("submittedDeductions") List<Deduction> submittedDeductions) {
+        this.submittedDeductions = submittedDeductions;
+    }
 
     public void setSubmittedDeductions(List<Deduction> submittedDeductions) {
         this.submittedDeductions = submittedDeductions;
@@ -18,10 +27,4 @@ public class ItemizedDeductions {
     public List<Deduction> getSubmittedDeductions() {
         return submittedDeductions;
     }
-
-    public BigDecimal calculateItemizedDeduction() {
-        return this.submittedDeductions.stream().map(deduction -> deduction.getAmount()).reduce(BigDecimal.ZERO,
-                BigDecimal::add);
-    }
-
 }

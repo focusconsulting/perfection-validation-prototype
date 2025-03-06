@@ -1,14 +1,26 @@
 package com.focus.irs.pv.prototype.credits.dependents;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+/**
+ * Data model that contains the list of dependents and whether or not
+ * the submitted information is eligible for the child tax credit or other
+ * dependents credit
+ */
 public class DependentInformation {
 
     private List<Dependent> dependents;
     private Boolean isChildTaxCreditAllowed = false;
     private Boolean isOtherDependentsCreditAllowed = false;
 
-    public DependentInformation(List<Dependent> dependents) {
+    // Default constructor for Jackson
+    public DependentInformation() {
+    }
+
+    @JsonCreator
+    public DependentInformation(@JsonProperty("dependents") List<Dependent> dependents) {
         this.dependents = dependents;
     }
 

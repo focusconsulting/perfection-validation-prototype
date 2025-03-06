@@ -1,5 +1,9 @@
 package com.focus.irs.pv.prototype;
 
+/**
+ * Enum containing the list of filing statuses. Currently, only captures
+ * two for the purposes of the prototype
+ */
 public enum FilingStatus {
 
     S("single"),

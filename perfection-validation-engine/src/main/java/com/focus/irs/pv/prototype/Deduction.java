@@ -1,5 +1,7 @@
 package com.focus.irs.pv.prototype;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,14 @@ public class Deduction {
     private List<ErrorCode> errorCodes = new ArrayList<>();
     private String name;
 
-    public Deduction(BigDecimal amount, String name) {
+    // Default constructor for Jackson
+    public Deduction() {
+    }
+
+    @JsonCreator
+    public Deduction(
+            @JsonProperty("amount") BigDecimal amount,
+            @JsonProperty("name") String name) {
         this.amount = amount;
         this.name = name;
     }
