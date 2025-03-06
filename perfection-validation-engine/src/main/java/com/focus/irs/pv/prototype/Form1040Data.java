@@ -1,10 +1,18 @@
 package com.focus.irs.pv.prototype;
 
-import java.util.List;
-
-import com.focus.irs.pv.prototype.credits.dependents.Dependent;
 import com.focus.irs.pv.prototype.credits.dependents.DependentInformation;
 
+/**
+ * This is the input data for the 1040 form process. It contains a small subset
+ * of the
+ * data that is sufficient for evaluating the set of rules and corrections
+ * implemented.
+ * 
+ * In a larger implementation, this would likely be broken down further into
+ * smaller models
+ * that would be inputs.
+ * 
+ */
 public class Form1040Data {
 
     private Boolean isBlind;

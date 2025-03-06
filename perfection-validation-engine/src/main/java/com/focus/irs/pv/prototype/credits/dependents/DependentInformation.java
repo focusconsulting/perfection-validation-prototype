@@ -2,6 +2,11 @@ package com.focus.irs.pv.prototype.credits.dependents;
 
 import java.util.List;
 
+/**
+ * Data model that contains the list of dependents and whether or not
+ * the submitted information is eligible for the child tax credit or other
+ * dependents credit
+ */
 public class DependentInformation {
 
     private List<Dependent> dependents;

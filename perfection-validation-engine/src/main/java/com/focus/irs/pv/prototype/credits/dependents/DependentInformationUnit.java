@@ -4,6 +4,10 @@ import org.drools.ruleunits.api.RuleUnitData;
 import org.drools.ruleunits.api.DataSource;
 import org.drools.ruleunits.api.DataStore;
 
+/**
+ * Rule unit that evaluates a dependent information to see what credits its
+ * eligible for
+ */
 public class DependentInformationUnit implements RuleUnitData {
 
     private DataStore<DependentInformation> dependentInformation;

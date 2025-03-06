@@ -4,9 +4,9 @@ public class Correction<T> {
 
     private T originalValue;
     private T correctedValue;
-    private ProcessingError error;
+    private ProcessingError<T> error;
 
-    public Correction(T originalValue, T correctedValue, ProcessingError error) {
+    public Correction(T originalValue, T correctedValue, ProcessingError<T> error) {
         this.originalValue = originalValue;
         this.correctedValue = correctedValue;
         this.error = error;
@@ -20,7 +20,7 @@ public class Correction<T> {
         return correctedValue;
     }
 
-    public ProcessingError getError() {
+    public ProcessingError<T> getError() {
         return error;
     }
 }

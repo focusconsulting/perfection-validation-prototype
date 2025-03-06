@@ -1,8 +1,10 @@
 package com.focus.irs.pv.prototype;
 
-import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * This class holds all the submitted deductions for a 1040.
+ */
 public class ItemizedDeductions {
 
     public ItemizedDeductions(List<Deduction> submittedDeductions) {
@@ -17,11 +19,6 @@ public class ItemizedDeductions {
 
     public List<Deduction> getSubmittedDeductions() {
         return submittedDeductions;
-    }
-
-    public BigDecimal calculateItemizedDeduction() {
-        return this.submittedDeductions.stream().map(deduction -> deduction.getAmount()).reduce(BigDecimal.ZERO,
-                BigDecimal::add);
     }
 
 }
