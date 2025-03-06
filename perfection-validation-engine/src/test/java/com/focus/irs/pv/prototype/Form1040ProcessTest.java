@@ -50,10 +50,19 @@ public class Form1040ProcessTest {
 
         assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.status());
         Model result = (Model) processInstance.variables();
-        Float expectedAgi = 0.0F;
+
+        // Assert that AGI was correctly calculated
+        Float expectedAgi = 5000F;
         assertEquals(result.toMap().get("agi"), expectedAgi);
-        assertEquals(output.getTaxesOwed(), BigDecimal.valueOf(-14600.0));
+        // Confirm that taxes owed is correct
+        assertEquals(output.getTaxesOwed(), BigDecimal.valueOf(-9600.0));
+        // Validate that the teacher expense deduction amount was correctly modified and
+        // that the error code was set
         assertEquals(teacherExpenseDeduction.getCorrectedAmount(), BigDecimal.valueOf(300));
+        assertEquals(teacherExpenseDeduction.getErrorCodes().size(), 1);
+        assertEquals(teacherExpenseDeduction.getErrorCodes().get(0), ErrorCode.CORRECT_DEDUCTION);
+        // Confirm that the form is not eligible for the child tax credit since the only
+        // dependent is older than 18
         assertFalse(data.getDependentInformation().getIsChildTaxCreditAllowed());
     }
 
@@ -75,9 +84,12 @@ public class Form1040ProcessTest {
         processInstance.start();
         assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.status());
         Model result = (Model) processInstance.variables();
-        Float expectedAgi = 0.0F;
+        Float expectedAgi = 5000F;
         assertEquals(result.toMap().get("agi"), expectedAgi);
-        assertEquals(output.getTaxesOwed(), BigDecimal.valueOf(-29200.0));
+        // Confirm that taxes owed is correct
+        assertEquals(output.getTaxesOwed(), BigDecimal.valueOf(-24200.0));
+        // Confirm that the form is eligible for the child tax credit since the only
+        // dependent is under 18
         assertTrue(data.getDependentInformation().getIsChildTaxCreditAllowed());
     }
 
