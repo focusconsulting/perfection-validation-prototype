@@ -16,7 +16,7 @@
             <dependency>
                 <groupId>com.focus.irs</groupId>
                 <artifactId>form-1040-rules</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.kie.kogito</groupId>
@@ -80,14 +80,42 @@
         </resources>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>compile-before-scaffold</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>compile-generated-sources</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.kie.kogito</groupId>
                 <artifactId>kogito-maven-plugin</artifactId>
                 <version>${kie.version}</version>
                 <executions>
                     <execution>
+                        <id>generate-kogito-sources</id>
                         <phase>compile</phase>
                         <goals>
-                            <goal>generateModel</goal>
+                            <goal>scaffold</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -98,8 +126,14 @@
                 <version>${spring.version}</version>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <id>add-source</id>
@@ -131,7 +165,7 @@
                                 <artifactItem>
                                     <groupId>com.focus.irs</groupId>
                                     <artifactId>form-1040-rules</artifactId>
-                                    <version>${parent.version}</version>
+                                    <version>${project.parent.version}</version>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
