@@ -10,7 +10,6 @@
           "Form1040Data": new ObjectDataType(),
         ],
         "results" : [
-            "result": new ObjectDataType()
         ]
     ]
 ]
