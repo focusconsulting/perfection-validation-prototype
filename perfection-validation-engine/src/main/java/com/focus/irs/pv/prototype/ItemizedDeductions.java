@@ -1,5 +1,7 @@
 package com.focus.irs.pv.prototype;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
@@ -7,11 +9,16 @@ import java.util.List;
  */
 public class ItemizedDeductions {
 
-    public ItemizedDeductions(List<Deduction> submittedDeductions) {
-        this.submittedDeductions = submittedDeductions;
+    private List<Deduction> submittedDeductions;
+
+    // Default constructor for Jackson
+    public ItemizedDeductions() {
     }
 
-    private List<Deduction> submittedDeductions;
+    @JsonCreator
+    public ItemizedDeductions(@JsonProperty("submittedDeductions") List<Deduction> submittedDeductions) {
+        this.submittedDeductions = submittedDeductions;
+    }
 
     public void setSubmittedDeductions(List<Deduction> submittedDeductions) {
         this.submittedDeductions = submittedDeductions;
@@ -20,5 +27,4 @@ public class ItemizedDeductions {
     public List<Deduction> getSubmittedDeductions() {
         return submittedDeductions;
     }
-
 }

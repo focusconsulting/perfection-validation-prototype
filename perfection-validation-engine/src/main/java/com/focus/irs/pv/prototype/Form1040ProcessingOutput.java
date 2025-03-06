@@ -3,6 +3,8 @@ package com.focus.irs.pv.prototype;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 /**
  * This model is initialized at the start of the process and serves to record
  * actions that were performed during process, like calculating the standard and
@@ -15,6 +17,10 @@ public class Form1040ProcessingOutput {
     private Integer standardDeduction;
     private Integer itemizedDeduction;
     private List<Correction<?>> correctionsMade;
+
+    @JsonCreator
+    public Form1040ProcessingOutput() {
+    }
 
     public Integer getStandardDeduction() {
         return standardDeduction;

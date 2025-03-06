@@ -1,5 +1,7 @@
 package com.focus.irs.pv.prototype.credits.dependents;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
@@ -13,7 +15,12 @@ public class DependentInformation {
     private Boolean isChildTaxCreditAllowed = false;
     private Boolean isOtherDependentsCreditAllowed = false;
 
-    public DependentInformation(List<Dependent> dependents) {
+    // Default constructor for Jackson
+    public DependentInformation() {
+    }
+
+    @JsonCreator
+    public DependentInformation(@JsonProperty("dependents") List<Dependent> dependents) {
         this.dependents = dependents;
     }
 
