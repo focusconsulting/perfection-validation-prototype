@@ -82,7 +82,3 @@ curl -X POST 'http://localhost:8090/form1040processor' \
   }
 }'
 ```
-
-## Troubleshooting/Gotchas
-
-- The kogito editor seems to only noticed staged or committed items
