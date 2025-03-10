@@ -42,7 +42,7 @@ public class DeductionTaskWorkItemHandler implements KogitoWorkItemHandler {
 
         // Fetch the decision model from teh application and create a context
         DecisionModel model = application.get(org.kie.kogito.decision.DecisionModels.class)
-                .getDecisionModel("deductions", deduction.getName());
+                .getDecisionModel("pv", deduction.getName());
         DMNContext dmnContext = model.newContext(Map.of());
 
         // Create a map with string representation of filing status rather than the enum

@@ -17,7 +17,7 @@ public class CalculateAGI {
      * @return the AGI
      */
     public Integer calculate() {
-        return 5000;
+        return 50000;
     }
 
 }

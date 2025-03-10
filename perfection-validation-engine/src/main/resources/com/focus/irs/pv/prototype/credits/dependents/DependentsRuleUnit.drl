@@ -16,3 +16,5 @@ rule "Disallow credit if dependent claimed on another return" when
 then
     modify($info) { setIsChildTaxCreditAllowed(false) };
 end
+
+// Other dependent credit rules to be checked here

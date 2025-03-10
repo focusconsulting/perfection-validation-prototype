@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="calculate-total-taxes" name="calculate-total-taxes">
+  <decision name="Total Taxes" id="_C7AB844D-A1A4-430B-AA1B-B6069EE353F5">
+    <variable name="Total Taxes" id="_5CA2DBA0-091E-481F-9B67-8E438FAA79C8" typeRef="number" />
+    <informationRequirement id="_D22E9122-5EF0-471F-927C-A206D8908623">
+      <requiredDecision href="#_576BA998-F197-45FA-8A1B-A48F943746BE" />
+    </informationRequirement>
+    <knowledgeRequirement id="_D6021CC6-666B-4AE5-A13B-B77BB87B84F0">
+      <requiredKnowledge href="#_AB3D91D1-BE25-471E-A340-FAE7D77BB3E5" />
+    </knowledgeRequirement>
+    <decisionTable id="_1CCB4BE7-B3C1-448B-8F14-1C55FF3BB0C8" typeRef="number" hitPolicy="UNIQUE" label="Total Taxes">
+      <input id="_C8040CBA-6DE9-4149-B11D-AD6213326E98">
+        <inputExpression id="_E907A515-6A76-45F3-A36A-036088BAD329" typeRef="number">
+          <text>Taxable Income</text>
+        </inputExpression>
+      </input>
+      <output id="_70981924-5369-4ACA-A900-0F06B91424A5" name="Output-1" />
+      <annotation name="Annotations" />
+      <rule id="_6C188A1B-8294-451D-BBA5-1D6C6DA515C3">
+        <inputEntry id="_4773B027-E969-4B7D-8384-E72F1935B196">
+          <text>[0..Tax_Brackets().Bracket_1_Max]</text>
+        </inputEntry>
+        <outputEntry id="_0BEB1FBB-4045-4831-AF71-709DF89EE1CE">
+          <text>Taxable Income * Tax_Brackets().Bracket_1_Rate</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_6ECDC4A7-8929-4759-83EC-DD7FD2CA2A46">
+        <inputEntry id="_2DFAF6A4-ECEE-405B-AFB0-1E45EC0F66F4">
+          <text>&gt;Tax_Brackets().Bracket_1_Max</text>
+        </inputEntry>
+        <outputEntry id="_35BE6704-12E9-4464-8276-D3071B83A6F6">
+          <text>(Taxable Income - Tax_Brackets().Bracket_1_Max) * Tax_Brackets().Bracket_1_Rate + (Tax_Brackets().Bracket_1_Max * Tax_Brackets().Bracket_1_Rate)</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData name="AGI" id="_D3580BF2-C33F-4A83-A76A-4B8CBDF710EF">
+    <variable name="AGI" id="_61F2706E-C228-468F-89A8-8CEBB98A948D" typeRef="number" />
+  </inputData>
+  <businessKnowledgeModel name="Tax_Brackets" id="_AB3D91D1-BE25-471E-A340-FAE7D77BB3E5">
+    <variable name="Tax_Brackets" id="_CE4A85B3-B885-4BDE-9ECA-D13E319EC55F" typeRef="context" />
+    <encapsulatedLogic label="Tax_Brackets" typeRef="context" id="_BA6F100C-E3F3-48CC-96E9-12E34FDECF25" kind="FEEL">
+      <context id="_4CEA0E29-CF5B-4650-BDBD-B20E2E603FAE" typeRef="context" label="Return">
+        <contextEntry id="_A9CABC2D-AF1A-4893-A2B9-83320B9F627B">
+          <variable id="_0E3B8137-F65D-4741-B638-75B8472D0B37" name="Bracket_1_Rate" typeRef="number" />
+          <literalExpression id="_1BB85988-344B-49B5-B908-87AD14AEC446" typeRef="number" label="Bracket_1_Rate">
+            <text>.1</text>
+          </literalExpression>
+        </contextEntry>
+        <contextEntry id="_4B14D855-38C1-416F-BC51-0F6348556AA9">
+          <variable id="_834F02E3-F4B4-42DE-9680-17E45CEC577A" name="Bracket_1_Max" typeRef="number">
+            <description></description>
+          </variable>
+          <literalExpression id="_04D2A2D2-1447-4DBD-9047-315500357D83" typeRef="number" label="Bracket_1_Max">
+            <text>11600</text>
+          </literalExpression>
+        </contextEntry>
+        <contextEntry id="_485065C9-974C-4B8A-84D3-B27643D4B052">
+          <variable id="_970F1BC9-9E37-4D99-8DD3-F81BFD9A3D5C" name="Bracket_2_Rate" typeRef="number">
+            <description></description>
+          </variable>
+          <literalExpression id="_107661A9-1553-40E4-992A-DE86BCCFC9D0" typeRef="number" label="Bracket_2_Rate">
+            <text>.12</text>
+          </literalExpression>
+        </contextEntry>
+        <contextEntry id="_E809DEC1-9A22-413B-961D-822B3C4FF701">
+          <variable id="_47BA7F61-11D9-46E1-860B-5052440718F3" name="Bracket_2_Max" typeRef="number">
+            <description></description>
+          </variable>
+          <literalExpression id="_869DF215-98BA-447F-8D2F-D6FBFAD46916" typeRef="number" label="Bracket_2_Max">
+            <text>47150</text>
+          </literalExpression>
+        </contextEntry>
+        <contextEntry id="_08FAF882-79F5-4C2A-BE15-ED1A91F0FE50">
+          <literalExpression id="_0301B0E8-DB17-4D78-B20A-CF65D5BAC26E" typeRef="context" label="Return">
+            <text>{Bracket_1_Max: Bracket_1_Max, Bracket_1_Rate: Bracket_1_Rate, Bracket_2_Max: Bracket_2_Max, Bracket_2_Rate: Bracket_2_Rate}</text>
+          </literalExpression>
+        </contextEntry>
+      </context>
+    </encapsulatedLogic>
+    <authorityRequirement id="_CD1EB707-3E75-486F-BAA1-AB8ED2018AD0">
+      <requiredAuthority href="#_64C27E6B-BFC9-4971-8B51-13100537FDCF" />
+    </authorityRequirement>
+  </businessKnowledgeModel>
+  <knowledgeSource name="Law/Regulation XXX" id="_64C27E6B-BFC9-4971-8B51-13100537FDCF" />
+  <inputData name="Deduction" id="_3A7A85F4-887B-4573-A20E-1084E0C5CBBC">
+    <variable name="Deduction" id="_49C4BE49-7E65-42F7-9DB3-C591BAF6079A" typeRef="number" />
+  </inputData>
+  <decision name="Taxable Income" id="_576BA998-F197-45FA-8A1B-A48F943746BE">
+    <variable name="Taxable Income" id="_520DE0B6-8E79-4B08-BACB-2859D0B68384" typeRef="number" />
+    <informationRequirement id="_E9035E7C-41B5-454B-A11B-7E6E8A3FD147">
+      <requiredInput href="#_D3580BF2-C33F-4A83-A76A-4B8CBDF710EF" />
+    </informationRequirement>
+    <informationRequirement id="_FF947947-3F98-4907-96E2-FAA53386DDEF">
+      <requiredInput href="#_3A7A85F4-887B-4573-A20E-1084E0C5CBBC" />
+    </informationRequirement>
+    <context id="_424FCF3F-FAEC-4521-AB42-C47B4E5731EF" typeRef="number" label="Taxable Income">
+      <contextEntry id="_084EA703-42AD-4C7E-B1EB-9024DF4C3361">
+        <variable id="_E33FE82F-65D5-44C8-AF57-20C5F772556A" name="RawTaxableIncome" typeRef="number" />
+        <literalExpression id="_4708431E-D2CF-4134-B159-B2280B994C2A" typeRef="number" label="RawTaxableIncome">
+          <text>AGI - Deduction</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_46542826-5EDA-499C-BA63-BA4AB02C563E">
+        <decisionTable id="_A85AB285-01A0-43FC-BC44-E8C90E8F85FF" typeRef="number" hitPolicy="UNIQUE" label="Taxable Income">
+          <input id="_17C1B4F0-A8F3-4D45-A44B-F59978B662E7">
+            <inputExpression id="_A88FCC3D-EF4F-403F-86D7-3A61D7FE1A44" typeRef="number">
+              <text>RawTaxableIncome</text>
+            </inputExpression>
+          </input>
+          <output id="_A2224B55-A2B6-4F53-A37C-73E75A62C550" name="Output-1" />
+          <annotation name="Annotations" />
+          <rule id="_53907F7D-2F98-4428-A407-928BED1E6A70">
+            <inputEntry id="_30FE95A5-3DE8-4967-ABAC-673C6F30E58C">
+              <text>&lt;=0</text>
+            </inputEntry>
+            <outputEntry id="_AA6AD836-3EF8-4D15-9E72-C35FC363FD99">
+              <text>0</text>
+            </outputEntry>
+            <annotationEntry>
+              <text>// Your annotations here</text>
+            </annotationEntry>
+          </rule>
+          <rule id="_7A618D09-A092-4B86-8A29-ED4C8052982C">
+            <inputEntry id="_538F437A-D304-4F3C-BB3E-C5DCB724B5FA">
+              <text>&gt;0</text>
+            </inputEntry>
+            <outputEntry id="_D1C49C28-B219-480C-8F2B-89F684101417">
+              <text>RawTaxableIncome</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+        </decisionTable>
+      </contextEntry>
+    </context>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_DAF38461-6DAB-4DE1-84A9-2D84F96B8586" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_58E7C02C-C0D4-4A44-8715-4FB56AA1D677">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F6E81E5A-1D9C-4EE3-A925-39E4BBFA541C">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_35082AF6-C33E-4725-A9D5-16A51DD26910">
+            <kie:width>60</kie:width>
+            <kie:width>157</kie:width>
+            <kie:width>635</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_0D0CEAB6-7FBF-48E1-91C9-69B473E449FD">
+            <kie:width>1072</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DC3277DD-F245-44AE-907F-17324558D32E">
+            <kie:width>1072</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DE0BAB99-1BFF-45D5-8E99-95C30F792088">
+            <kie:width>1072</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_0B4B1C51-54AF-4138-B9FD-4D8D3192A120">
+            <kie:width>1072</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_2E1DFB82-94C3-4903-9D94-0E59299F0FA8">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_412E2B70-4EC2-4CF0-8CFB-786CEC51DF9B">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_43F82DAF-6B10-4C2A-933B-5F1C6B640039">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_32A177D0-AFB6-489F-AF2E-B167BA26F51A">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1B7B5A21-5E65-4219-BA98-7783F0D4F43D">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_2A3647E7-5F41-43FF-A10D-98A8E037AC89">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_7DF78AAF-3244-466E-AABD-07521274BBAC">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_65929231-DDB2-463D-A788-08CB4638CA53">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A51CADC2-CE4F-4A11-BD06-92C378C01F1B">
+            <kie:width>60</kie:width>
+            <kie:width>220</kie:width>
+            <kie:width>651</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F61C3A9A-078C-41EC-8C22-9568FC9436C0">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_29F17A78-2B2C-4462-89A3-E99CBF8E8609">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4CEA0E29-CF5B-4650-BDBD-B20E2E603FAE">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1BB85988-344B-49B5-B908-87AD14AEC446">
+            <kie:width>510</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_04D2A2D2-1447-4DBD-9047-315500357D83">
+            <kie:width>510</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_107661A9-1553-40E4-992A-DE86BCCFC9D0">
+            <kie:width>510</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_869DF215-98BA-447F-8D2F-D6FBFAD46916">
+            <kie:width>510</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A82110B3-7CAB-481F-B81C-74B23E1DC3A2">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_0301B0E8-DB17-4D78-B20A-CF65D5BAC26E">
+            <kie:width>510</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_0B64444F-C0EF-4252-BD3A-AE4A78070157">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B6F686B8-9246-45F3-A188-9D0B0B380A21">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A056AE15-E0B4-4CD0-9D78-CD1467733E2C">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_3F6802CE-F119-4502-9B8C-1F40B356001E">
+            <kie:width>1024</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F4F31708-E16D-46A6-AB8B-2BE25DF54C42">
+            <kie:width>60</kie:width>
+            <kie:width>344</kie:width>
+            <kie:width>400</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_08724755-4121-48EB-85F8-AC77B9F0A4DE">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_C3500588-1E4B-41C4-9A4E-7CC375BEF4C3">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_1CCB4BE7-B3C1-448B-8F14-1C55FF3BB0C8">
+            <kie:width>60</kie:width>
+            <kie:width>349</kie:width>
+            <kie:width>511</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_893E7436-0DE5-4E06-9B22-4326D093C3AF">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A0438E7E-75EB-4C4E-8E73-A5E444AFB5A5">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_424FCF3F-FAEC-4521-AB42-C47B4E5731EF">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A85AB285-01A0-43FC-BC44-E8C90E8F85FF">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4708431E-D2CF-4134-B159-B2280B994C2A">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_5DB38CE6-EE44-4107-97A0-209564CB7FB8" dmnElementRef="_C7AB844D-A1A4-430B-AA1B-B6069EE353F5" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="112" y="112" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_4DA5157B-08D5-4DB8-A93E-AE55A9BA223E" dmnElementRef="_D3580BF2-C33F-4A83-A76A-4B8CBDF710EF" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="332" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_2B809A06-3A54-4680-9DBE-04A59403045A" dmnElementRef="_AB3D91D1-BE25-471E-A340-FAE7D77BB3E5" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="112" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_4364730E-F518-4F1C-BF96-5FC4080F33E6" dmnElementRef="_64C27E6B-BFC9-4971-8B51-13100537FDCF" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="112" y="652" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_6709A720-47C2-4DD1-9CB5-70C972686DF3" dmnElementRef="_3A7A85F4-887B-4573-A20E-1084E0C5CBBC" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="552" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_3F14DC2A-018D-413A-B356-1A9A7E9A794E" dmnElementRef="_576BA998-F197-45FA-8A1B-A48F943746BE" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="332" y="292" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_FA1BCEB3-7F44-4941-BAC2-5D419CACA086" dmnElementRef="_D22E9122-5EF0-471F-927C-A206D8908623" sourceElement="_3F14DC2A-018D-413A-B356-1A9A7E9A794E" targetElement="_5DB38CE6-EE44-4107-97A0-209564CB7FB8">
+        <di:waypoint x="412" y="292" />
+        <di:waypoint x="192" y="192" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_A0130C60-24F5-4EA0-8611-C81F415C4377" dmnElementRef="_D6021CC6-666B-4AE5-A13B-B77BB87B84F0" sourceElement="_2B809A06-3A54-4680-9DBE-04A59403045A" targetElement="_5DB38CE6-EE44-4107-97A0-209564CB7FB8">
+        <di:waypoint x="192" y="472" />
+        <di:waypoint x="192" y="192" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_4C9B2C73-897D-4C09-8514-52AA77CA6943" dmnElementRef="_CD1EB707-3E75-486F-BAA1-AB8ED2018AD0" sourceElement="_4364730E-F518-4F1C-BF96-5FC4080F33E6" targetElement="_2B809A06-3A54-4680-9DBE-04A59403045A">
+        <di:waypoint x="192" y="652" />
+        <di:waypoint x="192" y="552" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_396D8D8A-2370-4420-AB1D-E5D21FF7B714" dmnElementRef="_E9035E7C-41B5-454B-A11B-7E6E8A3FD147" sourceElement="_4DA5157B-08D5-4DB8-A93E-AE55A9BA223E" targetElement="_3F14DC2A-018D-413A-B356-1A9A7E9A794E">
+        <di:waypoint x="412" y="472" />
+        <di:waypoint x="412" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_070BE9B5-6BA0-49E4-88E7-D5AA4B18C5F0" dmnElementRef="_FF947947-3F98-4907-96E2-FAA53386DDEF" sourceElement="_6709A720-47C2-4DD1-9CB5-70C972686DF3" targetElement="_3F14DC2A-018D-413A-B356-1A9A7E9A794E">
+        <di:waypoint x="632" y="472" />
+        <di:waypoint x="412" y="372" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

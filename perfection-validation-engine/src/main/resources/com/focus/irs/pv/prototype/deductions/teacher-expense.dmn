@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="deductions" id="teacher-expense" name="teacher-expense">
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="teacher-expense" name="teacher-expense">
   <itemDefinition id="_ABCE052B-59AF-4CD5-A863-5137810188C1" name="tFilingStatus" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
     <typeRef>string</typeRef>
   </itemDefinition>
@@ -22,14 +22,14 @@
     </itemComponent>
   </itemDefinition>
   <decision name="Deduction Result" id="_842E4EBB-B9BF-41F6-98EF-8151FB570616">
-    <variable name="Deduction Result" id="_DEF281C4-B23B-4EB0-9FBE-E737E1B295B4" typeRef="tCorrectedDeduction" />
+    <variable name="Deduction Result" id="_DEF281C4-B23B-4EB0-9FBE-E737E1B295B4" typeRef="number" />
     <informationRequirement id="_A13A9DA5-2A20-4292-AD99-4228104239B3">
       <requiredInput href="#_00B78453-11A4-47F2-995A-EE7998300ECC" />
     </informationRequirement>
     <informationRequirement id="_C9AECC0F-FECE-4DF4-984C-0215FFF06A2C">
       <requiredInput href="#_B48019F1-31C4-4BE2-B9A6-BF186AA6C606" />
     </informationRequirement>
-    <context id="_451C4FC1-C6D6-48C3-955E-BC4C3B186A1D" typeRef="tCorrectedDeduction" label="Deduction Result">
+    <context id="_451C4FC1-C6D6-48C3-955E-BC4C3B186A1D" typeRef="number" label="Deduction Result">
       <contextEntry id="_E7075637-7E0F-49CC-B346-8B0314F61E7B">
         <variable id="_5DEC2489-4950-46D5-8A36-E6FC93671B1F" name="Filing Status" typeRef="tFilingStatus" />
         <literalExpression id="_76156265-B009-4BF2-90C0-5F28AB25D5EC" label="Filing Status" typeRef="tFilingStatus">
@@ -80,7 +80,7 @@
               <text>&quot;S&quot;</text>
             </inputEntry>
             <inputEntry id="_3396A04A-0B94-4E71-8912-E5B817F28B40">
-              <text>&gt;300</text>
+              <text>&gt;Single Max</text>
             </inputEntry>
             <outputEntry id="_8A8DE052-DF81-4D12-A891-43DA9A52C37B">
               <text>Single Max</text>
@@ -97,7 +97,7 @@
               <text>&quot;S&quot;</text>
             </inputEntry>
             <inputEntry id="_39C57554-E510-4EF2-A1A1-949A6C75F261">
-              <text>&lt;300</text>
+              <text>&lt;=Single Max</text>
             </inputEntry>
             <outputEntry id="_1D03DB85-F5E7-405A-9881-A35B646E352B">
               <text>Amount</text>
@@ -131,7 +131,7 @@
               <text>&quot;MFJ&quot;</text>
             </inputEntry>
             <inputEntry id="_66C3B7D8-D93D-49B4-BAD0-E994C1CDFC91">
-              <text>&lt;Other Status Max</text>
+              <text>&lt;=Other Status Max</text>
             </inputEntry>
             <outputEntry id="_1ED1387B-ECCF-4212-AA5A-C6E407FAA4CF">
               <text>Amount</text>

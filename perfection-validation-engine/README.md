@@ -83,6 +83,8 @@ curl -X POST 'http://localhost:8090/form1040processor' \
 }'
 ```
 
-## Troubleshooting/Gotchas
+This is an example of the how the decisions can only be independently invoked.
 
-- The kogito editor seems to only noticed staged or committed items
+```sh
+ curl -X POST 'http://localhost:8090/calculate-total-taxes' -H 'Content-Type: application/json' -d '{"AGI": 121000}'
+ ```
