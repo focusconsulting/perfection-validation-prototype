@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="xsi" id="_M9xwIN_7ED2cGpLTAB3pgQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_nonrefundableTaxCreditItem" structureRef="Integer"/>
+  <bpmn2:collaboration id="_C1FF0D84-E365-41B9-9500-AB2099AF6553" name="Default Collaboration">
+    <bpmn2:participant id="_B61DA7E4-6A25-452A-8FC4-16F5DD8CC8C1" name="Pool Participant" processRef="pv.nonrefundabletaxcredits"/>
+  </bpmn2:collaboration>
+  <bpmn2:process id="pv.nonrefundabletaxcredits" drools:packageName="com.focus.irs.pv.prototype" drools:version="1.0" drools:adHoc="false" name="nonrefundable-tax-credits" isExecutable="true" processType="Public">
+    <bpmn2:property id="nonrefundableTaxCredit" itemSubjectRef="_nonrefundableTaxCreditItem" name="nonrefundableTaxCredit">
+      <bpmn2:extensionElements>
+        <drools:metaData name="customTags">
+          <drools:metaValue><![CDATA[output]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:property>
+    <bpmn2:sequenceFlow id="_8126EA4A-31A5-4F40-BCC0-C13FD95701DA" sourceRef="_1EAF7BD9-BF02-4C24-897A-E5424EC69922" targetRef="_9276968A-2F32-4DBD-929E-907819D3830B"/>
+    <bpmn2:sequenceFlow id="_46059EA2-0E3E-4545-93D9-058F499BD865" sourceRef="_9B9BC99E-C68B-4115-831E-803FCB01DADF" targetRef="_1EAF7BD9-BF02-4C24-897A-E5424EC69922"/>
+    <bpmn2:scriptTask id="_1EAF7BD9-BF02-4C24-897A-E5424EC69922" name="Calculate non-refundable tax credit" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Calculate non-refundable tax credit]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_46059EA2-0E3E-4545-93D9-058F499BD865</bpmn2:incoming>
+      <bpmn2:outgoing>_8126EA4A-31A5-4F40-BCC0-C13FD95701DA</bpmn2:outgoing>
+      <bpmn2:script>kcontext.setVariable("nonrefundableTaxCredit", 200);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:endEvent id="_9276968A-2F32-4DBD-929E-907819D3830B">
+      <bpmn2:incoming>_8126EA4A-31A5-4F40-BCC0-C13FD95701DA</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:startEvent id="_9B9BC99E-C68B-4115-831E-803FCB01DADF">
+      <bpmn2:outgoing>_46059EA2-0E3E-4545-93D9-058F499BD865</bpmn2:outgoing>
+    </bpmn2:startEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="pv.nonrefundabletaxcredits">
+      <bpmndi:BPMNShape id="shape__9B9BC99E-C68B-4115-831E-803FCB01DADF" bpmnElement="_9B9BC99E-C68B-4115-831E-803FCB01DADF">
+        <dc:Bounds height="56" width="56" x="343" y="255"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__9276968A-2F32-4DBD-929E-907819D3830B" bpmnElement="_9276968A-2F32-4DBD-929E-907819D3830B">
+        <dc:Bounds height="56" width="56" x="914" y="255"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__1EAF7BD9-BF02-4C24-897A-E5424EC69922" bpmnElement="_1EAF7BD9-BF02-4C24-897A-E5424EC69922">
+        <dc:Bounds height="102" width="154" x="544" y="232"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__9B9BC99E-C68B-4115-831E-803FCB01DADF_to_shape__1EAF7BD9-BF02-4C24-897A-E5424EC69922" bpmnElement="_46059EA2-0E3E-4545-93D9-058F499BD865">
+        <di:waypoint x="371" y="283"/>
+        <di:waypoint x="544" y="283"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__1EAF7BD9-BF02-4C24-897A-E5424EC69922_to_shape__9276968A-2F32-4DBD-929E-907819D3830B" bpmnElement="_8126EA4A-31A5-4F40-BCC0-C13FD95701DA">
+        <di:waypoint x="621" y="283"/>
+        <di:waypoint x="914" y="283"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn2:relationship type="BPSimData">
+    <bpmn2:extensionElements>
+      <bpsim:BPSimData>
+        <bpsim:Scenario id="default" name="Simulationscenario">
+          <bpsim:ScenarioParameters/>
+          <bpsim:ElementParameters elementRef="_9B9BC99E-C68B-4115-831E-803FCB01DADF">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_1EAF7BD9-BF02-4C24-897A-E5424EC69922">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+        </bpsim:Scenario>
+      </bpsim:BPSimData>
+    </bpmn2:extensionElements>
+    <bpmn2:source>_M9xwIN_7ED2cGpLTAB3pgQ</bpmn2:source>
+    <bpmn2:target>_M9xwIN_7ED2cGpLTAB3pgQ</bpmn2:target>
+  </bpmn2:relationship>
+</bpmn2:definitions>
