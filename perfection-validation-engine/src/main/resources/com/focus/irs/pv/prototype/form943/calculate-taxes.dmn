@@ -568,8 +568,8 @@
               <text>errorCount</text>
             </inputExpression>
           </input>
-          <output id="_17145730-73AF-4365-8FBB-BF678870105E" name="Valid" typeRef="boolean" />
-          <output id="_790CA2D0-5151-4BF8-81DD-96C89FB318FC" name="Errors" typeRef="Errors" />
+          <output id="_17145730-73AF-4365-8FBB-BF678870105E" name="valid" typeRef="boolean" />
+          <output id="_790CA2D0-5151-4BF8-81DD-96C89FB318FC" name="errors" typeRef="Errors" />
           <annotation name="Annotations" />
           <rule id="_AE53FD9D-1752-423A-AF71-BCD2CF61DB6E">
             <inputEntry id="_2F0A7D02-BABC-4DF6-8133-3A216FE243BD">

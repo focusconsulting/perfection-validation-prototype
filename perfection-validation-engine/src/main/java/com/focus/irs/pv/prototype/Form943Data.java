@@ -195,7 +195,7 @@ public class Form943Data {
     }
 
     public static class TaxData {
-        private BigDecimal reportedTax;
+        private BigDecimal reportedTotalTax;
         private BigDecimal totalWages;
         private BigDecimal taxableWagesForSocialSecurity;
         private BigDecimal taxableWagesForMedicare;
@@ -222,7 +222,7 @@ public class Form943Data {
                 @JsonProperty("employeeSocialSecurityTax") BigDecimal employeeSocialSecurityTax,
                 @JsonProperty("medicareTax") BigDecimal medicareTax,
                 @JsonProperty("additionalMedicareTax") BigDecimal additionalMedicareTax) {
-            this.reportedTax = reportedTax;
+            this.reportedTotalTax = reportedTax;
             this.totalWages = totalWages;
             this.taxableWagesForSocialSecurity = taxableWagesForSocialSecurity;
             this.taxableWagesForMedicare = taxableWagesForMedicare;
@@ -234,13 +234,12 @@ public class Form943Data {
             this.additionalMedicareTax = additionalMedicareTax;
         }
 
-
-        public BigDecimal getReportedTax() {
-            return reportedTax;
+        public BigDecimal getReportedTotalTax() {
+            return reportedTotalTax;
         }
 
-        public void setReportedTax(BigDecimal reportedTax) {
-            this.reportedTax = reportedTax;
+        public void setReportedTotalTax(BigDecimal reportedTax) {
+            this.reportedTotalTax = reportedTax;
         }
 
         public BigDecimal getTotalWages() {

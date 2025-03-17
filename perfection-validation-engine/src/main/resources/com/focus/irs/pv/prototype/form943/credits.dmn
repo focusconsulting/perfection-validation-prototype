@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="form943Credits" name="credits" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="form943Credits" name="credits">
+  <itemDefinition id="_67F31BD0-2483-46F8-B328-CE46A4F94330" name="Credits" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_5FD41B58-7339-4DAF-8048-761EFE50CDB8" name="eligibleCreditAmount" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+    <itemComponent id="_530EEE33-61B8-42C9-9E78-0431638CC9FE" name="requiresForm8947" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>boolean</typeRef>
+    </itemComponent>
+    <itemComponent id="_68546BEB-3CC0-4D38-AE6F-E603EDBA77DC" name="errorMessage" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>string</typeRef>
+    </itemComponent>
+  </itemDefinition>
   <inputData name="adjustedTaxesAmount" id="_9684D1D7-C964-465D-B171-41D70EC56B08">
     <variable name="adjustedTaxesAmount" id="_708F423D-1F90-4D43-A5F0-13DB09579299" typeRef="number" />
   </inputData>
@@ -13,7 +24,7 @@
     <variable name="form8947Attached" id="_7629027F-85D0-41C3-A3E1-65E333DC0931" typeRef="boolean" />
   </inputData>
   <decision name="credits" id="_FCA73BC3-5660-4EF7-96D8-16847B04BF16">
-    <variable name="credits" id="_F515AA05-BDC3-4761-B9D0-1844EEFB0148" typeRef="&lt;Undefined&gt;" />
+    <variable name="credits" id="_F515AA05-BDC3-4761-B9D0-1844EEFB0148" typeRef="Credits" />
     <informationRequirement id="_21F8DC25-EC41-416B-86BD-800ECE52DCED">
       <requiredInput href="#_B9C072AD-8CFF-4F48-B70B-C6938D31C109" />
     </informationRequirement>
@@ -26,7 +37,7 @@
     <informationRequirement id="_BB23EA0C-D60C-40A3-AA9E-8C0B76D46392">
       <requiredInput href="#_423534F3-5BF2-4628-9A50-0444F8AC3D5D" />
     </informationRequirement>
-    <decisionTable id="_CEB90261-083F-41C1-B8D5-F758591A43EA" typeRef="&lt;Undefined&gt;" hitPolicy="UNIQUE" label="credits">
+    <decisionTable id="_CEB90261-083F-41C1-B8D5-F758591A43EA" typeRef="Credits" hitPolicy="UNIQUE" label="credits">
       <input id="_94F68E29-16B7-4332-B74F-1BE29319C34F">
         <inputExpression id="_EAA3F323-45CE-4498-842D-DF972ED31FBE" typeRef="boolean">
           <text>hasQualifiedSmallBusinessResearchCredit</text>
@@ -64,10 +75,10 @@
           <text>true</text>
         </outputEntry>
         <outputEntry id="_6F46FE79-B45F-4509-ACFF-5A7FCFBB01CB">
-          <text>-</text>
+          <text>&quot;&quot;</text>
         </outputEntry>
         <outputEntry id="_F9B29988-314B-4B20-B2F1-981313321E0B">
-          <text>max(0, adjustedTaxAmount - creditAmount)</text>
+          <text>max(0, adjustedTaxesAmount - creditAmount)</text>
         </outputEntry>
         <annotationEntry>
           <text>// Your annotations here</text>
@@ -93,7 +104,7 @@
           <text>&quot;Form 8947 Required&quot;</text>
         </outputEntry>
         <outputEntry id="_C066C19A-C9F1-4E0C-AA61-F33862228806">
-          <text>adjustedTaxAmount</text>
+          <text>adjustedTaxesAmount</text>
         </outputEntry>
         <annotationEntry>
           <text></text>
@@ -116,10 +127,10 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="_BB12D429-B406-4A08-9944-602D7C79C254">
-          <text>-</text>
+          <text>&quot;&quot;</text>
         </outputEntry>
         <outputEntry id="_483DDE90-AE44-4746-9FCA-67E21D0291FB">
-          <text>adjustedTaxAmount</text>
+          <text>adjustedTaxesAmount</text>
         </outputEntry>
         <annotationEntry>
           <text></text>
@@ -142,10 +153,10 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="_90EAC5CC-60AD-4177-A4F8-E8B2A8688644">
-          <text>-</text>
+          <text>&quot;&quot;</text>
         </outputEntry>
         <outputEntry id="_9FF0B825-73B7-45F1-953E-55A1D20826AD">
-          <text>adjustedTaxAmount</text>
+          <text>adjustedTaxesAmount</text>
         </outputEntry>
         <annotationEntry>
           <text></text>
