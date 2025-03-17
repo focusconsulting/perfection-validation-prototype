@@ -195,7 +195,11 @@ public class Form943Data {
     }
 
     public static class TaxData {
+        private BigDecimal reportedTax;
         private BigDecimal totalWages;
+        private BigDecimal taxableWagesForSocialSecurity;
+        private BigDecimal taxableWagesForMedicare;
+        private BigDecimal taxableWagesForAdditionalMedicare;
         private BigDecimal federalIncomeTaxWithheld;
         private BigDecimal employerSocialSecurityTax;
         private BigDecimal employeeSocialSecurityTax;
@@ -208,18 +212,35 @@ public class Form943Data {
 
         @JsonCreator
         public TaxData(
+                @JsonProperty("reportedTax") BigDecimal reportedTax,
                 @JsonProperty("totalWages") BigDecimal totalWages,
+                @JsonProperty("taxableWagesForSocialSecurity") BigDecimal taxableWagesForSocialSecurity,
+                @JsonProperty("taxableWagesForMedicare") BigDecimal taxableWagesForMedicare,
+                @JsonProperty("taxableWagesForAdditionalMedicare") BigDecimal taxableWagesForAdditionalMedicare,
                 @JsonProperty("federalIncomeTaxWithheld") BigDecimal federalIncomeTaxWithheld,
                 @JsonProperty("employerSocialSecurityTax") BigDecimal employerSocialSecurityTax,
                 @JsonProperty("employeeSocialSecurityTax") BigDecimal employeeSocialSecurityTax,
                 @JsonProperty("medicareTax") BigDecimal medicareTax,
                 @JsonProperty("additionalMedicareTax") BigDecimal additionalMedicareTax) {
+            this.reportedTax = reportedTax;
             this.totalWages = totalWages;
+            this.taxableWagesForSocialSecurity = taxableWagesForSocialSecurity;
+            this.taxableWagesForMedicare = taxableWagesForMedicare;
+            this.taxableWagesForAdditionalMedicare = taxableWagesForAdditionalMedicare;
             this.federalIncomeTaxWithheld = federalIncomeTaxWithheld;
             this.employerSocialSecurityTax = employerSocialSecurityTax;
             this.employeeSocialSecurityTax = employeeSocialSecurityTax;
             this.medicareTax = medicareTax;
             this.additionalMedicareTax = additionalMedicareTax;
+        }
+
+
+        public BigDecimal getReportedTax() {
+            return reportedTax;
+        }
+
+        public void setReportedTax(BigDecimal reportedTax) {
+            this.reportedTax = reportedTax;
         }
 
         public BigDecimal getTotalWages() {
@@ -228,6 +249,30 @@ public class Form943Data {
 
         public void setTotalWages(BigDecimal totalWages) {
             this.totalWages = totalWages;
+        }
+
+        public BigDecimal getTaxableWagesForSocialSecurity() {
+            return taxableWagesForSocialSecurity;
+        }
+
+        public void setTaxableWagesForSocialSecurity(BigDecimal taxableWagesForSocialSecurity) {
+            this.taxableWagesForSocialSecurity = taxableWagesForSocialSecurity;
+        }
+
+        public BigDecimal getTaxableWagesForMedicare() {
+            return taxableWagesForMedicare;
+        }
+
+        public void setTaxableWagesForMedicare(BigDecimal taxableWagesForMedicare) {
+            this.taxableWagesForMedicare = taxableWagesForMedicare;
+        }
+
+        public BigDecimal getTaxableWagesForAdditionalMedicare() {
+            return taxableWagesForAdditionalMedicare;
+        }
+
+        public void setTaxableWagesForAdditionalMedicare(BigDecimal taxableWagesForAdditionalMedicare) {
+            this.taxableWagesForAdditionalMedicare = taxableWagesForAdditionalMedicare;
         }
 
         public BigDecimal getFederalIncomeTaxWithheld() {
