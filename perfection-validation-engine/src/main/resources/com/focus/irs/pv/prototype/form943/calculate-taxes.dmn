@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="form943CalculateTaxes" name="calculateTaxes">
+  <itemDefinition id="_B25A537E-2AF6-448F-BC6E-19A9F052F282" name="Errors" isCollection="true" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <typeRef>string</typeRef>
+  </itemDefinition>
+  <inputData name="totalWages" id="_115C045F-1AA9-46A5-9802-F7223993C695">
+    <variable name="totalWages" id="_87B8FA92-A1D4-46A1-A971-B60DF0812F98" typeRef="number" />
+  </inputData>
+  <inputData name="federalIncomeTaxWithheld" id="_82725B21-CD0E-4D3C-80F1-CD246C92C3E3">
+    <variable name="federalIncomeTaxWithheld" id="_73326145-26DF-42FC-9296-CA2B6A4136D4" typeRef="number" />
+  </inputData>
+  <inputData name="employerSocialSecurityTax" id="_2F77CFE5-D856-4FCF-9C39-64235750AE28">
+    <variable name="employerSocialSecurityTax" id="_D0D5778C-9BD6-49B3-95F7-FE7D45390B65" typeRef="number" />
+  </inputData>
+  <inputData name="employeeSocialSecurityTax" id="_F4AFC04C-EEAE-45EF-90CC-0691557B9ADC">
+    <variable name="employeeSocialSecurityTax" id="_CF3B6FFA-8627-4460-8B7C-6FFF68CCCA1C" typeRef="number" />
+  </inputData>
+  <inputData name="medicareTax" id="_8D35E66B-D0AB-4361-9540-C72CCC918FE3">
+    <variable name="medicareTax" id="_DA825152-017A-49D5-A4CA-14B08E88551C" typeRef="number" />
+  </inputData>
+  <inputData name="additionalMedicareTax" id="_70251472-3361-4700-A30F-B67B260EA883">
+    <variable name="additionalMedicareTax" id="_157E2828-775E-464B-84C0-AB7B6737174A" typeRef="number" />
+  </inputData>
+  <inputData name="taxableWagesForSocialSecurity" id="_953C7470-8F52-48CC-8A92-5BED2A6EF64E">
+    <variable name="taxableWagesForSocialSecurity" id="_ABDA8F57-718C-4A62-9886-2D374BB17872" typeRef="number" />
+  </inputData>
+  <inputData name="taxableWagesForAdditionalMedicare" id="_060E6FE3-73BF-4E8D-AD6A-7ADB51EF8F08">
+    <variable name="taxableWagesForAdditionalMedicare" id="_14328AF8-8D23-458F-859F-807346075019" typeRef="number" />
+  </inputData>
+  <decision name="Validate Amounts" id="_C7C7965C-8B49-4C57-90E9-110F0F6064AE">
+    <variable name="Validate Amounts" id="_3CC62507-6522-4F2D-8F6C-AE1A477EFB71" typeRef="Errors" />
+    <informationRequirement id="_4A3A0323-0E87-41D6-9C20-5913CA1D6A7C">
+      <requiredInput href="#_82725B21-CD0E-4D3C-80F1-CD246C92C3E3" />
+    </informationRequirement>
+    <informationRequirement id="_2809AF54-A9D6-452A-9965-B6986C1A2646">
+      <requiredInput href="#_115C045F-1AA9-46A5-9802-F7223993C695" />
+    </informationRequirement>
+    <informationRequirement id="_A4FDBCAF-5849-4675-BD48-C86900CBB5C4">
+      <requiredInput href="#_953C7470-8F52-48CC-8A92-5BED2A6EF64E" />
+    </informationRequirement>
+    <informationRequirement id="_DC7E1B5E-E846-40DB-AD9A-1C474856D651">
+      <requiredInput href="#_815A41E9-A830-433A-81CE-7F3A6B4A8A3F" />
+    </informationRequirement>
+    <informationRequirement id="_787129C0-4F2D-4F9B-80CD-F398D1F1C7ED">
+      <requiredInput href="#_060E6FE3-73BF-4E8D-AD6A-7ADB51EF8F08" />
+    </informationRequirement>
+    <decisionTable id="_D9A34221-35F4-4B7F-B692-D42271D4E648" typeRef="Errors" hitPolicy="COLLECT" label="Validate Amounts">
+      <input id="_CD8030FE-A7F3-41BD-982E-8007710090C1">
+        <inputExpression id="_97B3C19A-869C-4EF7-82C3-CA3691D202DD" typeRef="number">
+          <text>taxableWagesForAdditionalMedicare</text>
+        </inputExpression>
+      </input>
+      <input id="_4B81DA13-4734-458B-809A-E4207A2196A2">
+        <inputExpression id="_1532E65C-C96E-4896-8D16-11E5CD0DE490" typeRef="number">
+          <text>taxableWagesForMedicare</text>
+        </inputExpression>
+      </input>
+      <input id="_8EFF5AC0-FB1E-4DF4-9ED1-F8089AC94AEE">
+        <inputExpression id="_CE9BC27B-C09A-4856-AF43-1885025B76DA" typeRef="number">
+          <text>taxableWagesForSocialSecurity</text>
+        </inputExpression>
+      </input>
+      <input id="_4B8EABFE-C032-4207-AAE4-0FA1F276EDE6">
+        <inputExpression id="_FFD64C33-4008-475E-95AE-7F3D657934A4" typeRef="number">
+          <text>federalIncomeTaxWithheld</text>
+        </inputExpression>
+      </input>
+      <input id="_CB68804F-EEFB-4D23-B418-B90148F4EDAF">
+        <inputExpression id="_C823AC94-F45E-435C-AFE7-E88F8D010318" typeRef="number">
+          <text>totalWages</text>
+        </inputExpression>
+      </input>
+      <output id="_393DF607-8D50-41EE-AD48-66FBF423340D" name="Output-1" typeRef="Errors" />
+      <annotation name="Annotations" />
+      <rule id="_128D2AE1-D63B-4670-9D5D-0AEAE31D55C1">
+        <inputEntry id="_993A9F6B-AF4E-4162-8FEC-ACFE7D7FCAC8">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_1E83174C-527B-4C2B-88CA-2AC57C0DF4CE">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_3BF36502-93D0-4DC9-AB5E-701A631A3E63">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_DB0006E8-6441-4A1A-A1CE-B25EAA8CCC37">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_44526C3E-59DA-4CB3-AF21-A32DCF300644">
+          <text>&lt;0</text>
+        </inputEntry>
+        <outputEntry id="_CD1E8389-B802-4C02-8528-5B6A11EDBC0B">
+          <text>&quot;Total ages cannot be negative&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_E31F1B97-E69C-4F66-8BC8-2338830D8F86">
+        <inputEntry id="_567462A5-34E6-458F-99C1-23DC884CEA37">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_FBB5312E-C4D0-44AC-92C5-70AF77D98FC4">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_8669FD73-654C-43E4-B3EE-5ABD92219298">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_416216DF-8AB2-4D7C-8968-5AA68997BFD1">
+          <text>&lt;0</text>
+        </inputEntry>
+        <inputEntry id="_09836073-540F-49C8-8B90-89E1283752FD">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_A9298B93-5F4C-42C6-8E56-4188BD4B82E9">
+          <text>&quot;Federal income tax withheld cannot be negative&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_B3DA18FF-3096-4828-B263-43B734E52E2E">
+        <inputEntry id="_FF540F59-97DB-40E0-B31D-05FD9CFEE0E2">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_0EB5B7E1-7C6B-4D34-B694-3B73094507DA">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_0CA081A4-EDCF-4322-AF3A-06A6F4EA5CE8">
+          <text>&lt;0</text>
+        </inputEntry>
+        <inputEntry id="_00241EF2-DA85-465C-9A4A-22DEEB8D7FAA">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_459022AB-709C-4195-8833-A5C4DCB31C13">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_36B45D85-F697-4D6E-AFD2-57684167C848">
+          <text>&quot;Taxable wages for Social Security cannot be negative&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_5A0C8FE6-69C0-4A74-A7AB-9DC199E81698">
+        <inputEntry id="_AD4F13C2-EADD-43D1-A4BB-FA2F54365382">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_A659671C-8BBE-44C2-9CE4-C5232DB038D3">
+          <text>&lt;0</text>
+        </inputEntry>
+        <inputEntry id="_F719F575-E82B-4044-8C8D-B68D1C813B2A">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_460257C0-C0D4-448D-B1C7-BD36E598E5BB">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_94550200-CD5F-44B8-9867-CB223902A317">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_F21B5A84-D214-4D36-BEE3-099FBA0AF63B">
+          <text>&quot;Taxables wages for Medicare cannot be negative&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_9FC1D0DA-E4D0-47DC-B9BC-B14AA0A39396">
+        <inputEntry id="_A551E005-EE0E-42C6-B0F8-D521B4C7D4A0">
+          <text>&lt;0</text>
+        </inputEntry>
+        <inputEntry id="_DF6D04FD-0DBB-4D39-827B-AA0FAA367468">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_4C02D4AA-F4B7-49D0-80C5-C6BB3D5C6CED">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_0AFD9FBF-FFA9-4FD9-AE28-101F2D18281B">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_C05275BB-3643-4CD8-9044-7626C1E17801">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_2317B448-7C33-4565-AB8B-9778C3D3820D">
+          <text>&quot;Taxable wages for additional Medicare cannot be negative&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_6E5986A8-C51F-4BDA-9E5B-12C76710FAE1">
+        <inputEntry id="_4EAFF6A6-B24F-4568-91E9-81088986B0BB">
+          <text>&gt;=0</text>
+        </inputEntry>
+        <inputEntry id="_BF229B11-AF85-40D0-BDB3-FF39237C616C">
+          <text>&gt;=0</text>
+        </inputEntry>
+        <inputEntry id="_199C0F54-8464-45CE-AC67-60E54E1F421B">
+          <text>&gt;=0</text>
+        </inputEntry>
+        <inputEntry id="_39531F25-65D9-47B6-B1D2-5C59717CDB8F">
+          <text>&gt;=0</text>
+        </inputEntry>
+        <inputEntry id="_48D4A807-06E0-4408-AEE0-7E8B73C6B903">
+          <text>&gt;=0</text>
+        </inputEntry>
+        <outputEntry id="_4520C45C-4CFA-4776-8527-32A1AEDE6F39">
+          <text></text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData name="taxableWagesForMedicare" id="_815A41E9-A830-433A-81CE-7F3A6B4A8A3F">
+    <variable name="taxableWagesForMedicare" id="_7BA06E92-563F-4227-BA70-70E636B497FB" typeRef="number" />
+  </inputData>
+  <decision name="Validate Social Security" id="_44B26394-F750-4C3B-903F-BF4ED6542715">
+    <variable name="Validate Social Security" id="_1D2DFD0A-729B-4C86-84E2-F84645B02EAF" typeRef="Errors" />
+    <informationRequirement id="_1E097B49-0B0C-40D3-BA06-18D83DF0F4CE">
+      <requiredInput href="#_2F77CFE5-D856-4FCF-9C39-64235750AE28" />
+    </informationRequirement>
+    <informationRequirement id="_0B449E58-AF93-4262-BD29-F62DB828CBE0">
+      <requiredInput href="#_953C7470-8F52-48CC-8A92-5BED2A6EF64E" />
+    </informationRequirement>
+    <informationRequirement id="_0640D657-E7ED-4DAE-98B6-C2FD4DEBB86C">
+      <requiredInput href="#_F4AFC04C-EEAE-45EF-90CC-0691557B9ADC" />
+    </informationRequirement>
+    <context id="_FACE7962-3E4A-4FD1-BEFC-7E79B9A64081" typeRef="Errors" label="Validate Social Security">
+      <contextEntry id="_079F1756-4EE2-4C4D-9937-14502F14E5FD">
+        <variable id="_BA0BA2C4-1498-47C8-B0F3-92A6DA796C9F" name="lowPercent" typeRef="number" />
+        <literalExpression id="_D2A53313-9DF6-4E3F-AF85-3A0356F23253" typeRef="number" label="lowPercent">
+          <text>0.061</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_C5AA967A-CAE3-43B5-8A6C-394476150368">
+        <variable id="_1207C6F4-C8BD-467A-B8EF-C63C61557AE4" name="highPercent" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_B1187FA0-4140-4E9E-B0D4-CA0FE46A28AA" typeRef="number" label="highPercent">
+          <text>0.063</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_D410071E-2DEA-4F7C-B0C8-B016A30CD984">
+        <variable id="_8BAE18F1-466C-493B-BBCB-F87610922BF1" name="lowSocialSecurityTax" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_94E2DC7C-7344-4E97-9605-ECF2D7A3E836" typeRef="number" label="lowSocialSecurityTax">
+          <text>taxableWagesForSocialSecurity * lowPercent</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_2C094A26-7425-49C8-9BFF-9A9C00079DF7">
+        <variable id="_AA26E5B8-C15E-4AF9-89C4-4FD1A4251C8D" name="highSocialSecurityTax" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_54F85D9C-226E-405C-A1F7-101F7569DA00" typeRef="number" label="highSocialSecurityTax">
+          <text>taxableWagesForSocialSecurity * highPercent</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_A16AEFEB-D240-42DA-9E1A-BDADF2A901E8">
+        <decisionTable id="_3F4F59C4-D056-486D-89DA-E07DBE52D11B" typeRef="Errors" hitPolicy="COLLECT" label="Validate Social Security">
+          <input id="_6D6E5C6F-0024-427F-828A-0F79C24C4F43">
+            <inputExpression id="_E02E00DB-8048-4914-B724-893C9093BF23" typeRef="number">
+              <text>taxableWagesForSocialSecurity</text>
+            </inputExpression>
+          </input>
+          <input id="_62C00810-EFE8-4D96-9F22-DD7AE19B7FB8">
+            <inputExpression id="_1D271815-9455-4E69-B4E6-45CBC3EE1E25" typeRef="number">
+              <text>employerSocialSecurityTax</text>
+            </inputExpression>
+          </input>
+          <input id="_6B9E562E-E0D6-455F-90AE-29EBAEFFCFDF">
+            <inputExpression id="_FA4B4E08-7165-4AC3-BDF2-597BEE73D5B4" typeRef="number">
+              <text>employeeSocialSecurityTax</text>
+            </inputExpression>
+          </input>
+          <output id="_ABA35EEE-9D86-4B3E-94BA-3CF4764B4F9A" name="Output-1" typeRef="Errors" />
+          <annotation name="Annotations" />
+          <rule id="_F5E34787-8E4D-4127-81BE-8A411679C0BB">
+            <inputEntry id="_C0373150-2217-48F7-837A-80AECEB2E811">
+              <text>&gt;=0</text>
+            </inputEntry>
+            <inputEntry id="_1DE1A43A-E9A9-452D-B28A-42162EE6E19F">
+              <text>&lt;lowSocialSecurityTax</text>
+            </inputEntry>
+            <inputEntry id="_C0B8944A-EA3D-4C2D-95A6-1409F14A64FF">
+              <text>-</text>
+            </inputEntry>
+            <outputEntry id="_86EE44B0-4F8A-4B86-9A3C-EDAF4F3E3D7A">
+              <text>&quot;Employer Social Security tax appears too low&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text>// Your annotations here</text>
+            </annotationEntry>
+          </rule>
+          <rule id="_B148C758-7703-42ED-9242-810BD0FF1AD9">
+            <inputEntry id="_9EF6E6FB-3493-483A-9E5F-98E9C865705D">
+              <text>&gt;=0</text>
+            </inputEntry>
+            <inputEntry id="_880ADCC2-7378-464B-A733-0DFDF64BEB4F">
+              <text>&gt;highSocialSecurityTax</text>
+            </inputEntry>
+            <inputEntry id="_F5D1FD42-172B-46A6-AFF6-9256C167A4F2">
+              <text>-</text>
+            </inputEntry>
+            <outputEntry id="_EAAC95A4-E031-4406-9F5E-D96FE7CB4F43">
+              <text>&quot;Employer Social Security tax appears too high&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+          <rule id="_9DB4FF0B-BBBB-448E-A00E-C48F24C0838A">
+            <inputEntry id="_07882BAF-2E61-42BC-92FD-79F853A3687C">
+              <text>&gt;=0</text>
+            </inputEntry>
+            <inputEntry id="_FF3EA676-9962-470F-BC71-E1A2D3E3EE30">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_9B697BC7-AF39-4636-B2A3-D56E8D0ED519">
+              <text>&lt;lowSocialSecurityTax</text>
+            </inputEntry>
+            <outputEntry id="_B2B697D9-D8E4-4A39-BB59-361E6AF930F3">
+              <text>&quot;Employee Social Security tax apears too low&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+          <rule id="_09BA7A8A-A717-4FEF-88ED-E827C392E9D2">
+            <inputEntry id="_E9F33129-3C68-4941-B5CB-6B8254D5904F">
+              <text>&gt;=0</text>
+            </inputEntry>
+            <inputEntry id="_0F30BC2A-BDD6-4317-A70D-9732F5A92C5F">
+              <text>-</text>
+            </inputEntry>
+            <inputEntry id="_F2FB6978-C976-47FB-AD32-712727D18A8F">
+              <text>&gt;highSocialSecurityTax</text>
+            </inputEntry>
+            <outputEntry id="_8324D6DC-E09C-4B77-9C51-2207575FF6B2">
+              <text>&quot;Employee Social Security tax appears too high&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+        </decisionTable>
+      </contextEntry>
+    </context>
+  </decision>
+  <decision name="Validate Medicare Tax" id="_29F961BA-DFD2-42B2-AEC2-22923F4124AE">
+    <variable name="Validate Medicare Tax" id="_15391B0E-1DF1-44FB-AAC6-8FDB70FF029D" typeRef="Errors" />
+    <informationRequirement id="_3E81B7C8-94D5-4F75-9736-8DBEB0424D1D">
+      <requiredInput href="#_8D35E66B-D0AB-4361-9540-C72CCC918FE3" />
+    </informationRequirement>
+    <informationRequirement id="_9CBA7B0B-1063-4EB5-A2EF-9428728B22CF">
+      <requiredInput href="#_815A41E9-A830-433A-81CE-7F3A6B4A8A3F" />
+    </informationRequirement>
+    <decisionTable id="_D0D89F21-A049-4952-A11A-C22E3ADDB2DD" typeRef="Errors" hitPolicy="COLLECT" label="Validate Medicare Tax">
+      <input id="_49A49F42-A1BB-48F9-B2D9-67C7B7555935">
+        <inputExpression id="_8A5B9963-D23F-4107-97C6-23DEE782BE49" typeRef="number">
+          <text>medicareTax</text>
+        </inputExpression>
+      </input>
+      <input id="_805CE507-5547-4D1C-9559-E765C7A5FE43">
+        <inputExpression id="_C60B7A92-1D41-4988-BF28-4652BD618A8D" typeRef="number">
+          <text>taxableWagesForMedicare</text>
+        </inputExpression>
+      </input>
+      <output id="_E3BEDBB6-72F4-46CD-9195-93C23D5DC584" name="Output-1" typeRef="Errors" />
+      <annotation name="Annotations" />
+      <rule id="_D0D63575-3661-43DC-B411-51379B092E69">
+        <inputEntry id="_ED349F04-0072-4426-8E56-82CEA83BE363">
+          <text>&lt;(taxableWagesForMedicare * 0.0285)</text>
+        </inputEntry>
+        <inputEntry id="_29A5F28B-14D6-4939-80C4-65E59D84295C">
+          <text>&gt;=0</text>
+        </inputEntry>
+        <outputEntry id="_F19CAE4E-FF5E-4FE0-BB76-4086521FFAE3">
+          <text>&quot;Medicare tax appears too low&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_F83CD59C-E8E8-48AE-BD47-FF66AA68145E">
+        <inputEntry id="_0966BA4A-8553-4F79-99E9-329B4D48D673">
+          <text>&gt;(taxableWagesForMedicare * 0.0295)</text>
+        </inputEntry>
+        <inputEntry id="_C6A0DD49-D576-45A1-B405-6FAD573B9581">
+          <text>&gt;=0</text>
+        </inputEntry>
+        <outputEntry id="_8E1B939A-FBB9-4202-8CA5-D99125CAE1EF">
+          <text>&quot;Medicare tax appears too high&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision name="Validate additional medicare tax" id="_56DA6D64-3FD9-4972-AB0C-92EFEB9DB325">
+    <variable name="Validate additional medicare tax" id="_3137F554-02B9-49A0-B307-83963168B6CE" typeRef="Errors" />
+    <informationRequirement id="_2076F012-2CA2-4819-A3D3-7E4BEAEDB222">
+      <requiredInput href="#_70251472-3361-4700-A30F-B67B260EA883" />
+    </informationRequirement>
+    <informationRequirement id="_1FA3F05D-D307-45A7-ADD8-B15E6B6839AC">
+      <requiredInput href="#_060E6FE3-73BF-4E8D-AD6A-7ADB51EF8F08" />
+    </informationRequirement>
+    <decisionTable id="_313E1804-A876-42DA-8D42-034F8D34EB2F" typeRef="Errors" hitPolicy="COLLECT" label="Validate additional medicare tax">
+      <input id="_FE2715D9-8F35-4A87-BC6D-604C33E574E5">
+        <inputExpression id="_AA3BF4D2-C126-44E6-850B-ACE5DAFBCD71" typeRef="number">
+          <text>additionalMedicareTax</text>
+        </inputExpression>
+      </input>
+      <input id="_22F0D71A-ABE3-4DD7-8A12-48F529C7F4D4">
+        <inputExpression id="_A48A2E61-7569-4FE9-BF8B-C0DABFF773A4" typeRef="number">
+          <text>taxableWagesForAdditionalMedicare</text>
+        </inputExpression>
+      </input>
+      <output id="_F3C48A34-3DE0-4738-9C41-C4D8AD046E8F" name="Output-1" typeRef="Errors" />
+      <annotation name="Annotations" />
+      <rule id="_DBBE7CDC-ED8D-462A-9FAE-66E4726AACBF">
+        <inputEntry id="_F1A6DDC0-03B8-4219-9871-069A8C3ACCD0">
+          <text>&lt;(taxableWagesForAdditionalMedicare * 0.0085)</text>
+        </inputEntry>
+        <inputEntry id="_A9ECAE84-A4C6-4169-A512-471550FB3E7B">
+          <text>&gt;0</text>
+        </inputEntry>
+        <outputEntry id="_2F2DB8FB-FDFB-482F-949B-434676D4748A">
+          <text>&quot;Additional Medicare tax appears too low&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_B673226A-269D-49A3-8B90-2ACBB01C9BAD">
+        <inputEntry id="_34A26C70-3383-4C9E-9F0E-56B92DD224C6">
+          <text>&gt;(taxableWagesForAdditionalMedicare * 0.0095)</text>
+        </inputEntry>
+        <inputEntry id="_017C2D35-02EF-4641-A504-12E543FFA31F">
+          <text>&gt;0</text>
+        </inputEntry>
+        <outputEntry id="_94F43492-FCF3-4454-81DE-00D745E20B30">
+          <text>&quot;Additional Medicare tax appears too high&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_EB2DE1C9-32A9-4EFC-A219-912250F28F29">
+        <inputEntry id="_DB08242D-37F0-412A-BACF-9738FD3687A8">
+          <text>&gt;0</text>
+        </inputEntry>
+        <inputEntry id="_C6C0ABE2-C02B-4C51-B0C9-6A2617C9FFAF">
+          <text>=0</text>
+        </inputEntry>
+        <outputEntry id="_C77BB3DD-BC3D-4BAF-A3AE-5CC40859579A">
+          <text>&quot;Additional Medicare tax should be zero when wages exceed $200,000&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision name="Validate total taxes" id="_068B877F-378F-4FAA-BD1B-3EC3D0EEB85B">
+    <variable name="Validate total taxes" id="_B30F07C0-42DB-4437-8C87-D71D5DA0A2D3" typeRef="Errors" />
+    <informationRequirement id="_9336B7CA-77F8-4D1A-B549-BFE702FF0F13">
+      <requiredInput href="#_82725B21-CD0E-4D3C-80F1-CD246C92C3E3" />
+    </informationRequirement>
+    <informationRequirement id="_26F210B6-42F5-49CE-A0E4-9907EBD9ECB1">
+      <requiredInput href="#_2F77CFE5-D856-4FCF-9C39-64235750AE28" />
+    </informationRequirement>
+    <informationRequirement id="_C08BA90D-681B-463E-A9F1-D4569200FB09">
+      <requiredInput href="#_F4AFC04C-EEAE-45EF-90CC-0691557B9ADC" />
+    </informationRequirement>
+    <informationRequirement id="_0A7DF51B-442B-4F2F-8A40-F41C7488790E">
+      <requiredInput href="#_8D35E66B-D0AB-4361-9540-C72CCC918FE3" />
+    </informationRequirement>
+    <informationRequirement id="_C901799D-1944-41A0-A90F-7DA2470D9BCE">
+      <requiredInput href="#_70251472-3361-4700-A30F-B67B260EA883" />
+    </informationRequirement>
+    <informationRequirement id="_D068BE08-0391-4FBE-9652-A1DB56581D75">
+      <requiredInput href="#_37E76475-907D-4453-AA81-A0E3918F04FF" />
+    </informationRequirement>
+    <context id="_F4469F3B-3710-4CF7-B7E4-0F5D1FC31790" typeRef="Errors" label="Validate total taxes">
+      <contextEntry id="_1BC6F320-5AFA-4D27-BE8F-9B00282AC62E">
+        <variable id="_7C400376-67CC-4E3E-A9FF-7A72E638A62E" name="expectedTotal" typeRef="number" />
+        <literalExpression id="_DBBB60CC-6D9F-432C-A918-3F27728D44DC" typeRef="number" label="expectedTotal">
+          <text>federalIncomeTaxWithheld + employeeSocialSecurityTax + employeeSocialSecurityTax + medicareTax + additionalMedicareTax</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_22E33174-C471-47A5-BC66-6F73223B976A">
+        <decisionTable id="_9B9C848B-503D-4E47-9AAD-FB5CD891D0B3" typeRef="Errors" hitPolicy="COLLECT" label="Validate total taxes">
+          <input id="_B0DD141A-5AB1-42D2-BD90-7A45A402378C">
+            <inputExpression id="_A11DB4A6-EB03-4986-99A0-00470A610AF1" typeRef="number">
+              <text>reportedTotalTax</text>
+            </inputExpression>
+          </input>
+          <output id="_D23AEAB1-36F4-4BBE-ADB1-25E9CD5C5F81" name="Output-1" typeRef="Errors" />
+          <annotation name="Annotations" />
+          <rule id="_839EF0AA-D176-4F0A-A52B-497A49641E0D">
+            <inputEntry id="_1D2556A8-AB18-4697-8F46-7EC0024ED2D1">
+              <text>&lt;(expectedTotal - 1)</text>
+            </inputEntry>
+            <outputEntry id="_7AB3ACFC-15F8-4999-B9D5-54DF5378140A">
+              <text>&quot;Total tax calculation appears too low&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text>// Your annotations here</text>
+            </annotationEntry>
+          </rule>
+          <rule id="_559F00CE-5293-46B8-8D01-4B00ADD2FE4B">
+            <inputEntry id="_7B815EE7-155A-44C2-9384-D14D87675EE9">
+              <text>&gt;(expectedTotal + 1)</text>
+            </inputEntry>
+            <outputEntry id="_E4CBCB23-EF9C-4CFA-992A-7D318034F315">
+              <text>&quot;Total tax calculation appears too high&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+        </decisionTable>
+      </contextEntry>
+    </context>
+  </decision>
+  <inputData name="reportedTotalTax" id="_37E76475-907D-4453-AA81-A0E3918F04FF">
+    <variable name="reportedTotalTax" id="_0DFD4DA9-1F9D-43A5-BC43-EDC84F445886" typeRef="number" />
+  </inputData>
+  <decision name="Are taxes valid" id="_282F7E77-1467-409F-9892-49796601E7BF">
+    <variable name="Are taxes valid" id="_9AE5DC2C-427A-48E7-B341-49C041486DC7" />
+    <informationRequirement id="_AD83124A-AA5F-4A4D-B50D-6B6745B25DDD">
+      <requiredDecision href="#_44B26394-F750-4C3B-903F-BF4ED6542715" />
+    </informationRequirement>
+    <informationRequirement id="_7E420FF6-3A0C-4913-91FB-D09D39E8478D">
+      <requiredDecision href="#_29F961BA-DFD2-42B2-AEC2-22923F4124AE" />
+    </informationRequirement>
+    <informationRequirement id="_B6C1B361-A286-4286-B158-794DC2525645">
+      <requiredDecision href="#_C7C7965C-8B49-4C57-90E9-110F0F6064AE" />
+    </informationRequirement>
+    <informationRequirement id="_07967CD7-A76E-4E54-9520-58003A6D3FBD">
+      <requiredDecision href="#_068B877F-378F-4FAA-BD1B-3EC3D0EEB85B" />
+    </informationRequirement>
+    <informationRequirement id="_A2B97838-F199-4D3B-BF18-C8C05BFE916E">
+      <requiredDecision href="#_56DA6D64-3FD9-4972-AB0C-92EFEB9DB325" />
+    </informationRequirement>
+    <context id="_E087B1B4-7B00-4371-81B5-A5EEF2277052" label="Are taxes valid">
+      <contextEntry id="_2AFDD09E-A351-42A9-92B9-A46028079676">
+        <variable id="_2A4BF4E2-464A-4E89-BAFB-7F19A2C771CF" name="allErrors" typeRef="Errors" />
+        <literalExpression id="_D3D403ED-414B-4519-9E05-22D3808C9068" typeRef="Errors" label="allErrors">
+          <text>concatenate(Validate Social Security, Validate Amounts, Validate Medicare Tax, Validate total taxes, Validate additional medicare tax)</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_D2C75B1B-EAAC-4414-A415-ED18B2383C05">
+        <variable id="_2FD954A5-838D-491C-8CB7-C3E6C8E8E4FA" name="errorCount" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_9B94C1C6-6C37-4FBC-89D9-C05CAF45D96F" typeRef="number" label="errorCount">
+          <text>count(allErrors)</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_A00526C5-C678-42BA-AA2F-D2B0CF107E72">
+        <decisionTable id="_745C7220-A8CE-4CD7-8614-E7DD6B9F1219" hitPolicy="UNIQUE" label="Are taxes valid">
+          <input id="_0CF6F5B1-63BB-4007-A73B-9410E26A3145">
+            <inputExpression id="_F66C296F-9E54-40A0-B90E-8090D558DF00" typeRef="number">
+              <text>errorCount</text>
+            </inputExpression>
+          </input>
+          <output id="_17145730-73AF-4365-8FBB-BF678870105E" name="valid" typeRef="boolean" />
+          <output id="_790CA2D0-5151-4BF8-81DD-96C89FB318FC" name="errors" typeRef="Errors" />
+          <annotation name="Annotations" />
+          <rule id="_AE53FD9D-1752-423A-AF71-BCD2CF61DB6E">
+            <inputEntry id="_2F0A7D02-BABC-4DF6-8133-3A216FE243BD">
+              <text>&gt;0</text>
+            </inputEntry>
+            <outputEntry id="_C43A73AF-3AD4-4CA2-AEF9-A844FE7BBCFB">
+              <text>false</text>
+            </outputEntry>
+            <outputEntry id="_B649142F-5A1A-4C3F-862D-5F45C2CC5CD5">
+              <text>allErrors</text>
+            </outputEntry>
+            <annotationEntry>
+              <text>// Your annotations here</text>
+            </annotationEntry>
+          </rule>
+          <rule id="_E5520C00-99D2-4B26-A322-A6DDF0FC487E">
+            <inputEntry id="_8D8062B1-ACB9-4B87-9B25-AF1BAC8506C0">
+              <text>=0</text>
+            </inputEntry>
+            <outputEntry id="_552D0BD4-90A8-41CA-9DAF-DA5B0F4619D5">
+              <text>true</text>
+            </outputEntry>
+            <outputEntry id="_5561658A-AE08-485F-818F-E6948B74C0C9">
+              <text>allErrors</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+        </decisionTable>
+      </contextEntry>
+    </context>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_1CAA0AFA-720D-47B9-9F73-8A0EFA58A1C4" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_D9A34221-35F4-4B7F-B692-D42271D4E648">
+            <kie:width>60</kie:width>
+            <kie:width>123</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>187</kie:width>
+            <kie:width>180</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>291</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_8B01486D-640E-4772-9020-276175835A87">
+            <kie:width>60</kie:width>
+            <kie:width>187</kie:width>
+            <kie:width>214</kie:width>
+            <kie:width>187</kie:width>
+            <kie:width>399</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_FACE7962-3E4A-4FD1-BEFC-7E79B9A64081">
+            <kie:width>239</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_3F4F59C4-D056-486D-89DA-E07DBE52D11B">
+            <kie:width>60</kie:width>
+            <kie:width>262</kie:width>
+            <kie:width>204</kie:width>
+            <kie:width>253</kie:width>
+            <kie:width>280</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D2A53313-9DF6-4E3F-AF85-3A0356F23253">
+            <kie:width>1279</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B1187FA0-4140-4E9E-B0D4-CA0FE46A28AA">
+            <kie:width>1279</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_94E2DC7C-7344-4E97-9605-ECF2D7A3E836">
+            <kie:width>1279</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_54F85D9C-226E-405C-A1F7-101F7569DA00">
+            <kie:width>1279</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D0D89F21-A049-4952-A11A-C22E3ADDB2DD">
+            <kie:width>60</kie:width>
+            <kie:width>300</kie:width>
+            <kie:width>174</kie:width>
+            <kie:width>422</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_313E1804-A876-42DA-8D42-034F8D34EB2F">
+            <kie:width>60</kie:width>
+            <kie:width>399</kie:width>
+            <kie:width>241</kie:width>
+            <kie:width>350</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F4469F3B-3710-4CF7-B7E4-0F5D1FC31790">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_9B9C848B-503D-4E47-9AAD-FB5CD891D0B3">
+            <kie:width>60</kie:width>
+            <kie:width>204</kie:width>
+            <kie:width>478</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DBBB60CC-6D9F-432C-A918-3F27728D44DC">
+            <kie:width>962</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_E087B1B4-7B00-4371-81B5-A5EEF2277052">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D3D403ED-414B-4519-9E05-22D3808C9068">
+            <kie:width>868</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_745C7220-A8CE-4CD7-8614-E7DD6B9F1219">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_9B94C1C6-6C37-4FBC-89D9-C05CAF45D96F">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_E2A2DBFA-46CA-4936-83E7-4ED741FE44CA" dmnElementRef="_115C045F-1AA9-46A5-9802-F7223993C695" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="2092" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_3874A737-E4EA-44E1-BF78-5D343E8FCF71" dmnElementRef="_82725B21-CD0E-4D3C-80F1-CD246C92C3E3" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1432" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_7C0877E3-F055-4242-A825-69C84E7341BF" dmnElementRef="_2F77CFE5-D856-4FCF-9C39-64235750AE28" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="332" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_BB4DEDC1-1419-409A-9B0C-5884B2525B87" dmnElementRef="_F4AFC04C-EEAE-45EF-90CC-0691557B9ADC" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="112" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_00DADE67-FC66-4203-B17E-3EE476B4E732" dmnElementRef="_8D35E66B-D0AB-4361-9540-C72CCC918FE3" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="992" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_635834CA-815B-42B6-AEB1-13312F150E56" dmnElementRef="_70251472-3361-4700-A30F-B67B260EA883" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="772" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_8EE0ECAD-3E81-4335-A658-542426DB3CAC" dmnElementRef="_953C7470-8F52-48CC-8A92-5BED2A6EF64E" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1212" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_EEF1FAFC-7FDB-4A22-8ECE-0009F3B0983A" dmnElementRef="_060E6FE3-73BF-4E8D-AD6A-7ADB51EF8F08" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1652" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_601B0A56-88CA-4826-B83F-CC61E072CED7" dmnElementRef="_C7C7965C-8B49-4C57-90E9-110F0F6064AE" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1652" y="292" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_A7AF0B05-F345-46E3-9E44-9104E2626E0F" dmnElementRef="_815A41E9-A830-433A-81CE-7F3A6B4A8A3F" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="1872" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_1B8C3B84-3B10-4319-9B66-3EEE6DBDA06A" dmnElementRef="_44B26394-F750-4C3B-903F-BF4ED6542715" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="332" y="292" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_CDAB6153-C581-4C51-852E-677C5FC68BB7" dmnElementRef="_29F961BA-DFD2-42B2-AEC2-22923F4124AE" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="992" y="292" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_24E64F3E-EFAB-4061-B244-9FD34C62934A" dmnElementRef="_56DA6D64-3FD9-4972-AB0C-92EFEB9DB325" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="772" y="292" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_8EBE0570-E30D-416D-968E-C3B9F673EDBD" dmnElementRef="_068B877F-378F-4FAA-BD1B-3EC3D0EEB85B" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="552" y="292" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_BCF52C27-4D5A-4FB3-96A6-3ADE51F8A790" dmnElementRef="_37E76475-907D-4453-AA81-A0E3918F04FF" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="552" y="472" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_548467FF-87C5-42B2-9D74-FD6374075C12" dmnElementRef="_282F7E77-1467-409F-9892-49796601E7BF" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="772" y="112" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_C9BDC915-9BF6-49EB-B44B-A8774EF1EB27" dmnElementRef="_4A3A0323-0E87-41D6-9C20-5913CA1D6A7C" sourceElement="_3874A737-E4EA-44E1-BF78-5D343E8FCF71" targetElement="_601B0A56-88CA-4826-B83F-CC61E072CED7">
+        <di:waypoint x="1512" y="472" />
+        <di:waypoint x="1732" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_613FB6DD-CEC8-429F-9172-6E4DE965752A" dmnElementRef="_2809AF54-A9D6-452A-9965-B6986C1A2646" sourceElement="_E2A2DBFA-46CA-4936-83E7-4ED741FE44CA" targetElement="_601B0A56-88CA-4826-B83F-CC61E072CED7">
+        <di:waypoint x="2172" y="472" />
+        <di:waypoint x="1732" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_EDD8B88A-E4E4-4F48-9631-A4BFB454D9A5" dmnElementRef="_A4FDBCAF-5849-4675-BD48-C86900CBB5C4" sourceElement="_8EE0ECAD-3E81-4335-A658-542426DB3CAC" targetElement="_601B0A56-88CA-4826-B83F-CC61E072CED7">
+        <di:waypoint x="1292" y="472" />
+        <di:waypoint x="1732" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_0E4ED372-F4C8-4CB0-A465-D217D51D676D" dmnElementRef="_DC7E1B5E-E846-40DB-AD9A-1C474856D651" sourceElement="_A7AF0B05-F345-46E3-9E44-9104E2626E0F" targetElement="_601B0A56-88CA-4826-B83F-CC61E072CED7">
+        <di:waypoint x="1952" y="472" />
+        <di:waypoint x="1732" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_E36076C0-EEC2-4397-B671-6124A60262B5" dmnElementRef="_787129C0-4F2D-4F9B-80CD-F398D1F1C7ED" sourceElement="_EEF1FAFC-7FDB-4A22-8ECE-0009F3B0983A" targetElement="_601B0A56-88CA-4826-B83F-CC61E072CED7">
+        <di:waypoint x="1732" y="472" />
+        <di:waypoint x="1732" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_36B88AC3-BAA9-425B-B326-A6860E1A55F6" dmnElementRef="_1E097B49-0B0C-40D3-BA06-18D83DF0F4CE" sourceElement="_7C0877E3-F055-4242-A825-69C84E7341BF" targetElement="_1B8C3B84-3B10-4319-9B66-3EEE6DBDA06A">
+        <di:waypoint x="412" y="472" />
+        <di:waypoint x="412" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_7A2175E2-3AAF-490D-A195-ADBD9101FB8D" dmnElementRef="_0B449E58-AF93-4262-BD29-F62DB828CBE0" sourceElement="_8EE0ECAD-3E81-4335-A658-542426DB3CAC" targetElement="_1B8C3B84-3B10-4319-9B66-3EEE6DBDA06A">
+        <di:waypoint x="1292" y="472" />
+        <di:waypoint x="412" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_CA29962A-73E0-490E-9ED3-C4D83EFE6B5E" dmnElementRef="_0640D657-E7ED-4DAE-98B6-C2FD4DEBB86C" sourceElement="_BB4DEDC1-1419-409A-9B0C-5884B2525B87" targetElement="_1B8C3B84-3B10-4319-9B66-3EEE6DBDA06A">
+        <di:waypoint x="192" y="472" />
+        <di:waypoint x="412" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_83445CFE-C6A6-43B8-86B6-33E9E2447395" dmnElementRef="_3E81B7C8-94D5-4F75-9736-8DBEB0424D1D" sourceElement="_00DADE67-FC66-4203-B17E-3EE476B4E732" targetElement="_CDAB6153-C581-4C51-852E-677C5FC68BB7">
+        <di:waypoint x="1072" y="472" />
+        <di:waypoint x="1072" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_AE6CAAFC-DE1F-460A-8051-9D807F8847BE" dmnElementRef="_9CBA7B0B-1063-4EB5-A2EF-9428728B22CF" sourceElement="_A7AF0B05-F345-46E3-9E44-9104E2626E0F" targetElement="_CDAB6153-C581-4C51-852E-677C5FC68BB7">
+        <di:waypoint x="1952" y="472" />
+        <di:waypoint x="1072" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_1FEA6BE5-623C-41E3-BEEA-BFE4C32D402A" dmnElementRef="_2076F012-2CA2-4819-A3D3-7E4BEAEDB222" sourceElement="_635834CA-815B-42B6-AEB1-13312F150E56" targetElement="_24E64F3E-EFAB-4061-B244-9FD34C62934A">
+        <di:waypoint x="852" y="472" />
+        <di:waypoint x="852" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_E9C1A2BC-127D-445C-932C-A8DD8697DD35" dmnElementRef="_1FA3F05D-D307-45A7-ADD8-B15E6B6839AC" sourceElement="_EEF1FAFC-7FDB-4A22-8ECE-0009F3B0983A" targetElement="_24E64F3E-EFAB-4061-B244-9FD34C62934A">
+        <di:waypoint x="1732" y="472" />
+        <di:waypoint x="852" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_13E74CDD-B4ED-4CD9-BE78-00A6780819D3" dmnElementRef="_9336B7CA-77F8-4D1A-B549-BFE702FF0F13" sourceElement="_3874A737-E4EA-44E1-BF78-5D343E8FCF71" targetElement="_8EBE0570-E30D-416D-968E-C3B9F673EDBD">
+        <di:waypoint x="1512" y="472" />
+        <di:waypoint x="632" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_6A31B7D1-9517-4B11-A6E6-A73433C2E2D7" dmnElementRef="_26F210B6-42F5-49CE-A0E4-9907EBD9ECB1" sourceElement="_7C0877E3-F055-4242-A825-69C84E7341BF" targetElement="_8EBE0570-E30D-416D-968E-C3B9F673EDBD">
+        <di:waypoint x="412" y="472" />
+        <di:waypoint x="632" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_7F605731-F8F5-42A3-94B3-6A34EF208DDB" dmnElementRef="_C08BA90D-681B-463E-A9F1-D4569200FB09" sourceElement="_BB4DEDC1-1419-409A-9B0C-5884B2525B87" targetElement="_8EBE0570-E30D-416D-968E-C3B9F673EDBD">
+        <di:waypoint x="192" y="472" />
+        <di:waypoint x="632" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_98E2F397-A8D1-45BD-8962-348312AF7D09" dmnElementRef="_0A7DF51B-442B-4F2F-8A40-F41C7488790E" sourceElement="_00DADE67-FC66-4203-B17E-3EE476B4E732" targetElement="_8EBE0570-E30D-416D-968E-C3B9F673EDBD">
+        <di:waypoint x="1072" y="472" />
+        <di:waypoint x="632" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_DF27E235-1365-4999-90ED-615FC6D0CD3D" dmnElementRef="_C901799D-1944-41A0-A90F-7DA2470D9BCE" sourceElement="_635834CA-815B-42B6-AEB1-13312F150E56" targetElement="_8EBE0570-E30D-416D-968E-C3B9F673EDBD">
+        <di:waypoint x="852" y="472" />
+        <di:waypoint x="632" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_4C2ABD25-79ED-451B-8951-26B9B5C4D071" dmnElementRef="_D068BE08-0391-4FBE-9652-A1DB56581D75" sourceElement="_BCF52C27-4D5A-4FB3-96A6-3ADE51F8A790" targetElement="_8EBE0570-E30D-416D-968E-C3B9F673EDBD">
+        <di:waypoint x="632" y="472" />
+        <di:waypoint x="632" y="372" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_A27423E4-B79A-4AEF-921B-BEE5A1FF7A7F" dmnElementRef="_AD83124A-AA5F-4A4D-B50D-6B6745B25DDD" sourceElement="_1B8C3B84-3B10-4319-9B66-3EEE6DBDA06A" targetElement="_548467FF-87C5-42B2-9D74-FD6374075C12">
+        <di:waypoint x="412" y="292" />
+        <di:waypoint x="852" y="192" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_95C338A8-8AC4-4FAD-924F-FFD64304AE61" dmnElementRef="_7E420FF6-3A0C-4913-91FB-D09D39E8478D" sourceElement="_CDAB6153-C581-4C51-852E-677C5FC68BB7" targetElement="_548467FF-87C5-42B2-9D74-FD6374075C12">
+        <di:waypoint x="1072" y="292" />
+        <di:waypoint x="852" y="192" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_FBED7C90-C956-4D1E-90D9-2F601BAFBF33" dmnElementRef="_B6C1B361-A286-4286-B158-794DC2525645" sourceElement="_601B0A56-88CA-4826-B83F-CC61E072CED7" targetElement="_548467FF-87C5-42B2-9D74-FD6374075C12">
+        <di:waypoint x="1732" y="292" />
+        <di:waypoint x="852" y="192" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_981413A9-F5DA-4602-BB07-5481306F03D9" dmnElementRef="_07967CD7-A76E-4E54-9520-58003A6D3FBD" sourceElement="_8EBE0570-E30D-416D-968E-C3B9F673EDBD" targetElement="_548467FF-87C5-42B2-9D74-FD6374075C12">
+        <di:waypoint x="632" y="292" />
+        <di:waypoint x="852" y="192" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_A5431F55-784E-496C-8E52-8A11659997E5" dmnElementRef="_A2B97838-F199-4D3B-BF18-C8C05BFE916E" sourceElement="_24E64F3E-EFAB-4061-B244-9FD34C62934A" targetElement="_548467FF-87C5-42B2-9D74-FD6374075C12">
+        <di:waypoint x="852" y="292" />
+        <di:waypoint x="852" y="192" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

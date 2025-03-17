@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="form943DetermineEligibility" name="determineEligibility">
+  <itemDefinition id="_A8413C3B-AF93-49CF-9EBE-CE684A5965A2" name="Eligibility" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_3651C97D-18EB-4027-BBCE-234D7E9FE298" name="isEligible" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>boolean</typeRef>
+    </itemComponent>
+    <itemComponent id="_D444E21F-4790-4880-8FA9-793AA7504925" name="ineligibleReason" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>string</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <inputData name="hasAgriculturalEmployees" id="_C2767770-0A0A-41AF-B04B-5FF48932A483">
+    <variable name="hasAgriculturalEmployees" id="_3420E8E2-AF7D-4B93-B0EE-0375E0C65088" typeRef="boolean" />
+  </inputData>
+  <inputData name="paidWagesOver150" id="_9894999B-7F7B-4A8B-BA64-93A40A74426F">
+    <variable name="paidWagesOver150" id="_AC431FD1-6CD3-4927-A70A-C7E40BA4A40D" typeRef="boolean" />
+  </inputData>
+  <inputData name="employedContinuousLabor" id="_5A014BC5-02F0-40DD-9BFF-611624A33C82">
+    <variable name="employedContinuousLabor" id="_79DBB367-0003-424E-A279-9E7F08D1B953" typeRef="boolean" />
+  </inputData>
+  <decision name="eligibility" id="_7BB036A1-8AB8-4D72-867C-1862475E005E">
+    <variable name="eligibility" id="_DD44D518-5026-483B-B05B-01E85CB157C4" typeRef="Eligibility" />
+    <informationRequirement id="_BE915865-07E7-480B-90C0-2E9A6A2795E6">
+      <requiredInput href="#_9894999B-7F7B-4A8B-BA64-93A40A74426F" />
+    </informationRequirement>
+    <informationRequirement id="_07022EBB-675E-4C3A-9BA7-A6A2AAD6E4AA">
+      <requiredInput href="#_C2767770-0A0A-41AF-B04B-5FF48932A483" />
+    </informationRequirement>
+    <informationRequirement id="_6A54F8A5-84E7-4565-B032-9A65F5F4109C">
+      <requiredInput href="#_5A014BC5-02F0-40DD-9BFF-611624A33C82" />
+    </informationRequirement>
+    <decisionTable id="_9E7C7999-5F54-4027-80A7-2B70E353F145" typeRef="Eligibility" hitPolicy="UNIQUE" label="eligibility">
+      <input id="_0F7A7D87-C43C-47D7-93B7-C0263FE21368">
+        <inputExpression id="_2E3EE204-77CB-4595-B21C-D64CBDC08EB9" typeRef="boolean">
+          <text>hasAgriculturalEmployees</text>
+        </inputExpression>
+      </input>
+      <input id="_1A76B1CE-927D-48D9-892D-E8B8908CA747">
+        <inputExpression id="_6355F817-2766-4AD5-BE3C-1170FF73B1A9" typeRef="boolean">
+          <text>paidWagesOver150</text>
+        </inputExpression>
+      </input>
+      <input id="_A3879A5F-1C21-4DA1-9F4D-572810FA21F0">
+        <inputExpression id="_E2A35848-A2EF-487F-A9C2-DFCA86F495C8" typeRef="boolean">
+          <text>employedContinuousLabor</text>
+        </inputExpression>
+      </input>
+      <output id="_29569B20-E80A-4CC1-BAF6-9765F9207FDA" name="isEligible" typeRef="boolean" />
+      <output id="_54278251-71CD-416A-A69F-F3493584A93E" name="ineligibleReason" typeRef="string" />
+      <annotation name="Annotations" />
+      <rule id="_64067E61-AA2F-4919-BE64-4F7097A2B0E3">
+        <inputEntry id="_648E2072-8678-4E9C-87D7-D172B4DE31AD">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="_5CA7431B-70ED-4F48-8666-1E2760DBD8D7">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="_F301E5CF-FC25-4514-A682-F01B818F0335">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_154C98B4-CFD4-4893-ADEB-35C2C314287B">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="_428B2722-CFAE-4456-861F-7E9FFDFC4029">
+          <text>&quot;&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_6AA34A35-0E1F-4B1D-831C-E013F7833079">
+        <inputEntry id="_C8BC56CC-62B4-4958-9AB4-4C687CA2A7DF">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="_80E672C5-CA4E-48A5-B802-E3B2F0EF4335">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="_8374F165-A940-4B98-A71F-1B568C90FEED">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="_2B966B1C-6F70-48D8-9E1A-A04EB1FA8B78">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="_060097CC-FDE6-45B6-8F93-6D91F107ABA5">
+          <text>&quot;&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_814B0AEF-2362-4362-957C-69E3A135B1AE">
+        <inputEntry id="_B69B64E1-1776-486B-B630-068221FCD36D">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="_D32265CF-C479-48B4-9FCE-2D8D2E60EC71">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="_CDC8465E-0143-47BA-8425-596364A19686">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="_75C82FC5-F80A-4074-A00E-C45035A08E0C">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="_3A4EDF3D-40D5-402A-8A38-1338D6DDF387">
+          <text>&quot;Insufficient agricultural wages&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_812070D9-8761-48E0-BA6C-B9C357017AAB">
+        <inputEntry id="_EBEFD33F-556B-4CB8-98AA-4FF9F7843301">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="_1AB9A120-7EA4-4098-8F74-253DC435E977">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_8AE53A48-3B40-48DF-A395-B9251670C716">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_F807865F-B079-4F73-B36B-66DE9F1003BA">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="_41788F93-B364-4529-BEF6-1AF45F4BE4AF">
+          <text>&quot;No agricultural employees&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_326F41FB-4381-4B0B-8B06-44F378409424" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_9E7C7999-5F54-4027-80A7-2B70E353F145">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>307</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_AF9F4A01-8346-4018-A34D-4B63D82CB06F" dmnElementRef="_C2767770-0A0A-41AF-B04B-5FF48932A483" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="160" y="100" width="240" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_8F142651-0CE5-468F-BC43-22BED8F01A65" dmnElementRef="_9894999B-7F7B-4A8B-BA64-93A40A74426F" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="260" width="200" height="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_7A232949-9D99-42FB-B3ED-CE1C5FB4D206" dmnElementRef="_5A014BC5-02F0-40DD-9BFF-611624A33C82" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="-40" width="220" height="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_08D214E5-9D42-4AE8-A8E0-C93AE860332E" dmnElementRef="_7BB036A1-8AB8-4D72-867C-1862475E005E" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="600" y="120" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_008828F9-058B-49ED-821E-DEC5CA78EE04" dmnElementRef="_BE915865-07E7-480B-90C0-2E9A6A2795E6" sourceElement="_8F142651-0CE5-468F-BC43-22BED8F01A65" targetElement="_08D214E5-9D42-4AE8-A8E0-C93AE860332E">
+        <di:waypoint x="280" y="310" />
+        <di:waypoint x="600" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_24F23E6E-4317-4E3C-A63F-98315FADBCDF" dmnElementRef="_07022EBB-675E-4C3A-9BA7-A6A2AAD6E4AA" sourceElement="_AF9F4A01-8346-4018-A34D-4B63D82CB06F" targetElement="_08D214E5-9D42-4AE8-A8E0-C93AE860332E">
+        <di:waypoint x="280" y="140" />
+        <di:waypoint x="600" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_FC29FCC3-46AC-4892-AA3E-A04163C907A4" dmnElementRef="_6A54F8A5-84E7-4565-B032-9A65F5F4109C" sourceElement="_7A232949-9D99-42FB-B3ED-CE1C5FB4D206" targetElement="_08D214E5-9D42-4AE8-A8E0-C93AE860332E">
+        <di:waypoint x="290" y="10" />
+        <di:waypoint x="600" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

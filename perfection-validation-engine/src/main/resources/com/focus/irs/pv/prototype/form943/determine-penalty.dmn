@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="form943Penalty" name="determinePenalty">
+  <itemDefinition id="_78172649-6033-4CC3-BA25-6E45EEB8CDD4" name="Penalty" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_0BD1FB15-5D01-4D70-9428-948C53F02E7A" name="isLate" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>boolean</typeRef>
+    </itemComponent>
+    <itemComponent id="_C6094064-55EA-4D8D-A8BD-7422EBA16112" name="canUseExtendedDeadline" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>boolean</typeRef>
+    </itemComponent>
+    <itemComponent id="_A7688182-1BF6-4E30-BBAB-9EF7A5D76D01" name="reason" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>string</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <inputData name="filingDate" id="_3A23D986-F797-496B-A5A2-8B20956032C4">
+    <variable name="filingDate" id="_8408522F-0D6C-4205-A23C-9440D9597E95" typeRef="date" />
+  </inputData>
+  <inputData name="depositsComplete" id="_94088A24-9605-4D54-9122-47B9A7A73445">
+    <variable name="depositsComplete" id="_7403C38C-3C00-474F-9B60-959DDE86FE62" typeRef="boolean" />
+  </inputData>
+  <decision name="determinePenalty" id="_F181729D-5FE9-440E-AFB5-316E2259C9D9">
+    <variable name="determinePenalty" id="_5A392906-0A51-4414-8C3F-918A2FE9E829" typeRef="Penalty" />
+    <informationRequirement id="_91554B7F-F8BB-47EF-8161-8CC827DE2ACB">
+      <requiredInput href="#_3A23D986-F797-496B-A5A2-8B20956032C4" />
+    </informationRequirement>
+    <informationRequirement id="_56BB1A45-B7AD-4923-A756-BEFDCE6E7117">
+      <requiredInput href="#_94088A24-9605-4D54-9122-47B9A7A73445" />
+    </informationRequirement>
+    <decisionTable id="_E83ABC22-CE1F-437E-8D94-EC27D080D26C" hitPolicy="UNIQUE" label="determinePenalty" typeRef="Penalty">
+      <input id="_D09CB9AC-65F3-4F51-863C-F044812AB6AA">
+        <inputExpression id="_536F2859-9056-44EB-9BBD-018D640BFF2A" typeRef="date">
+          <text>filingDate</text>
+        </inputExpression>
+      </input>
+      <input id="_3555AC86-8246-42A5-B574-0830788D00AA">
+        <inputExpression id="_5A19402E-A58B-4B4E-98DF-D0FAD7FCEA9E" typeRef="boolean">
+          <text>depositsComplete</text>
+        </inputExpression>
+      </input>
+      <output id="_A372A38C-E956-4197-AB8C-58F9736318B6" name="isLate" typeRef="boolean" />
+      <output id="_F1088427-2BA7-4FA9-90E2-F25FAF5880D4" name="canUseExtendedDeadline" typeRef="boolean" />
+      <output id="_C88CED31-DDAB-4014-B0AF-4E5C9A316E2A" name="reason" typeRef="string" />
+      <annotation name="Annotations" />
+      <rule id="_4B8F5E3B-393F-4E67-BE3A-1A6F1641613C">
+        <inputEntry id="_165AA4D2-5534-4F04-A356-F6DBC3F630FD">
+          <text>&lt;=date(2025, 1, 30)</text>
+        </inputEntry>
+        <inputEntry id="_923A6FD4-50A6-4802-B9EE-3CE315D6FF17">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_2C5A5181-F20B-4004-8D31-94886A27F323">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="_FD6BB10C-2C22-4DBE-B3DD-C3FD504E70DA">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="_8F852146-BF6E-4705-BFB7-7F85CE765602">
+          <text>&quot;&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_6F2C1A2F-F025-415C-84C9-A6AA4DE63CA1">
+        <inputEntry id="_6E0F3BFC-A9C2-4B26-92CB-3F58FC981706">
+          <text>&gt;date(2025,1,31) and &lt;=date(2025,2,10)</text>
+        </inputEntry>
+        <inputEntry id="_6C972883-66A2-4E78-AD3D-E14B7D4704A3">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="_B010C451-F256-4A30-9C7D-EF6F6D5F4B7E">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="_8DE8C8D6-9EEF-49E2-832D-12FDC1ADF71D">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="_8562F53C-6DDD-4A6D-B53C-6B20C3BF2E32">
+          <text>&quot;&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_9D0CBA31-F0F5-4665-A083-4B2521D86224">
+        <inputEntry id="_C5227105-5D92-410F-B29C-A5C5CCB12C7F">
+          <text>&gt;date(2025,1,31) and &lt;=date(2025,2,10)</text>
+        </inputEntry>
+        <inputEntry id="_0F28442E-E921-4D40-ABE9-A1A51CFBEAE0">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="_29873169-1E0B-423C-B22B-961C57A3F028">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="_A4CF448A-627A-4246-A056-10C916D85C01">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="_13AC103B-C0BC-4CC3-AF0D-1016AA658CDD">
+          <text>&quot;Deposits not made on time&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_958909AE-9DD8-4464-8A70-447BC3E6EA9F">
+        <inputEntry id="_EFF10F2C-A764-49F7-9971-9EDB0582F115">
+          <text>&gt;date(2025,2,11)</text>
+        </inputEntry>
+        <inputEntry id="_177D8425-1296-4703-853C-08236D8EF4A1">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_C1FC8352-F9F8-4D91-90EB-FE030C756647">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="_58CC058A-FFB7-486F-A9BE-9E445D02F202">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="_22D156EE-5F02-41FC-B3C4-6B185FBD7065">
+          <text>&quot;Filed after deadline&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_FDAAC26C-4946-493A-9030-1AD20AB0DE8A" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_E83ABC22-CE1F-437E-8D94-EC27D080D26C">
+            <kie:width>60</kie:width>
+            <kie:width>250</kie:width>
+            <kie:width>126</kie:width>
+            <kie:width>152</kie:width>
+            <kie:width>178</kie:width>
+            <kie:width>255</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_EAE83B45-9F19-41F4-9460-B77685EFBEB1" dmnElementRef="_3A23D986-F797-496B-A5A2-8B20956032C4" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="332" y="292" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_380FC9EF-769C-4F85-81AD-A73C8D016795" dmnElementRef="_94088A24-9605-4D54-9122-47B9A7A73445" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="112" y="292" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_AE2AC4E9-C7E6-4CD3-917C-D3C77D04713D" dmnElementRef="_F181729D-5FE9-440E-AFB5-316E2259C9D9" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="112" y="112" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_835BAFBD-E68A-49CD-B0B2-D3BB3521B2F1" dmnElementRef="_91554B7F-F8BB-47EF-8161-8CC827DE2ACB" sourceElement="_EAE83B45-9F19-41F4-9460-B77685EFBEB1" targetElement="_AE2AC4E9-C7E6-4CD3-917C-D3C77D04713D">
+        <di:waypoint x="412" y="292" />
+        <di:waypoint x="192" y="192" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_407550C5-ACD6-4E89-8310-9212923A3F7E" dmnElementRef="_56BB1A45-B7AD-4923-A756-BEFDCE6E7117" sourceElement="_380FC9EF-769C-4F85-81AD-A73C8D016795" targetElement="_AE2AC4E9-C7E6-4CD3-917C-D3C77D04713D">
+        <di:waypoint x="192" y="292" />
+        <di:waypoint x="192" y="192" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
