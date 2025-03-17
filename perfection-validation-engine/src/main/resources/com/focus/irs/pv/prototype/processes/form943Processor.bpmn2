@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_4NbpQOWCED2-7ccE3xwyCA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_ibdjAOWIED2bo_kuvkqJQQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_form943DataItem" structureRef="com.focus.irs.pv.prototype.Form943Data"/>
   <bpmn2:itemDefinition id="_eligibilityResultItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="_validateTaxResultItem" structureRef="Object"/>
@@ -7,7 +7,7 @@
   <bpmn2:itemDefinition id="_creditedTaxAmountItem" structureRef="java.math.BigDecimal"/>
   <bpmn2:itemDefinition id="_finalDeterminationItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="_penaltyItem" structureRef="Object"/>
-  <bpmn2:itemDefinition id="_penaltyAndInterestAmountsItem" structureRef="com.focus.irs.pv.prototype.services.form943.com.focus.irs.pv.prototype.services.form943.PenaltyAndInterestResult"/>
+  <bpmn2:itemDefinition id="_penaltyAndInterestAmountsItem" structureRef="com.focus.irs.pv.prototype.services.form943.PenaltyAndInterestResult"/>
   <bpmn2:itemDefinition id="__93AB3721-3948-4530-B8DB-B33F93C1B0BE_fileNameInputXItem" structureRef="java.lang.String"/>
   <bpmn2:itemDefinition id="__93AB3721-3948-4530-B8DB-B33F93C1B0BE_namespaceInputXItem" structureRef="java.lang.String"/>
   <bpmn2:itemDefinition id="__93AB3721-3948-4530-B8DB-B33F93C1B0BE_modelInputXItem" structureRef="java.lang.String"/>
@@ -79,8 +79,8 @@
       <bpmn2:outMessageRef>_522BE4D6-EFA4-49A7-BBEC-3C96EDD8478E_OutMessage</bpmn2:outMessageRef>
     </bpmn2:operation>
   </bpmn2:interface>
-  <bpmn2:collaboration id="_F3E96B01-D4C7-4388-AA04-545F2250D43D" name="Default Collaboration">
-    <bpmn2:participant id="_08AB6B09-F4DE-4186-9D3A-4C7424C54640" name="Pool Participant" processRef="form943Processor"/>
+  <bpmn2:collaboration id="_E3B66F3E-346A-4D6C-9E80-F6982DC2EA7D" name="Default Collaboration">
+    <bpmn2:participant id="_478F039C-6D9C-48F4-AC27-A18F5BAAB8C2" name="Pool Participant" processRef="form943Processor"/>
   </bpmn2:collaboration>
   <bpmn2:process id="form943Processor" drools:packageName="com.focus.irs.pv.prototype" drools:version="1.0" drools:adHoc="false" name="form943Processor" isExecutable="true" processType="Public">
     <bpmn2:property id="form943Data" itemSubjectRef="_form943DataItem" name="form943Data">
@@ -148,20 +148,20 @@
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="_494F1EDB-3B58-4081-97D5-9CDD355C0954" sourceRef="_AE940E94-554B-4D82-A71C-D111DF3ED732" targetRef="_194CB0D1-8FDC-414B-A8BE-6CD704F1FA53">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[validateTaxResult.valid == false]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_93FA5953-564C-4C26-BCC2-7FA1491C79EB" sourceRef="_AE940E94-554B-4D82-A71C-D111DF3ED732" targetRef="_423E5DA9-5981-4053-AA42-EB58A5290F96">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[validateTaxResult.valid == true]]></bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[(Boolean)((java.util.Map<String, Object>) validateTaxResult).get("valid") == true]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_494F1EDB-3B58-4081-97D5-9CDD355C0954" sourceRef="_AE940E94-554B-4D82-A71C-D111DF3ED732" targetRef="_194CB0D1-8FDC-414B-A8BE-6CD704F1FA53">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[(Boolean)((java.util.Map<String, Object>) validateTaxResult).get("valid") == false]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_E932448F-EF37-4212-A198-96C4B35D4F05" sourceRef="_621102B4-E6B6-403D-9BD5-7E1D12A44FA1" targetRef="_AE940E94-554B-4D82-A71C-D111DF3ED732"/>
     <bpmn2:sequenceFlow id="_91E5EE16-EB85-45B1-83EE-6E33915F2409" sourceRef="_AEF09E96-593A-478B-9894-B5DB1D24A0F2" targetRef="_621102B4-E6B6-403D-9BD5-7E1D12A44FA1"/>
     <bpmn2:sequenceFlow id="_963FD23F-285F-4084-9DA6-7C8636A74ACA" sourceRef="_73CD921D-DA38-4EBF-93B4-1CD8D4FAF83A" targetRef="_AEF09E96-593A-478B-9894-B5DB1D24A0F2"/>
-    <bpmn2:sequenceFlow id="_4E78837F-B7D8-4100-B374-9D939A11AE37" sourceRef="_6963AD6E-7725-4E40-BDA1-0AE051FB0469" targetRef="_73CD921D-DA38-4EBF-93B4-1CD8D4FAF83A">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[eligibilityResult.isEligible == false]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_6ABB3A1B-ADAC-4B06-BFFC-156D3DD7C912" sourceRef="_6963AD6E-7725-4E40-BDA1-0AE051FB0469" targetRef="_AC4E1878-F020-469E-B392-6A7EE9257B2B">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[eligibilityResult.isEligible == true]]></bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[(Boolean)((java.util.Map<String, Object>) eligibilityResult).get("isEligible") == true]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_4E78837F-B7D8-4100-B374-9D939A11AE37" sourceRef="_6963AD6E-7725-4E40-BDA1-0AE051FB0469" targetRef="_73CD921D-DA38-4EBF-93B4-1CD8D4FAF83A">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[(Boolean)((java.util.Map<String, Object>) eligibilityResult).get("isEligible") == false]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_CE23AB72-DBC0-4F2D-AA0F-35DC77C0294F" sourceRef="_93AB3721-3948-4530-B8DB-B33F93C1B0BE" targetRef="_6963AD6E-7725-4E40-BDA1-0AE051FB0469"/>
     <bpmn2:sequenceFlow id="_639DE380-765C-454F-BC54-1E519C0AF4BD" sourceRef="_748A3973-8EC1-4128-B832-FA10D2D7EA64" targetRef="_93AB3721-3948-4530-B8DB-B33F93C1B0BE"/>
@@ -459,8 +459,8 @@
     </bpmn2:businessRuleTask>
     <bpmn2:exclusiveGateway id="_AE940E94-554B-4D82-A71C-D111DF3ED732" gatewayDirection="Diverging">
       <bpmn2:incoming>_E932448F-EF37-4212-A198-96C4B35D4F05</bpmn2:incoming>
-      <bpmn2:outgoing>_93FA5953-564C-4C26-BCC2-7FA1491C79EB</bpmn2:outgoing>
       <bpmn2:outgoing>_494F1EDB-3B58-4081-97D5-9CDD355C0954</bpmn2:outgoing>
+      <bpmn2:outgoing>_93FA5953-564C-4C26-BCC2-7FA1491C79EB</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:businessRuleTask id="_AEF09E96-593A-478B-9894-B5DB1D24A0F2" name="Apply adjustments" implementation="http://www.jboss.org/drools/dmn">
       <bpmn2:extensionElements>
@@ -686,8 +686,8 @@
     </bpmn2:businessRuleTask>
     <bpmn2:exclusiveGateway id="_6963AD6E-7725-4E40-BDA1-0AE051FB0469" gatewayDirection="Diverging">
       <bpmn2:incoming>_CE23AB72-DBC0-4F2D-AA0F-35DC77C0294F</bpmn2:incoming>
-      <bpmn2:outgoing>_6ABB3A1B-ADAC-4B06-BFFC-156D3DD7C912</bpmn2:outgoing>
       <bpmn2:outgoing>_4E78837F-B7D8-4100-B374-9D939A11AE37</bpmn2:outgoing>
+      <bpmn2:outgoing>_6ABB3A1B-ADAC-4B06-BFFC-156D3DD7C912</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:businessRuleTask id="_93AB3721-3948-4530-B8DB-B33F93C1B0BE" name="Determine Eligibility" implementation="http://www.jboss.org/drools/dmn">
       <bpmn2:extensionElements>
@@ -826,13 +826,13 @@
         <di:waypoint x="379" y="284"/>
         <di:waypoint x="540" y="284"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__6963AD6E-7725-4E40-BDA1-0AE051FB0469_to_shape__AC4E1878-F020-469E-B392-6A7EE9257B2B" bpmnElement="_6ABB3A1B-ADAC-4B06-BFFC-156D3DD7C912">
-        <di:waypoint x="568" y="284"/>
-        <di:waypoint x="568" y="88"/>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__6963AD6E-7725-4E40-BDA1-0AE051FB0469_to_shape__73CD921D-DA38-4EBF-93B4-1CD8D4FAF83A" bpmnElement="_4E78837F-B7D8-4100-B374-9D939A11AE37">
         <di:waypoint x="568" y="284"/>
         <di:waypoint x="680" y="284"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__6963AD6E-7725-4E40-BDA1-0AE051FB0469_to_shape__AC4E1878-F020-469E-B392-6A7EE9257B2B" bpmnElement="_6ABB3A1B-ADAC-4B06-BFFC-156D3DD7C912">
+        <di:waypoint x="568" y="284"/>
+        <di:waypoint x="568" y="88"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__73CD921D-DA38-4EBF-93B4-1CD8D4FAF83A_to_shape__AEF09E96-593A-478B-9894-B5DB1D24A0F2" bpmnElement="_963FD23F-285F-4084-9DA6-7C8636A74ACA">
         <di:waypoint x="757" y="284"/>
@@ -846,14 +846,13 @@
         <di:waypoint x="1250" y="284"/>
         <di:waypoint x="1385" y="284"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__AE940E94-554B-4D82-A71C-D111DF3ED732_to_shape__423E5DA9-5981-4053-AA42-EB58A5290F96" bpmnElement="_93FA5953-564C-4C26-BCC2-7FA1491C79EB">
-        <di:waypoint x="1413" y="284"/>
-        <di:waypoint x="1457.8080974325212" y="284"/>
-        <di:waypoint x="1495" y="284"/>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__AE940E94-554B-4D82-A71C-D111DF3ED732_to_shape__194CB0D1-8FDC-414B-A8BE-6CD704F1FA53" bpmnElement="_494F1EDB-3B58-4081-97D5-9CDD355C0954">
         <di:waypoint x="1413" y="284"/>
         <di:waypoint x="1412.8080974325212" y="88"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__AE940E94-554B-4D82-A71C-D111DF3ED732_to_shape__423E5DA9-5981-4053-AA42-EB58A5290F96" bpmnElement="_93FA5953-564C-4C26-BCC2-7FA1491C79EB">
+        <di:waypoint x="1413" y="284"/>
+        <di:waypoint x="1495" y="284"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__522BE4D6-EFA4-49A7-BBEC-3C96EDD8478E_to_shape__27F7BE68-74C3-4241-8FD1-918EEAF1E097" bpmnElement="_FB65D1CA-15F0-46E8-91CE-9572EE326E3D">
         <di:waypoint x="1794" y="284"/>
@@ -1024,7 +1023,7 @@
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_4NbpQOWCED2-7ccE3xwyCA</bpmn2:source>
-    <bpmn2:target>_4NbpQOWCED2-7ccE3xwyCA</bpmn2:target>
+    <bpmn2:source>_ibdjAOWIED2bo_kuvkqJQQ</bpmn2:source>
+    <bpmn2:target>_ibdjAOWIED2bo_kuvkqJQQ</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
