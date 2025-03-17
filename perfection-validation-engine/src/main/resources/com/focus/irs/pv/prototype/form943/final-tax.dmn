@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="form943FinalTax" name="finalTax">
+  <inputData name="taxesAfterCredits" id="_47D37BBB-A251-44F8-8905-196BFF2ED319">
+    <variable name="taxesAfterCredits" id="_059BD499-5A48-4951-80F3-58E79ABAAB7D" typeRef="number" />
+  </inputData>
+  <inputData name="totalDeposits" id="_F1E3DB42-D4AB-4ACF-8F3E-C0A9E4155B2B">
+    <variable name="totalDeposits" id="_346BB85E-697A-4344-9C14-13F68C2B8497" typeRef="number" />
+  </inputData>
+  <inputData name="penaltyAmount" id="_15BC6266-233E-4E4F-9F0C-024A79EEDCA3">
+    <variable name="penaltyAmount" id="_87C3F6B7-3C27-4900-A206-FBF5A268961F" typeRef="number" />
+  </inputData>
+  <inputData name="interestAmount" id="_31D0BE08-5AE9-4F28-817D-CE975DC36938">
+    <variable name="interestAmount" id="_C81B736A-37A8-4215-8CBA-E475F095C72A" typeRef="number" />
+  </inputData>
+  <decision name="amountDue" id="_8B3D7A48-7937-44EE-8098-C4A3C9A87333">
+    <variable name="amountDue" id="_4E643E1B-9064-4627-AE3A-DD759CF18B43" typeRef="number" />
+    <informationRequirement id="_47B7C489-0EEF-4B90-80AD-C7038E141178">
+      <requiredInput href="#_15BC6266-233E-4E4F-9F0C-024A79EEDCA3" />
+    </informationRequirement>
+    <informationRequirement id="_B9AD88B4-2859-46E5-B490-2D3E20C26C75">
+      <requiredInput href="#_F1E3DB42-D4AB-4ACF-8F3E-C0A9E4155B2B" />
+    </informationRequirement>
+    <informationRequirement id="_1CF9459B-CBB5-4DEC-AC5A-6B3E1C577D77">
+      <requiredInput href="#_47D37BBB-A251-44F8-8905-196BFF2ED319" />
+    </informationRequirement>
+    <informationRequirement id="_A7ED88EB-4A7F-4DF7-A088-3B06B2CC694C">
+      <requiredInput href="#_31D0BE08-5AE9-4F28-817D-CE975DC36938" />
+    </informationRequirement>
+    <literalExpression id="_02A3A156-BC34-4EA1-8278-4FDCBE8146A8" typeRef="number" label="amountDue">
+      <text>taxesAfterCredits - totalDeposits + penaltyAmount + interestAmount</text>
+    </literalExpression>
+  </decision>
+  <decision name="finalDetermination" id="_D418C7ED-5DD0-4D5A-94AE-2D9796FF54BD">
+    <variable name="finalDetermination" id="_F6EE4636-343E-4728-A285-9EFAB147F973" />
+    <informationRequirement id="_DC228473-01A0-4B78-82B3-AE743E1A4D3E">
+      <requiredDecision href="#_8B3D7A48-7937-44EE-8098-C4A3C9A87333" />
+    </informationRequirement>
+    <decisionTable id="_16247061-9CFC-4E3A-9AE1-E6B15252A85A" hitPolicy="UNIQUE" label="finalDetermination">
+      <input id="_FA86964F-67BF-4064-A0D7-AEF9B0066B30">
+        <inputExpression id="_43C6D6BE-D620-475E-AF5E-FF002EA93C04" typeRef="number">
+          <text>amountDue</text>
+        </inputExpression>
+      </input>
+      <output id="_207495CB-233D-4684-84C4-CE5CF8A70A82" name="finalAmountDue" typeRef="number" />
+      <output id="_63A1BB4F-6660-43D3-9E31-76210E36C737" name="overpayment" typeRef="number" />
+      <output id="_2B82DE50-1831-418B-A59F-FA68C0F7BE83" name="balanceStatus" typeRef="string" />
+      <annotation name="Annotations" />
+      <rule id="_BB3E1B39-657A-40C4-857A-98BEB27BF8D8">
+        <inputEntry id="_F653A4C3-B232-486E-BDE9-E664716ED197">
+          <text>0</text>
+        </inputEntry>
+        <outputEntry id="_CE7D37E2-B268-4DE8-88AD-97A2A0C2C42B">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="_DB1143A5-1F8E-450B-9AFA-11760FBE5E41">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="_F736BFC6-F653-4B3B-A51F-2EB2D31D1C09">
+          <text>&quot;Balanced&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_F79EA81F-05F4-422B-A478-FD66985B78ED">
+        <inputEntry id="_E9367294-7E13-43B9-9BCC-3C0898E3EBD1">
+          <text>&lt;0</text>
+        </inputEntry>
+        <outputEntry id="_CC34E7C2-7F36-4695-AFC9-5DCC0C124937">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="_6C413CD8-9C19-4A83-B096-36D4045922CB">
+          <text>abs(amountDue)</text>
+        </outputEntry>
+        <outputEntry id="_A929406D-9B9F-4F84-8053-4AD99FF2EE70">
+          <text>&quot;Overpaid&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_98CB6252-1B40-47C4-87D9-81069FCDCD93">
+        <inputEntry id="_40BE96FF-4023-4FAC-A3E1-7521B2C56A57">
+          <text>&gt;0</text>
+        </inputEntry>
+        <outputEntry id="_D1EDAEAB-7FDC-46FF-A209-40EC4BCEAEDC">
+          <text>amountDue</text>
+        </outputEntry>
+        <outputEntry id="_2EF2E0ED-EDE9-43B4-8672-6F34DD961EC4">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="_C2981877-C743-48E1-8EC6-8D4CE59ADFCE">
+          <text>&quot;Due&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_CCCCC2E7-02D6-4721-BE20-D11F269343FD" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_02A3A156-BC34-4EA1-8278-4FDCBE8146A8">
+            <kie:width>568</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_16247061-9CFC-4E3A-9AE1-E6B15252A85A">
+            <kie:width>60</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>118</kie:width>
+            <kie:width>168</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_0A957197-428C-4230-A901-ACD35786C8AE" dmnElementRef="_47D37BBB-A251-44F8-8905-196BFF2ED319" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="80" y="40" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_55B843F3-2628-445C-8690-063D95B1A6D4" dmnElementRef="_F1E3DB42-D4AB-4ACF-8F3E-C0A9E4155B2B" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="80" y="140" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_15CDC249-E14E-49AE-A52B-99C7C30CE119" dmnElementRef="_15BC6266-233E-4E4F-9F0C-024A79EEDCA3" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="80" y="240" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_040DD829-3D79-44F7-BB43-240D29F71595" dmnElementRef="_31D0BE08-5AE9-4F28-817D-CE975DC36938" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="80" y="340" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_0D95310D-85CB-479A-A798-1FC4ABF17CA1" dmnElementRef="_8B3D7A48-7937-44EE-8098-C4A3C9A87333" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="380" y="180" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_3F45C9D4-F5B3-4341-80DE-54981681CB0C" dmnElementRef="_47B7C489-0EEF-4B90-80AD-C7038E141178" sourceElement="_15CDC249-E14E-49AE-A52B-99C7C30CE119" targetElement="_0D95310D-85CB-479A-A798-1FC4ABF17CA1">
+        <di:waypoint x="160" y="280" />
+        <di:waypoint x="380" y="220" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_872F961E-0ADD-4AC5-8316-2BD96AFDC2DA" dmnElementRef="_B9AD88B4-2859-46E5-B490-2D3E20C26C75" sourceElement="_55B843F3-2628-445C-8690-063D95B1A6D4" targetElement="_0D95310D-85CB-479A-A798-1FC4ABF17CA1">
+        <di:waypoint x="160" y="180" />
+        <di:waypoint x="380" y="220" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_321CA189-B0A9-4FBD-AB97-73F8F9B61B8E" dmnElementRef="_1CF9459B-CBB5-4DEC-AC5A-6B3E1C577D77" sourceElement="_0A957197-428C-4230-A901-ACD35786C8AE" targetElement="_0D95310D-85CB-479A-A798-1FC4ABF17CA1">
+        <di:waypoint x="160" y="80" />
+        <di:waypoint x="380" y="220" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_3471FF2F-36D2-479A-8067-A93A36649526" dmnElementRef="_A7ED88EB-4A7F-4DF7-A088-3B06B2CC694C" sourceElement="_040DD829-3D79-44F7-BB43-240D29F71595" targetElement="_0D95310D-85CB-479A-A798-1FC4ABF17CA1">
+        <di:waypoint x="160" y="380" />
+        <di:waypoint x="380" y="220" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_6BEDB92B-8659-4B16-A18A-5566F2B15D51" dmnElementRef="_D418C7ED-5DD0-4D5A-94AE-2D9796FF54BD" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="620" y="180" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_379E7C28-94DD-4E24-8AF2-28C5C42E2773" dmnElementRef="_DC228473-01A0-4B78-82B3-AE743E1A4D3E" sourceElement="_0D95310D-85CB-479A-A798-1FC4ABF17CA1" targetElement="_6BEDB92B-8659-4B16-A18A-5566F2B15D51">
+        <di:waypoint x="460" y="220" />
+        <di:waypoint x="620" y="220" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="form943Credits" name="credits" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0">
+  <inputData name="adjustedTaxesAmount" id="_9684D1D7-C964-465D-B171-41D70EC56B08">
+    <variable name="adjustedTaxesAmount" id="_708F423D-1F90-4D43-A5F0-13DB09579299" typeRef="number" />
+  </inputData>
+  <inputData name="hasQualifiedSmallBusinessResearchCredit" id="_423534F3-5BF2-4628-9A50-0444F8AC3D5D">
+    <variable name="hasQualifiedSmallBusinessResearchCredit" id="_ABBE6AEB-1125-48E4-88AA-8BD13663DE93" typeRef="boolean" />
+  </inputData>
+  <inputData name="creditAmount" id="_B9C072AD-8CFF-4F48-B70B-C6938D31C109">
+    <variable name="creditAmount" id="_A05A3136-3A32-40EF-BA36-FB5CB0FC1EAB" typeRef="number" />
+  </inputData>
+  <inputData name="form8947Attached" id="_90F5BD5D-D8B8-4BD6-842F-C0C06B3DEF4C">
+    <variable name="form8947Attached" id="_7629027F-85D0-41C3-A3E1-65E333DC0931" typeRef="boolean" />
+  </inputData>
+  <decision name="credits" id="_FCA73BC3-5660-4EF7-96D8-16847B04BF16">
+    <variable name="credits" id="_F515AA05-BDC3-4761-B9D0-1844EEFB0148" typeRef="&lt;Undefined&gt;" />
+    <informationRequirement id="_21F8DC25-EC41-416B-86BD-800ECE52DCED">
+      <requiredInput href="#_B9C072AD-8CFF-4F48-B70B-C6938D31C109" />
+    </informationRequirement>
+    <informationRequirement id="_B823E40D-4FC7-4D50-B154-5BC26E008588">
+      <requiredInput href="#_90F5BD5D-D8B8-4BD6-842F-C0C06B3DEF4C" />
+    </informationRequirement>
+    <informationRequirement id="_2940E7EA-0E54-4DF5-AF94-59F5B8C03A51">
+      <requiredInput href="#_9684D1D7-C964-465D-B171-41D70EC56B08" />
+    </informationRequirement>
+    <informationRequirement id="_BB23EA0C-D60C-40A3-AA9E-8C0B76D46392">
+      <requiredInput href="#_423534F3-5BF2-4628-9A50-0444F8AC3D5D" />
+    </informationRequirement>
+    <decisionTable id="_CEB90261-083F-41C1-B8D5-F758591A43EA" typeRef="&lt;Undefined&gt;" hitPolicy="UNIQUE" label="credits">
+      <input id="_94F68E29-16B7-4332-B74F-1BE29319C34F">
+        <inputExpression id="_EAA3F323-45CE-4498-842D-DF972ED31FBE" typeRef="boolean">
+          <text>hasQualifiedSmallBusinessResearchCredit</text>
+        </inputExpression>
+      </input>
+      <input id="_BE23C106-8ACD-4ED0-A976-092D0DCA020F">
+        <inputExpression id="_18C66CA3-0598-412A-BD7F-B37E614CBE71" typeRef="number">
+          <text>creditAmount</text>
+        </inputExpression>
+      </input>
+      <input id="_9411FE7A-4D8C-4140-9079-1732FA05B9A5">
+        <inputExpression id="_8681F822-8E84-426B-8F16-966F3E8F9424" typeRef="boolean">
+          <text>form8947Attached</text>
+        </inputExpression>
+      </input>
+      <output id="_79D2F99F-41E7-4162-8566-03DC47CD7473" name="eligibleCreditAmount" typeRef="number" />
+      <output id="_AFF5CFDB-1211-450F-ACC6-F9EA93745170" name="requiresForm8947" typeRef="boolean" />
+      <output id="_413301C5-FA78-4EB8-AADA-C40857F9DD6C" name="errorMessage" typeRef="string" />
+      <output id="_1CEC7E69-8219-4AA6-B9B7-A37AD60461C9" name="taxesAfterCredit" typeRef="number" />
+      <annotation name="Annotations" />
+      <rule id="_7A39C44E-7898-46F1-9C16-C5A41762B1DF">
+        <inputEntry id="_373E8AA1-B91A-4EC6-A0AE-BA93BC44AFD2">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="_8F3B8EF0-52E4-48DD-9BA0-BD66DE2E42B6">
+          <text>&gt;0</text>
+        </inputEntry>
+        <inputEntry id="_7F307CCB-D729-4CB0-8F13-0C8BBA75E918">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="_57F72490-9854-4B0C-B400-463C3DE4A28A">
+          <text>creditAmount</text>
+        </outputEntry>
+        <outputEntry id="_EFB82DDE-8F9F-4FB8-9C6C-D01719187B41">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="_6F46FE79-B45F-4509-ACFF-5A7FCFBB01CB">
+          <text>-</text>
+        </outputEntry>
+        <outputEntry id="_F9B29988-314B-4B20-B2F1-981313321E0B">
+          <text>max(0, adjustedTaxAmount - creditAmount)</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_B4D5FEA6-D641-4951-897C-A540A054C6C7">
+        <inputEntry id="_AA4DE751-4A4B-44E6-AA55-4230952B7AB9">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="_5AD1CABD-0E6A-470C-81CF-8B7ED56F4344">
+          <text>&gt;0</text>
+        </inputEntry>
+        <inputEntry id="_B24F6FAD-0336-46E9-85BA-07EABB74F0AE">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="_F579FF6E-FD96-4A19-B560-89CE0C24B561">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="_E07CE50F-CC0A-45DB-A3F2-0E1BA9E97010">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="_A495E5B2-391A-49D9-8192-F1FFA791523A">
+          <text>&quot;Form 8947 Required&quot;</text>
+        </outputEntry>
+        <outputEntry id="_C066C19A-C9F1-4E0C-AA61-F33862228806">
+          <text>adjustedTaxAmount</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_F1365612-C73B-48BC-B6F0-76F36288F802">
+        <inputEntry id="_1F1DA5A9-1AEE-4383-A1C7-C364308B230F">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="_173F6A38-20B8-4173-928C-E88D87130C4E">
+          <text>0</text>
+        </inputEntry>
+        <inputEntry id="_3B261662-42BA-4529-A6B0-AA458468E71A">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_25A18E35-81F4-4F95-B61F-15388842583D">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="_840DC565-2D8F-4098-BF4F-38ECDDFE9D03">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="_BB12D429-B406-4A08-9944-602D7C79C254">
+          <text>-</text>
+        </outputEntry>
+        <outputEntry id="_483DDE90-AE44-4746-9FCA-67E21D0291FB">
+          <text>adjustedTaxAmount</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_4641F994-55B3-4CF1-B2A3-32623F5691B4">
+        <inputEntry id="_D6E1313F-DC2A-4404-A321-89017C2FEB12">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="_781BDD3B-6C31-4F47-8541-A1AA169EE502">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_F1E7D115-11E4-4718-9CBB-825B33CD19E6">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_429CBDBC-CC96-406C-A864-8E2453F7DF2B">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="_5D0E3702-C6B0-4297-8A18-3A36189E8599">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="_90EAC5CC-60AD-4177-A4F8-E8B2A8688644">
+          <text>-</text>
+        </outputEntry>
+        <outputEntry id="_9FF0B825-73B7-45F1-953E-55A1D20826AD">
+          <text>adjustedTaxAmount</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_55E705A1-F904-410E-B05A-734AC3C9EA37" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_CEB90261-083F-41C1-B8D5-F758591A43EA">
+            <kie:width>60</kie:width>
+            <kie:width>231</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>179</kie:width>
+            <kie:width>162</kie:width>
+            <kie:width>182</kie:width>
+            <kie:width>340</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_7558BE42-F17D-41E8-A6BA-102AD399140D" dmnElementRef="_9684D1D7-C964-465D-B171-41D70EC56B08" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="160" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_63E46885-44B6-410A-846A-2C071565A595" dmnElementRef="_423534F3-5BF2-4628-9A50-0444F8AC3D5D" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="160" y="20" width="220" height="120" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_95C4D8C8-A012-4421-9983-9EAD196BC823" dmnElementRef="_B9C072AD-8CFF-4F48-B70B-C6938D31C109" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="260" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_F34B2710-7C53-45D9-86D0-C51FEFC584B5" dmnElementRef="_90F5BD5D-D8B8-4BD6-842F-C0C06B3DEF4C" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="360" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_EACC8361-9021-4983-814A-C3BB0725D179" dmnElementRef="_FCA73BC3-5660-4EF7-96D8-16847B04BF16" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="560" y="200" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_95748A9C-FBB9-4487-B092-5D06B84DB4E6" dmnElementRef="_21F8DC25-EC41-416B-86BD-800ECE52DCED" sourceElement="_95C4D8C8-A012-4421-9983-9EAD196BC823" targetElement="_EACC8361-9021-4983-814A-C3BB0725D179">
+        <di:waypoint x="260" y="300" />
+        <di:waypoint x="560" y="240" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_98517528-B056-41C3-8F97-4BD44C14C602" dmnElementRef="_B823E40D-4FC7-4D50-B154-5BC26E008588" sourceElement="_F34B2710-7C53-45D9-86D0-C51FEFC584B5" targetElement="_EACC8361-9021-4983-814A-C3BB0725D179">
+        <di:waypoint x="260" y="400" />
+        <di:waypoint x="560" y="240" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_6451A505-3093-4E5C-9090-2E4587B14C40" dmnElementRef="_2940E7EA-0E54-4DF5-AF94-59F5B8C03A51" sourceElement="_7558BE42-F17D-41E8-A6BA-102AD399140D" targetElement="_EACC8361-9021-4983-814A-C3BB0725D179">
+        <di:waypoint x="260" y="200" />
+        <di:waypoint x="560" y="240" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_DAE82758-8EC9-416C-B4D4-4AC28D479634" dmnElementRef="_BB23EA0C-D60C-40A3-AA9E-8C0B76D46392" sourceElement="_63E46885-44B6-410A-846A-2C071565A595" targetElement="_EACC8361-9021-4983-814A-C3BB0725D179">
+        <di:waypoint x="270" y="80" />
+        <di:waypoint x="560" y="240" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

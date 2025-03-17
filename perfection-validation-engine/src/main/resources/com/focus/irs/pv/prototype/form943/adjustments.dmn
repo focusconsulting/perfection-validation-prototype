@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="adjustments" name="adjustments" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0">
+  <inputData name="calculatedTaxes" id="_33D6AC3B-6BFD-4E55-A089-35A4818CB1D5">
+    <variable name="calculatedTaxes" id="_AF07E682-A1A1-4355-B37B-4EA9ED4E8459" typeRef="number" />
+  </inputData>
+  <inputData name="fractionOfCentAdjustment" id="_E44CBCB5-3433-483E-B636-49603B58DD68">
+    <variable name="fractionOfCentAdjustment" id="_55D55BA5-48CE-4981-BF55-3550212E866C" typeRef="number" />
+  </inputData>
+  <inputData name="sickPayAdjustment" id="_BE0DD663-C0BB-44E8-B669-4860444386B3">
+    <variable name="sickPayAdjustment" id="_9060640C-1BD0-47D0-B053-86593BD89B0D" typeRef="number" />
+  </inputData>
+  <inputData name="otherAdjustments" id="_52B56CCC-CE39-4FB3-AE75-C8984E4FF269">
+    <variable name="otherAdjustments" id="_177D4E71-9740-4315-A292-7B2D3114E739" typeRef="number" />
+  </inputData>
+  <decision name="totalAdjustments" id="_813C0DCB-530D-4306-9FF3-4072931B7455">
+    <variable name="totalAdjustments" id="_310E507B-31BE-471F-8488-F01648E983C6" typeRef="number" />
+    <informationRequirement id="_B2BB8D0D-66E5-412C-A667-F28DA23564CC">
+      <requiredInput href="#_E44CBCB5-3433-483E-B636-49603B58DD68" />
+    </informationRequirement>
+    <informationRequirement id="_CCF14B5A-192B-49C7-8DF7-FE85201F4876">
+      <requiredInput href="#_BE0DD663-C0BB-44E8-B669-4860444386B3" />
+    </informationRequirement>
+    <informationRequirement id="_BA397541-B57C-48CE-9C64-702A2714DACE">
+      <requiredInput href="#_52B56CCC-CE39-4FB3-AE75-C8984E4FF269" />
+    </informationRequirement>
+    <literalExpression id="_BF390AD4-C803-4F5A-98CC-30AEF672562B" typeRef="number" label="totalAdjustments">
+      <text>otherAdjustments + fractionOfCentAdjustment + sickPayAdjustment</text>
+    </literalExpression>
+  </decision>
+  <decision name="adjustedTaxAmount" id="_16A4C88E-7B50-43B1-BA42-18827867DD84">
+    <variable name="adjustedTaxAmount" id="_B4D0C2F6-710A-4306-A5E1-EF37EC2CBE55" typeRef="number" />
+    <informationRequirement id="_11B2951C-A436-40E9-863A-5F0E9A864217">
+      <requiredDecision href="#_813C0DCB-530D-4306-9FF3-4072931B7455" />
+    </informationRequirement>
+    <informationRequirement id="_706587E9-BD73-4182-BAB2-97CE797B26DF">
+      <requiredInput href="#_33D6AC3B-6BFD-4E55-A089-35A4818CB1D5" />
+    </informationRequirement>
+    <literalExpression id="_E1AE0E7E-EDB7-480A-A3C0-1EC55AC18A97" typeRef="number" label="adjustedTaxAmount">
+      <text>calculatedTaxes - totalAdjustments</text>
+    </literalExpression>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_C46C078E-BCE8-4A8A-8F77-DB9A57878160" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_BF390AD4-C803-4F5A-98CC-30AEF672562B">
+            <kie:width>556</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_E1AE0E7E-EDB7-480A-A3C0-1EC55AC18A97">
+            <kie:width>290</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_FA253E1B-DCB0-480D-BFA7-68C45FA776C5" dmnElementRef="_33D6AC3B-6BFD-4E55-A089-35A4818CB1D5" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="160" y="340" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_579AE7BC-0E26-4A7E-9F72-0D615D3D4F48" dmnElementRef="_E44CBCB5-3433-483E-B636-49603B58DD68" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="160" y="200" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_092BD08C-04FD-48FC-9659-6E7EAEE2383C" dmnElementRef="_BE0DD663-C0BB-44E8-B669-4860444386B3" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="160" y="100" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_D4730CD7-FBA9-4573-928C-D4EFEA23A0C9" dmnElementRef="_52B56CCC-CE39-4FB3-AE75-C8984E4FF269" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="160" y="-20" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_5077B002-D63D-4636-98E4-10DFE12D6F69" dmnElementRef="_813C0DCB-530D-4306-9FF3-4072931B7455" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="460" y="80" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_0D84291B-0CF7-4142-BA2E-D25C29DD1861" dmnElementRef="_B2BB8D0D-66E5-412C-A667-F28DA23564CC" sourceElement="_579AE7BC-0E26-4A7E-9F72-0D615D3D4F48" targetElement="_5077B002-D63D-4636-98E4-10DFE12D6F69">
+        <di:waypoint x="240" y="240" />
+        <di:waypoint x="460" y="120" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_A84ADD97-0318-47D5-88A3-BA738DCE9F31" dmnElementRef="_CCF14B5A-192B-49C7-8DF7-FE85201F4876" sourceElement="_092BD08C-04FD-48FC-9659-6E7EAEE2383C" targetElement="_5077B002-D63D-4636-98E4-10DFE12D6F69">
+        <di:waypoint x="240" y="140" />
+        <di:waypoint x="460" y="120" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_1560451C-740D-40F6-8037-88C4F06CF7C4" dmnElementRef="_BA397541-B57C-48CE-9C64-702A2714DACE" sourceElement="_D4730CD7-FBA9-4573-928C-D4EFEA23A0C9" targetElement="_5077B002-D63D-4636-98E4-10DFE12D6F69">
+        <di:waypoint x="240" y="20" />
+        <di:waypoint x="460" y="120" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_8CD6E3CC-8BFF-44CC-A1FC-A09CDFE3D86D" dmnElementRef="_16A4C88E-7B50-43B1-BA42-18827867DD84" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="800" y="200" width="180" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_9DF1EBFE-2D23-4D5E-B507-C48CB5D2F582" dmnElementRef="_11B2951C-A436-40E9-863A-5F0E9A864217" sourceElement="_5077B002-D63D-4636-98E4-10DFE12D6F69" targetElement="_8CD6E3CC-8BFF-44CC-A1FC-A09CDFE3D86D">
+        <di:waypoint x="540" y="120" />
+        <di:waypoint x="800" y="240" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_71873E2D-4D2E-44FF-BFA9-CE6507B4EF2E" dmnElementRef="_706587E9-BD73-4182-BAB2-97CE797B26DF" sourceElement="_FA253E1B-DCB0-480D-BFA7-68C45FA776C5" targetElement="_8CD6E3CC-8BFF-44CC-A1FC-A09CDFE3D86D">
+        <di:waypoint x="240" y="380" />
+        <di:waypoint x="800" y="240" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
