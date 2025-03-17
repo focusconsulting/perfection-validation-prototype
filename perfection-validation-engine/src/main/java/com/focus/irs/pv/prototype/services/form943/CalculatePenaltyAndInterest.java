@@ -91,29 +91,5 @@ public class CalculatePenaltyAndInterest {
                 .setScale(2, RoundingMode.HALF_UP);
     }
     
-    /**
-     * Result class to hold both penalty and interest amounts
-     */
-    public static class PenaltyAndInterestResult {
-        // AI! extract this into its own file
-        private BigDecimal penaltyAmount;
-        private BigDecimal interestAmount;
-        
-        public PenaltyAndInterestResult(BigDecimal penaltyAmount, BigDecimal interestAmount) {
-            this.penaltyAmount = penaltyAmount;
-            this.interestAmount = interestAmount;
-        }
-        
-        public BigDecimal getPenaltyAmount() {
-            return penaltyAmount;
-        }
-        
-        public BigDecimal getInterestAmount() {
-            return interestAmount;
-        }
-        
-        public BigDecimal getTotalAmount() {
-            return penaltyAmount.add(interestAmount);
-        }
-    }
+    // PenaltyAndInterestResult class has been extracted to its own file
 }
