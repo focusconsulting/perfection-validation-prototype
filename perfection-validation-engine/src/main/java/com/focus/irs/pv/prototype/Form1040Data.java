@@ -15,6 +15,7 @@ import com.focus.irs.pv.prototype.credits.dependents.DependentInformation;
  * that would be inputs.
  * 
  */
+// AI! make this JSON serializable
 public class Form1040Data {
 
     private Boolean isBlind;
