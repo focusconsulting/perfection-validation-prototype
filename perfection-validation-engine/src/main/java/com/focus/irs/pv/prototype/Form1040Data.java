@@ -33,9 +33,8 @@ public class Form1040Data {
     public Form1040Data() {
     }
 
-    // AI! make this return an integer, defaulting to zero if not present
-    public Optional<Integer> getDispersement1009RAmount() {
-        return dispersement1009RAmount.orElseGet(0);
+    public Integer getDispersement1009RAmount() {
+        return dispersement1009RAmount.orElse(0);
     }
 
     public Optional<Integer> getDispersement1040Amount() {
