@@ -37,10 +37,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.focus.irs</groupId>
-            <artifactId>form-1040-rules</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -123,7 +119,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.version}</version>
+		<version>${spring.version}</version>
+		<configuration>
+            		<mainClass>com.focus.irs.pv.prototype.PerfectionAndValidationPrototype</mainClass>
+            		<layout>JAR</layout>
+		</configuration>
+		<executions>
+    			<execution>
+        			<goals>
+            				<goal>repackage</goal>
+        			</goals>
+    			</execution>
+		</executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -145,33 +152,6 @@
                             <sources>
                                 <source>${project.build.directory}/generated-sources</source>
                             </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.6.1</version>
-                <executions>
-                    <execution>
-                        <id>unpack</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.focus.irs</groupId>
-                                    <artifactId>form-1040-rules</artifactId>
-                                    <version>${project.parent.version}</version>
-                                    <type>jar</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
-                                    <includes>**/*.dmn</includes>
-                                </artifactItem>
-                            </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
