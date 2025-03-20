@@ -21,12 +21,11 @@ import com.focus.irs.pv.prototype.services.form1040.Form5329;
 public class Form1040Data {
 
     private Boolean isBlind;
-    private Boolean isOver65;
+    private Integer age;
     private FilingStatus filingStatus;
     private ItemizedDeductions deductions;
     private DependentInformation dependentInformation;
     private Optional<Form5329> form5329 = Optional.empty();
-    // AI! add an age property and replace isOver65 with a check against that property
 
     // Default constructor for Jackson
     public Form1040Data() {
@@ -35,13 +34,13 @@ public class Form1040Data {
     @JsonCreator
     public Form1040Data(
             @JsonProperty("isBlind") Boolean isBlind,
-            @JsonProperty("isOver65") Boolean isOver65,
+            @JsonProperty("age") Integer age,
             @JsonProperty("filingStatus") FilingStatus filingStatus,
             @JsonProperty("deductions") ItemizedDeductions deductions,
             @JsonProperty("dependentInformation") DependentInformation dependentInformation,
             @JsonProperty("form5329") Optional<Form5329> form5329) {
         this.isBlind = isBlind;
-        this.isOver65 = isOver65;
+        this.age = age;
         this.filingStatus = filingStatus;
         this.deductions = deductions;
         this.dependentInformation = dependentInformation;
@@ -51,12 +50,12 @@ public class Form1040Data {
     // Constructor without form5329 for backward compatibility
     public Form1040Data(
             Boolean isBlind,
-            Boolean isOver65,
+            Integer age,
             FilingStatus filingStatus,
             ItemizedDeductions deductions,
             DependentInformation dependentInformation) {
         this.isBlind = isBlind;
-        this.isOver65 = isOver65;
+        this.age = age;
         this.filingStatus = filingStatus;
         this.deductions = deductions;
         this.dependentInformation = dependentInformation;
@@ -67,8 +66,12 @@ public class Form1040Data {
         return isBlind;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+    
     public Boolean getIsOver65() {
-        return isOver65;
+        return age != null && age >= 65;
     }
 
     public FilingStatus getFilingStatus() {

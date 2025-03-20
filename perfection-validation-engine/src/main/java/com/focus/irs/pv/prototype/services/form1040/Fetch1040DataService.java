@@ -19,7 +19,7 @@ public class Fetch1040DataService {
     public Form1040Data fetchData(Process1040Message message) {
         // Variables to be set based on message type
         Boolean isBlind = false;
-        Boolean isOver65 = false;
+        Integer age = 45; // Default age
         FilingStatus filingStatus = FilingStatus.S;
         ItemizedDeductions deductions = new ItemizedDeductions();
         DependentInformation dependentInfo = new DependentInformation();
@@ -52,7 +52,7 @@ public class Fetch1040DataService {
                 break;
                 
             case "SENIOR_FILER":
-                isOver65 = true;
+                age = 70; // Set age to 70 for senior filer
                 deductions = new ItemizedDeductions(Arrays.asList());
                 dependentInfo = new DependentInformation(Arrays.asList());
                 break;
@@ -71,6 +71,6 @@ public class Fetch1040DataService {
         }
         
         // Create and return the Form1040Data using the constructor
-        return new Form1040Data(isBlind, isOver65, filingStatus, deductions, dependentInfo);
+        return new Form1040Data(isBlind, age, filingStatus, deductions, dependentInfo);
     }
 }
