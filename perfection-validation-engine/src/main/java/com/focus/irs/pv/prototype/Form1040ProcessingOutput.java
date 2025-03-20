@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * itemized deduction.
  * 
  */
+// AI! make this and all downstream classes serializable by Jackson
 public class Form1040ProcessingOutput {
 
     private BigDecimal taxesOwed;
