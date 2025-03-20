@@ -1,8 +1,11 @@
 package com.focus.irs.pv.prototype;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.focus.irs.pv.prototype.credits.dependents.DependentInformation;
+import com.focus.irs.pv.prototype.services.form1040.Form5329;
 
 /**
  * This is the input data for the 1040 form process. It contains a small subset
@@ -22,6 +25,8 @@ public class Form1040Data {
     private FilingStatus filingStatus;
     private ItemizedDeductions deductions;
     private DependentInformation dependentInformation;
+    // AI! Include form5329 in constructors and make json serializable
+    private Optional<Form5329> form5329 = Optional.empty();
 
     // Default constructor for Jackson
     public Form1040Data() {
