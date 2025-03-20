@@ -26,6 +26,7 @@ public class Form1040Data {
     private ItemizedDeductions deductions;
     private DependentInformation dependentInformation;
     private Optional<Form5329> form5329 = Optional.empty();
+    // AI! add an age property and replace isOver65 with a check against that property
 
     // Default constructor for Jackson
     public Form1040Data() {
