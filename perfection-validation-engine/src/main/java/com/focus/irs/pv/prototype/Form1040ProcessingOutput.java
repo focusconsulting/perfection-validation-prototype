@@ -17,6 +17,7 @@ public class Form1040ProcessingOutput {
     private Integer standardDeduction;
     private Integer itemizedDeduction;
     private List<Correction<?>> correctionsMade;
+    private Form1040Data input;
 
     @JsonCreator
     public Form1040ProcessingOutput() {
@@ -70,5 +71,13 @@ public class Form1040ProcessingOutput {
 
     public void setErrors(List<ProcessingError<?>> errors) {
         this.errors = errors;
+    }
+
+    public Form1040Data getInput() {
+        return input;
+    }
+
+    public void setInput(Form1040Data input) {
+        this.input = input;
     }
 }

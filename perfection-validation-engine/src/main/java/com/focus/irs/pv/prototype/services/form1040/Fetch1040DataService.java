@@ -3,6 +3,8 @@ package com.focus.irs.pv.prototype.services.form1040;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+import org.springframework.stereotype.Component;
+
 import com.focus.irs.pv.prototype.Deduction;
 import com.focus.irs.pv.prototype.FilingStatus;
 import com.focus.irs.pv.prototype.Form1040Data;
@@ -11,6 +13,7 @@ import com.focus.irs.pv.prototype.credits.dependents.Dependent;
 import com.focus.irs.pv.prototype.credits.dependents.DependentInformation;
 import com.focus.irs.pv.prototype.messages.Process1040Message;
 
+@Component
 public class Fetch1040DataService {
 
     public Form1040Data fetchData(Process1040Message message) {
