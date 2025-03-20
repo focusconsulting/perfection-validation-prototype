@@ -1,9 +1,11 @@
 package com.focus.irs.pv.prototype;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This model is initialized at the start of the process and serves to record
@@ -11,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * itemized deduction.
  * 
  */
-// AI! make this and all downstream classes serializable by Jackson
 public class Form1040ProcessingOutput {
 
     private BigDecimal taxesOwed;
@@ -20,8 +21,26 @@ public class Form1040ProcessingOutput {
     private List<Correction<?>> correctionsMade;
     private Form1040Data input;
 
-    @JsonCreator
+    // Default constructor for Jackson
     public Form1040ProcessingOutput() {
+        this.correctionsMade = new ArrayList<>();
+        this.errors = new ArrayList<>();
+    }
+
+    @JsonCreator
+    public Form1040ProcessingOutput(
+            @JsonProperty("taxesOwed") BigDecimal taxesOwed,
+            @JsonProperty("standardDeduction") Integer standardDeduction,
+            @JsonProperty("itemizedDeduction") Integer itemizedDeduction,
+            @JsonProperty("correctionsMade") List<Correction<?>> correctionsMade,
+            @JsonProperty("input") Form1040Data input,
+            @JsonProperty("errors") List<ProcessingError<?>> errors) {
+        this.taxesOwed = taxesOwed;
+        this.standardDeduction = standardDeduction;
+        this.itemizedDeduction = itemizedDeduction;
+        this.correctionsMade = correctionsMade != null ? correctionsMade : new ArrayList<>();
+        this.input = input;
+        this.errors = errors != null ? errors : new ArrayList<>();
     }
 
     public Integer getStandardDeduction() {
@@ -43,10 +62,16 @@ public class Form1040ProcessingOutput {
     private List<ProcessingError<?>> errors;
 
     public void addCorrection(Correction<?> correction) {
+        if (this.correctionsMade == null) {
+            this.correctionsMade = new ArrayList<>();
+        }
         this.correctionsMade.add(correction);
     }
 
     public void addProcessingError(ProcessingError<?> error) {
+        if (this.errors == null) {
+            this.errors = new ArrayList<>();
+        }
         this.errors.add(error);
     }
 
