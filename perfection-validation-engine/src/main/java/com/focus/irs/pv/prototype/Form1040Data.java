@@ -25,7 +25,6 @@ public class Form1040Data {
     private FilingStatus filingStatus;
     private ItemizedDeductions deductions;
     private DependentInformation dependentInformation;
-    // AI! Include form5329 in constructors and make json serializable
     private Optional<Form5329> form5329 = Optional.empty();
 
     // Default constructor for Jackson
@@ -38,12 +37,29 @@ public class Form1040Data {
             @JsonProperty("isOver65") Boolean isOver65,
             @JsonProperty("filingStatus") FilingStatus filingStatus,
             @JsonProperty("deductions") ItemizedDeductions deductions,
-            @JsonProperty("dependentInformation") DependentInformation dependentInformation) {
+            @JsonProperty("dependentInformation") DependentInformation dependentInformation,
+            @JsonProperty("form5329") Optional<Form5329> form5329) {
         this.isBlind = isBlind;
         this.isOver65 = isOver65;
         this.filingStatus = filingStatus;
         this.deductions = deductions;
         this.dependentInformation = dependentInformation;
+        this.form5329 = form5329 != null ? form5329 : Optional.empty();
+    }
+    
+    // Constructor without form5329 for backward compatibility
+    public Form1040Data(
+            Boolean isBlind,
+            Boolean isOver65,
+            FilingStatus filingStatus,
+            ItemizedDeductions deductions,
+            DependentInformation dependentInformation) {
+        this.isBlind = isBlind;
+        this.isOver65 = isOver65;
+        this.filingStatus = filingStatus;
+        this.deductions = deductions;
+        this.dependentInformation = dependentInformation;
+        this.form5329 = Optional.empty();
     }
 
     public Boolean getIsBlind() {
@@ -65,5 +81,12 @@ public class Form1040Data {
     public DependentInformation getDependentInformation() {
         return dependentInformation;
     }
-
+    
+    public Optional<Form5329> getForm5329() {
+        return form5329;
+    }
+    
+    public void setForm5329(Optional<Form5329> form5329) {
+        this.form5329 = form5329;
+    }
 }
