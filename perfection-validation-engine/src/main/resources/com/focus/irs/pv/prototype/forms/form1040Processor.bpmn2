@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_Fv_PIOfPED29RrfQWGHIJA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_QQXrYOfUED2WI5p7MWS0lw" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_standardDeductionItem" structureRef="Integer"/>
   <bpmn2:itemDefinition id="_agiItem" structureRef="Float"/>
   <bpmn2:itemDefinition id="_outputItem" structureRef="com.focus.irs.pv.prototype.Form1040ProcessingOutput"/>
@@ -40,8 +40,10 @@
   <bpmn2:itemDefinition id="__A66E8BD2-B59A-41F1-9432-36B2D2CF4C20_resultOutputXItem" structureRef="com.focus.irs.pv.prototype.Form1040Data"/>
   <bpmn2:itemDefinition id="__6A308BEA-CB09-4536-B38D-39B1FA6E7481_eventOutputXItem" structureRef="com.focus.irs.pv.prototype.messages.Process1040Message"/>
   <bpmn2:itemDefinition id="messagesType" structureRef="com.focus.irs.pv.prototype.messages.Process1040Message"/>
-  <bpmn2:itemDefinition id="_D9FB39D5-6E9C-43AC-9628-729CCA968546" structureRef=""/>
-  <bpmn2:itemDefinition id="_F3A202B1-ABAB-44BF-A912-1F463215275F" structureRef=""/>
+  <bpmn2:itemDefinition id="_866486C1-29E7-4BDC-86E6-896993351B7B" structureRef=""/>
+  <bpmn2:itemDefinition id="_0EA9B5B8-E2CA-4429-A47C-23BBF0722E43" structureRef=""/>
+  <bpmn2:itemDefinition id="__B0C11704-7307-4855-B482-663FE3F70023_eventInputXItem" structureRef="com.focus.irs.pv.prototype.Form1040ProcessingOutput"/>
+  <bpmn2:itemDefinition id="tamsType" structureRef="com.focus.irs.pv.prototype.Form1040ProcessingOutput"/>
   <bpmn2:message id="_AFB96D64-CC97-4653-B69C-BDB2ADFE332D_InMessage" itemRef="_AFB96D64-CC97-4653-B69C-BDB2ADFE332D_InMessageType"/>
   <bpmn2:message id="_AFB96D64-CC97-4653-B69C-BDB2ADFE332D_OutMessage" itemRef="_AFB96D64-CC97-4653-B69C-BDB2ADFE332D_OutMessageType"/>
   <bpmn2:interface id="_AFB96D64-CC97-4653-B69C-BDB2ADFE332D_ServiceInterface" name="com.focus.irs.pv.prototype.services.CalculateAGI" implementationRef="com.focus.irs.pv.prototype.services.CalculateAGI">
@@ -58,9 +60,10 @@
       <bpmn2:outMessageRef>_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20_OutMessage</bpmn2:outMessageRef>
     </bpmn2:operation>
   </bpmn2:interface>
-  <bpmn2:message id="_FwAdQOfPED29RrfQWGHIJA" itemRef="messagesType" name="messages"/>
-  <bpmn2:collaboration id="_536B85A2-209D-4142-8C6D-FC08682E74D4" name="Default Collaboration">
-    <bpmn2:participant id="_938B75F9-8A40-468C-908B-7AD95B9F1012" name="Pool Participant" processRef="form1040processor"/>
+  <bpmn2:message id="_QQYScOfUED2WI5p7MWS0lw" itemRef="messagesType" name="messages"/>
+  <bpmn2:message id="_QQYScefUED2WI5p7MWS0lw" itemRef="tamsType" name="tams"/>
+  <bpmn2:collaboration id="_6ADF98EC-8720-4628-B6E3-5086B65E8E8C" name="Default Collaboration">
+    <bpmn2:participant id="_55A09B0E-CC60-4655-BED6-4C1B37C7BC3F" name="Pool Participant" processRef="form1040processor"/>
   </bpmn2:collaboration>
   <bpmn2:process id="form1040processor" drools:packageName="com.focus.irs.pv.prototype" drools:version="1.0" drools:adHoc="false" name="Form1040Processor" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
@@ -144,6 +147,8 @@
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:property>
+    <bpmn2:sequenceFlow id="_12AC1897-AE8A-4F09-990F-A25C36C728F0" sourceRef="_A87C67CB-C175-44BE-B277-FD828D561B0A" targetRef="_87425512-2007-4B43-8F56-36CD270D12FF"/>
+    <bpmn2:sequenceFlow id="_C1E50DBC-E248-4ECF-AF75-16D5C0D66949" sourceRef="_A87C67CB-C175-44BE-B277-FD828D561B0A" targetRef="_B0C11704-7307-4855-B482-663FE3F70023"/>
     <bpmn2:sequenceFlow id="_C9A26898-E24E-4930-B32C-0FD59FB9469F" sourceRef="_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20" targetRef="_331B732A-1652-49BE-AC91-60C8586695AC"/>
     <bpmn2:sequenceFlow id="_0096E41A-C6A3-43BD-A390-2EDA3AD91B11" sourceRef="_6A308BEA-CB09-4536-B38D-39B1FA6E7481" targetRef="_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20"/>
     <bpmn2:sequenceFlow id="_9223C449-7A68-4C18-9FDE-56AB0DA4962E" sourceRef="_C48061DA-59FF-47AE-9990-C97E984F9B32" targetRef="_992F197B-E00B-47FD-B7E3-09AE7182C2A0"/>
@@ -154,7 +159,7 @@
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="_7D2C650A-9245-494C-BBB4-F01949537E42" sourceRef="_33B63815-EF1D-4285-829E-1FAD361349D8" targetRef="_87425512-2007-4B43-8F56-36CD270D12FF"/>
+    <bpmn2:sequenceFlow id="_7D2C650A-9245-494C-BBB4-F01949537E42" sourceRef="_33B63815-EF1D-4285-829E-1FAD361349D8" targetRef="_A87C67CB-C175-44BE-B277-FD828D561B0A"/>
     <bpmn2:sequenceFlow id="_7EAEE300-A627-4079-8D9B-FCF230BEE549" sourceRef="_992F197B-E00B-47FD-B7E3-09AE7182C2A0" targetRef="_33B63815-EF1D-4285-829E-1FAD361349D8"/>
     <bpmn2:sequenceFlow id="_374D6B86-BF5F-4E9C-AD76-99E63BA66194" sourceRef="_D0B5CF04-8C33-45C9-A8F7-431394CBED59" targetRef="_A2B35388-D976-4F42-B982-4E8CBE9CD15D"/>
     <bpmn2:sequenceFlow id="_054B4234-4375-4007-A93B-563A33910D6F" sourceRef="_35EA58C2-48BB-4A15-A8AB-6C4322DBE066" targetRef="_A0274275-94F6-4EB7-9578-AF0D5DB20353"/>
@@ -180,6 +185,31 @@
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_F85B1294-5EED-4646-8112-EF8F838B1507" sourceRef="_7AEC6643-E93A-499C-869D-CB26D04A8E42" targetRef="_6AD49D2F-C739-4F8C-8ADD-44F3862D94E8"/>
+    <bpmn2:parallelGateway id="_A87C67CB-C175-44BE-B277-FD828D561B0A" gatewayDirection="Diverging">
+      <bpmn2:incoming>_7D2C650A-9245-494C-BBB4-F01949537E42</bpmn2:incoming>
+      <bpmn2:outgoing>_C1E50DBC-E248-4ECF-AF75-16D5C0D66949</bpmn2:outgoing>
+      <bpmn2:outgoing>_12AC1897-AE8A-4F09-990F-A25C36C728F0</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:endEvent id="_87425512-2007-4B43-8F56-36CD270D12FF" name="Finish processing Form 1040">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Finish processing Form 1040]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_12AC1897-AE8A-4F09-990F-A25C36C728F0</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="_B0C11704-7307-4855-B482-663FE3F70023">
+      <bpmn2:incoming>_C1E50DBC-E248-4ECF-AF75-16D5C0D66949</bpmn2:incoming>
+      <bpmn2:dataInput id="_B0C11704-7307-4855-B482-663FE3F70023_eventInputX" drools:dtype="com.focus.irs.pv.prototype.Form1040ProcessingOutput" itemSubjectRef="__B0C11704-7307-4855-B482-663FE3F70023_eventInputXItem" name="event"/>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>output</bpmn2:sourceRef>
+        <bpmn2:targetRef>_B0C11704-7307-4855-B482-663FE3F70023_eventInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:inputSet>
+        <bpmn2:dataInputRefs>_B0C11704-7307-4855-B482-663FE3F70023_eventInputX</bpmn2:dataInputRefs>
+      </bpmn2:inputSet>
+      <bpmn2:messageEventDefinition drools:msgref="tams" messageRef="_QQYScefUED2WI5p7MWS0lw"/>
+    </bpmn2:endEvent>
     <bpmn2:scriptTask id="_331B732A-1652-49BE-AC91-60C8586695AC" name="Store inputted date" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -203,7 +233,7 @@ kcontext.setVariable("output", tOutput);</bpmn2:script>
       <bpmn2:outputSet>
         <bpmn2:dataOutputRefs>_6A308BEA-CB09-4536-B38D-39B1FA6E7481_eventOutputX</bpmn2:dataOutputRefs>
       </bpmn2:outputSet>
-      <bpmn2:messageEventDefinition drools:msgref="messages" messageRef="_FwAdQOfPED29RrfQWGHIJA"/>
+      <bpmn2:messageEventDefinition drools:msgref="messages" messageRef="_QQYScOfUED2WI5p7MWS0lw"/>
     </bpmn2:startEvent>
     <bpmn2:serviceTask id="_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20" drools:serviceimplementation="Java" drools:serviceinterface="com.focus.irs.pv.prototype.services.form1040.Fetch1040DataService" drools:serviceoperation="fetchData" name="Retrieve 1040 Data" implementation="Java" operationRef="_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20_ServiceOperation">
       <bpmn2:extensionElements>
@@ -330,14 +360,6 @@ kcontext.setVariable("output", tOutput);</bpmn2:script>
         <bpmn2:targetRef>totalTaxes</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:businessRuleTask>
-    <bpmn2:endEvent id="_87425512-2007-4B43-8F56-36CD270D12FF" name="Finish processing Form 1040">
-      <bpmn2:extensionElements>
-        <drools:metaData name="elementname">
-          <drools:metaValue><![CDATA[Finish processing Form 1040]]></drools:metaValue>
-        </drools:metaData>
-      </bpmn2:extensionElements>
-      <bpmn2:incoming>_7D2C650A-9245-494C-BBB4-F01949537E42</bpmn2:incoming>
-    </bpmn2:endEvent>
     <bpmn2:callActivity id="_33B63815-EF1D-4285-829E-1FAD361349D8" drools:independent="false" drools:waitForCompletion="true" name="Refundable Tax Credits" calledElement="pv.refundabletaxcredits">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -572,9 +594,6 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
       <bpmndi:BPMNShape id="shape__33B63815-EF1D-4285-829E-1FAD361349D8" bpmnElement="_33B63815-EF1D-4285-829E-1FAD361349D8">
         <dc:Bounds height="101" width="153" x="2967" y="621.5"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape__87425512-2007-4B43-8F56-36CD270D12FF" bpmnElement="_87425512-2007-4B43-8F56-36CD270D12FF">
-        <dc:Bounds height="56" width="56" x="3246" y="644"/>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__A2B35388-D976-4F42-B982-4E8CBE9CD15D" bpmnElement="_A2B35388-D976-4F42-B982-4E8CBE9CD15D">
         <dc:Bounds height="102" width="154" x="2262" y="620.825433825434"/>
       </bpmndi:BPMNShape>
@@ -592,6 +611,15 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__331B732A-1652-49BE-AC91-60C8586695AC" bpmnElement="_331B732A-1652-49BE-AC91-60C8586695AC">
         <dc:Bounds height="102" width="154" x="537.3333333333333" y="418.66666666666663"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__B0C11704-7307-4855-B482-663FE3F70023" bpmnElement="_B0C11704-7307-4855-B482-663FE3F70023">
+        <dc:Bounds height="56" width="56" x="3313" y="532"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__87425512-2007-4B43-8F56-36CD270D12FF" bpmnElement="_87425512-2007-4B43-8F56-36CD270D12FF">
+        <dc:Bounds height="56" width="56" x="3313" y="710"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__A87C67CB-C175-44BE-B277-FD828D561B0A" bpmnElement="_A87C67CB-C175-44BE-B277-FD828D561B0A">
+        <dc:Bounds height="56" width="56" x="3183" y="644"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge_shape__7AEC6643-E93A-499C-869D-CB26D04A8E42_to_shape__6AD49D2F-C739-4F8C-8ADD-44F3862D94E8" bpmnElement="_F85B1294-5EED-4646-8112-EF8F838B1507">
         <di:waypoint x="875" y="470.3333333333333"/>
@@ -662,9 +690,9 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
         <di:waypoint x="2820.5" y="672.2869088811996"/>
         <di:waypoint x="2967" y="672"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__33B63815-EF1D-4285-829E-1FAD361349D8_to_shape__87425512-2007-4B43-8F56-36CD270D12FF" bpmnElement="_7D2C650A-9245-494C-BBB4-F01949537E42">
+      <bpmndi:BPMNEdge id="edge_shape__33B63815-EF1D-4285-829E-1FAD361349D8_to_shape__A87C67CB-C175-44BE-B277-FD828D561B0A" bpmnElement="_7D2C650A-9245-494C-BBB4-F01949537E42">
         <di:waypoint x="3043.5" y="672"/>
-        <di:waypoint x="3246" y="672"/>
+        <di:waypoint x="3183" y="672"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__A2B35388-D976-4F42-B982-4E8CBE9CD15D_to_shape__C48061DA-59FF-47AE-9990-C97E984F9B32" bpmnElement="_108CE772-0807-4C47-9002-2F751A64D89F">
         <di:waypoint x="2339" y="671.825433825434"/>
@@ -681,6 +709,14 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
       <bpmndi:BPMNEdge id="edge_shape__A66E8BD2-B59A-41F1-9432-36B2D2CF4C20_to_shape__331B732A-1652-49BE-AC91-60C8586695AC" bpmnElement="_C9A26898-E24E-4930-B32C-0FD59FB9469F">
         <di:waypoint x="281" y="472"/>
         <di:waypoint x="537.3333333333333" y="469.66666666666663"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__A87C67CB-C175-44BE-B277-FD828D561B0A_to_shape__B0C11704-7307-4855-B482-663FE3F70023" bpmnElement="_C1E50DBC-E248-4ECF-AF75-16D5C0D66949">
+        <di:waypoint x="3211" y="672"/>
+        <di:waypoint x="3313" y="560"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__A87C67CB-C175-44BE-B277-FD828D561B0A_to_shape__87425512-2007-4B43-8F56-36CD270D12FF" bpmnElement="_12AC1897-AE8A-4F09-990F-A25C36C728F0">
+        <di:waypoint x="3211" y="672"/>
+        <di:waypoint x="3313" y="738"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
@@ -932,7 +968,7 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_Fv_PIOfPED29RrfQWGHIJA</bpmn2:source>
-    <bpmn2:target>_Fv_PIOfPED29RrfQWGHIJA</bpmn2:target>
+    <bpmn2:source>_QQXrYOfUED2WI5p7MWS0lw</bpmn2:source>
+    <bpmn2:target>_QQXrYOfUED2WI5p7MWS0lw</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
