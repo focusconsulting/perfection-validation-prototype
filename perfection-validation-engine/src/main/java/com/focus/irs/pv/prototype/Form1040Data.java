@@ -26,9 +26,20 @@ public class Form1040Data {
     private ItemizedDeductions deductions;
     private DependentInformation dependentInformation;
     private Optional<Form5329> form5329 = Optional.empty();
+    private Optional<Integer> dispersement1009RAmount = Optional.empty();
+    private Optional<Integer> dispersement1040Amount = Optional.empty();
 
     // Default constructor for Jackson
     public Form1040Data() {
+    }
+
+    // AI! make this return an integer, defaulting to zero if not present
+    public Optional<Integer> getDispersement1009RAmount() {
+        return dispersement1009RAmount.orElseGet(0);
+    }
+
+    public Optional<Integer> getDispersement1040Amount() {
+        return dispersement1040Amount;
     }
 
     @JsonCreator
