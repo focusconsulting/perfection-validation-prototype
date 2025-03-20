@@ -25,7 +25,7 @@ public class Form1040Data {
     private FilingStatus filingStatus;
     private ItemizedDeductions deductions;
     private DependentInformation dependentInformation;
-    private Optional<Form5329> form5329 = Optional.empty();
+    private Form5329 form5329;
     private Optional<Integer> dispersement1009RAmount = Optional.empty();
     private Optional<Integer> dispersement1040Amount = Optional.empty();
 
@@ -37,8 +37,8 @@ public class Form1040Data {
         return dispersement1009RAmount.orElse(0);
     }
 
-    public Optional<Integer> getDispersement1040Amount() {
-        return dispersement1040Amount;
+    public Integer getDispersement1040Amount() {
+        return dispersement1040Amount.orElse(0);
     }
 
     @JsonCreator
@@ -48,13 +48,13 @@ public class Form1040Data {
             @JsonProperty("filingStatus") FilingStatus filingStatus,
             @JsonProperty("deductions") ItemizedDeductions deductions,
             @JsonProperty("dependentInformation") DependentInformation dependentInformation,
-            @JsonProperty("form5329") Optional<Form5329> form5329) {
+            @JsonProperty("form5329") Form5329 form5329) {
         this.isBlind = isBlind;
         this.age = age;
         this.filingStatus = filingStatus;
         this.deductions = deductions;
         this.dependentInformation = dependentInformation;
-        this.form5329 = form5329 != null ? form5329 : Optional.empty();
+        this.form5329 = form5329;
     }
     
     // Constructor without form5329 for backward compatibility
@@ -69,7 +69,7 @@ public class Form1040Data {
         this.filingStatus = filingStatus;
         this.deductions = deductions;
         this.dependentInformation = dependentInformation;
-        this.form5329 = Optional.empty();
+        this.form5329 = null;
     }
 
     public Boolean getIsBlind() {
@@ -96,11 +96,11 @@ public class Form1040Data {
         return dependentInformation;
     }
     
-    public Optional<Form5329> getForm5329() {
+    public Form5329 getForm5329() {
         return form5329;
     }
     
-    public void setForm5329(Optional<Form5329> form5329) {
+    public void setForm5329(Form5329 form5329) {
         this.form5329 = form5329;
     }
 }

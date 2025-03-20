@@ -71,6 +71,6 @@ public class Fetch1040DataService {
         }
         
         // Create and return the Form1040Data using the constructor
-        return new Form1040Data(isBlind, age, filingStatus, deductions, dependentInfo);
+        return new Form1040Data(isBlind, age, filingStatus, deductions, dependentInfo, new Form5329("D", BigDecimal.valueOf(5000)));
     }
 }

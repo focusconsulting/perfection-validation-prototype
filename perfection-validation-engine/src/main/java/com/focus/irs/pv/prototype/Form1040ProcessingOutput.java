@@ -20,6 +20,7 @@ public class Form1040ProcessingOutput {
     private Integer itemizedDeduction;
     private List<Correction<?>> correctionsMade;
     private Form1040Data input;
+    private List<String> errors;
 
     // Default constructor for Jackson
     public Form1040ProcessingOutput() {
@@ -34,7 +35,7 @@ public class Form1040ProcessingOutput {
             @JsonProperty("itemizedDeduction") Integer itemizedDeduction,
             @JsonProperty("correctionsMade") List<Correction<?>> correctionsMade,
             @JsonProperty("input") Form1040Data input,
-            @JsonProperty("errors") List<ProcessingError<?>> errors) {
+            @JsonProperty("errors") List<String> errors) {
         this.taxesOwed = taxesOwed;
         this.standardDeduction = standardDeduction;
         this.itemizedDeduction = itemizedDeduction;
@@ -59,20 +60,11 @@ public class Form1040ProcessingOutput {
         this.itemizedDeduction = itemizedDeduction;
     }
 
-    private List<ProcessingError<?>> errors;
-
     public void addCorrection(Correction<?> correction) {
         if (this.correctionsMade == null) {
             this.correctionsMade = new ArrayList<>();
         }
         this.correctionsMade.add(correction);
-    }
-
-    public void addProcessingError(ProcessingError<?> error) {
-        if (this.errors == null) {
-            this.errors = new ArrayList<>();
-        }
-        this.errors.add(error);
     }
 
     public BigDecimal getTaxesOwed() {
@@ -91,12 +83,20 @@ public class Form1040ProcessingOutput {
         this.correctionsMade = correctionsMade;
     }
 
-    public List<ProcessingError<?>> getErrors() {
+    public List<String> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<ProcessingError<?>> errors) {
+    public void setErrors(List<String> errors) {
         this.errors = errors;
+    }
+
+    public void addError(String error) {
+        this.errors.add(error);
+    }
+
+    public Boolean isValid() {
+        return this.errors.isEmpty();
     }
 
     public Form1040Data getInput() {

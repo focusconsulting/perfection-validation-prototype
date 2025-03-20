@@ -22,90 +22,15 @@
   <inputData name="age" id="_B5923211-E299-4967-B77E-0EA49E9A6FA7">
     <variable name="age" id="_A0B67303-7097-4C2E-BED9-903670CB3A4D" typeRef="number" />
   </inputData>
-  <inputData name="Dispersement1040" id="_2D83121D-82DD-471E-B83E-62EBF1BDD386">
-    <variable name="Dispersement1040" id="_2F146016-A9ED-4B20-9187-45ADA049EF92" typeRef="number" />
+  <inputData name="dispersement1040" id="_2D83121D-82DD-471E-B83E-62EBF1BDD386">
+    <variable name="dispersement1040" id="_2F146016-A9ED-4B20-9187-45ADA049EF92" typeRef="number" />
   </inputData>
   <inputData name="form5329" id="_357F5FAC-87AE-4AB6-9498-5DDF5B409B0D">
     <variable name="form5329" id="_C076FC78-4BE3-4B7A-B27A-91666E2E30DF" typeRef="Form5329" />
   </inputData>
-  <decision name="Determine total exemption" id="_31B5DDC9-FACF-4A99-B12D-23C6BE218859">
-    <variable name="Determine total exemption" id="_25398769-F8F8-464C-A7F9-DD407DDA4277" typeRef="number" />
-    <informationRequirement id="_2209D82C-3F43-4785-A84A-CFBFAFA2D274">
-      <requiredInput href="#_357F5FAC-87AE-4AB6-9498-5DDF5B409B0D" />
-    </informationRequirement>
-    <authorityRequirement id="_A083AC8F-2918-4D39-86A3-CB775AF096AD">
-      <requiredAuthority href="#_9E9B68B5-3C47-4D70-9247-717DE2BF93B4" />
-    </authorityRequirement>
-    <context id="_75D3ABC5-86B2-47CF-AC05-9123F75F3691" typeRef="number" label="Determine total exemption">
-      <contextEntry id="_65C4A06F-A89A-47F0-99D3-88D55893601F">
-        <variable id="_748522B4-C4C9-4F0F-9D14-0D86D1D9B6E3" name="J Max Value" typeRef="number" />
-        <literalExpression id="_5D5A9B48-E21A-4429-9992-3A9226939B4D" typeRef="number" label="J Max Value">
-          <text>10000</text>
-        </literalExpression>
-      </contextEntry>
-      <contextEntry id="_B9D15F5A-3A49-4B03-8969-5DDE8BCD90F1">
-        <decisionTable id="_E003BBA2-30C3-4FC5-A764-345E11525D5A" typeRef="number" hitPolicy="UNIQUE" label="">
-          <input id="_FCF516C5-D203-46AD-9542-9B868D160095">
-            <inputExpression id="_FAFEEB9C-1BDF-4C11-81EC-C2C3A03DF55B" typeRef="string">
-              <text>form5329.exceptionCode</text>
-            </inputExpression>
-          </input>
-          <input id="_FE1FBA3C-001F-457A-8D4C-594CBFD7452B">
-            <inputExpression id="_26E1A65F-0E9F-4F93-8DE1-1E006978F5EB" typeRef="number">
-              <text>form5329.amountClaimed</text>
-            </inputExpression>
-          </input>
-          <output id="_AFB5A57A-FE36-4DE7-A629-83A711B5C47E" name="Output-1" />
-          <annotation name="Annotations" />
-          <rule id="_084AFEB3-CAED-4849-A395-EDDD813D54AA">
-            <inputEntry id="_19864CD6-262B-4DE7-B71A-B1A43BE2315E">
-              <text>&quot;D&quot;</text>
-            </inputEntry>
-            <inputEntry id="_44EDE62D-5A5D-4533-BF6C-FA4A96E0AC79">
-              <text>-</text>
-            </inputEntry>
-            <outputEntry id="_98DBE679-427F-40EC-9B95-79B351B32D8D">
-              <text>form5329.amountClaimed</text>
-            </outputEntry>
-            <annotationEntry>
-              <text>// Your annotations here</text>
-            </annotationEntry>
-          </rule>
-          <rule id="_1E8DD7BB-3344-476F-A1A2-CE7BB4FA39DB">
-            <inputEntry id="_518F8DC5-F19C-4C8F-A1C4-A99AB8491E14">
-              <text>&quot;J&quot;</text>
-            </inputEntry>
-            <inputEntry id="_51C9DB7B-389E-4A86-B8C6-C7A971D84BB4">
-              <text>&lt;= J Max Value</text>
-            </inputEntry>
-            <outputEntry id="_4D573091-F26A-4D0B-8FC2-A484C2CD12B6">
-              <text>form5329.amountClaimed</text>
-            </outputEntry>
-            <annotationEntry>
-              <text></text>
-            </annotationEntry>
-          </rule>
-          <rule id="_B54D7FC2-3E67-4BDD-BBFE-E58B68F92085">
-            <inputEntry id="_62757C5F-D4D6-4D55-BAA2-CCD25CE37F62">
-              <text>&quot;J&quot;</text>
-            </inputEntry>
-            <inputEntry id="_94804D02-EC97-4AB6-88D8-7A387B87DAFE">
-              <text>&gt; J Max Value</text>
-            </inputEntry>
-            <outputEntry id="_7AB1B758-70AA-4011-9FA4-CD90D4B31893">
-              <text>J Max Value</text>
-            </outputEntry>
-            <annotationEntry>
-              <text></text>
-            </annotationEntry>
-          </rule>
-        </decisionTable>
-      </contextEntry>
-    </context>
-  </decision>
   <knowledgeSource name="Exemption codes and limits" id="_9E9B68B5-3C47-4D70-9247-717DE2BF93B4" />
-  <inputData name="Dispersement1099R" id="_7B11D688-15D8-4CAD-8A36-ACE2DA61A1EC">
-    <variable name="Dispersement1099R" id="_2F6BB131-0C02-4612-83F1-C1A0D85DE876" typeRef="number" />
+  <inputData name="dispersement1099R" id="_7B11D688-15D8-4CAD-8A36-ACE2DA61A1EC">
+    <variable name="dispersement1099R" id="_2F6BB131-0C02-4612-83F1-C1A0D85DE876" typeRef="number" />
   </inputData>
   <decision name="Determine total dispersement" id="_61BF7E21-B3C7-42B3-95BD-AA7918C7E7BC">
     <variable name="Determine total dispersement" id="_E4568BEC-8837-40BD-8750-FA794DE3D02B" typeRef="Any" />
@@ -119,7 +44,7 @@
       <contextEntry id="_79D54362-8B9A-446F-AA15-1649637812BA">
         <variable id="_D9EBE517-825E-4E43-8E70-F11073F25AFD" name="difference" typeRef="number" />
         <literalExpression id="_2AF4F5A2-9AFE-4819-897C-6C2E7FCFD390" typeRef="number" label="difference">
-          <text>abs(Dispersement1040- Dispersement1099R)</text>
+          <text>abs(dispersement1040- dispersement1099R)</text>
         </literalExpression>
       </contextEntry>
       <contextEntry id="_6B60182A-C699-4F7B-BDC8-216736B8E936">
@@ -145,7 +70,7 @@
               <text>&lt;= differenceThreshold</text>
             </inputEntry>
             <outputEntry id="_4E23D584-FB6A-424B-9F3D-068AC1B47965">
-              <text>Dispersement1099R</text>
+              <text>dispersement1099R</text>
             </outputEntry>
             <outputEntry id="_03AA579B-0D05-4C74-BF3A-8CE016AC69D3">
               <text>&quot;&quot;</text>
@@ -174,14 +99,14 @@
   </decision>
   <decision name="Determine penalty" id="_35D85D1B-21D4-4208-9611-98F9C730A178">
     <variable name="Determine penalty" id="_C6B51521-24DF-4130-93AE-4E8CD7FF9642" typeRef="Penalty" />
-    <informationRequirement id="_5FCD4802-9D0B-4940-9CE7-2659DC1D1389">
-      <requiredDecision href="#_31B5DDC9-FACF-4A99-B12D-23C6BE218859" />
-    </informationRequirement>
     <informationRequirement id="_E0AF3F68-CE81-44A4-9C66-F37ADC4137FC">
       <requiredDecision href="#_61BF7E21-B3C7-42B3-95BD-AA7918C7E7BC" />
     </informationRequirement>
     <informationRequirement id="_D2AF5EA4-F82F-446B-BFDD-BF6CBE00A4A4">
       <requiredInput href="#_B5923211-E299-4967-B77E-0EA49E9A6FA7" />
+    </informationRequirement>
+    <informationRequirement id="_3133AC05-186C-4F8C-AB83-0885CE56ABF3">
+      <requiredDecision href="#_95133295-10AF-45F6-B1A3-369CBFBDA952" />
     </informationRequirement>
     <decisionTable id="_40FE2B9E-B02F-4344-8580-F3850A9A5C6F" typeRef="Penalty" hitPolicy="UNIQUE" label="Determine penalty">
       <input id="_A8D92F02-64F5-420E-BAF1-FA29856699B4">
@@ -222,6 +147,68 @@
       </rule>
     </decisionTable>
   </decision>
+  <decision name="Determine total exemption" id="_95133295-10AF-45F6-B1A3-369CBFBDA952">
+    <variable name="Determine total exemption" id="_8DE3DC1D-ABFD-4956-B851-727027C24EE5" typeRef="number" />
+    <informationRequirement id="_E041A3BD-8D5E-4AAF-8D17-5150A337C774">
+      <requiredInput href="#_357F5FAC-87AE-4AB6-9498-5DDF5B409B0D" />
+    </informationRequirement>
+    <decisionTable id="_15FF7510-42FD-4339-ADA7-3E4342F4CEB7" typeRef="number" hitPolicy="UNIQUE" label="Determine total exemption">
+      <input id="_3A0368A8-47F3-45E9-8BE4-FA0ADDE57BB9">
+        <inputExpression id="_A0A8A909-BD00-4B8C-9DDD-46D0F1E341D3" typeRef="string">
+          <text>form5329.exceptionCode</text>
+        </inputExpression>
+      </input>
+      <input id="_CC9C2534-1278-4275-91BD-7CC0784946E4">
+        <inputExpression id="_45601D0D-4046-4BD6-ABD8-9A933DC58521" typeRef="number">
+          <text>form5329.amountClaimed</text>
+        </inputExpression>
+      </input>
+      <output id="_2C1B8A7E-3A73-4E5B-BED2-F09F8E801BED" name="Output-1" />
+      <annotation name="Annotations" />
+      <rule id="_1400B3A8-992A-462D-86B7-85E3FAADA4D4">
+        <inputEntry id="_01D50C3A-999D-41A0-ADBC-C442FAE7D445">
+          <text>&quot;D&quot;</text>
+        </inputEntry>
+        <inputEntry id="_6B7FE381-F82C-4CD2-BB07-570E2E4A794E">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_3AC5009F-8825-4D59-84A2-170D217A5EC6">
+          <text>form5329.amountClaimed</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_37426C79-F449-48F7-B5EC-6E6175F2F563">
+        <inputEntry id="_5CC6618B-92B6-4363-9A6C-919D04394BB8">
+          <text>&quot;J&quot;</text>
+        </inputEntry>
+        <inputEntry id="_3420085E-36C6-4C91-BE48-4BCD2C1DA28C">
+          <text>&gt;10000</text>
+        </inputEntry>
+        <outputEntry id="_37EE6E12-9859-43D6-BD4C-5899E8F2A127">
+          <text>10000</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_4E19C12F-2399-451C-AD47-170D6AC20BFE">
+        <inputEntry id="_F0D7DDBA-3A8A-4870-99E5-7BC418872CD1">
+          <text>&quot;J&quot;</text>
+        </inputEntry>
+        <inputEntry id="_BCAC9D20-AA14-4C03-9E1F-EB2E9A522D1E">
+          <text>&lt;=10000</text>
+        </inputEntry>
+        <outputEntry id="_2FD6C1B4-DEA1-4D25-9598-FF73BAE670F4">
+          <text>form5329.amountClaimed</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_8A15E1DC-20A9-463A-8091-6CDB840FBED7" name="Default DRD" useAlternativeInputDataShape="false">
       <di:extension>
@@ -249,24 +236,18 @@
             <kie:width>192</kie:width>
             <kie:width>240</kie:width>
           </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_75D3ABC5-86B2-47CF-AC05-9123F75F3691">
-            <kie:width>120</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_E003BBA2-30C3-4FC5-A764-345E11525D5A">
-            <kie:width>60</kie:width>
-            <kie:width>118</kie:width>
-            <kie:width>210</kie:width>
-            <kie:width>220</kie:width>
-            <kie:width>240</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_5D5A9B48-E21A-4429-9992-3A9226939B4D">
-            <kie:width>190</kie:width>
-          </kie:ComponentWidths>
           <kie:ComponentWidths dmnElementRef="_40FE2B9E-B02F-4344-8580-F3850A9A5C6F">
             <kie:width>60</kie:width>
             <kie:width>176</kie:width>
             <kie:width>600</kie:width>
             <kie:width>228</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_15FF7510-42FD-4339-ADA7-3E4342F4CEB7">
+            <kie:width>60</kie:width>
+            <kie:width>167</kie:width>
+            <kie:width>167</kie:width>
+            <kie:width>361</kie:width>
             <kie:width>240</kie:width>
           </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
@@ -280,20 +261,9 @@
       <dmndi:DMNShape id="_09E8161C-3F2A-45E0-B99F-BE6034E3C1B7" dmnElementRef="_357F5FAC-87AE-4AB6-9498-5DDF5B409B0D" isCollapsed="false" isListedInputData="false">
         <dc:Bounds x="180" y="260" width="160" height="80" />
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="_FAD78E5D-C607-47AA-99D5-C1A81954BFE5" dmnElementRef="_31B5DDC9-FACF-4A99-B12D-23C6BE218859" isCollapsed="false" isListedInputData="false">
-        <dc:Bounds x="500" y="260" width="160" height="80" />
-      </dmndi:DMNShape>
-      <dmndi:DMNEdge id="_3AD1C55F-FED3-4DC0-8AB5-69EB5CB9D3C9" dmnElementRef="_2209D82C-3F43-4785-A84A-CFBFAFA2D274" sourceElement="_09E8161C-3F2A-45E0-B99F-BE6034E3C1B7" targetElement="_FAD78E5D-C607-47AA-99D5-C1A81954BFE5">
-        <di:waypoint x="260" y="300" />
-        <di:waypoint x="500" y="300" />
-      </dmndi:DMNEdge>
       <dmndi:DMNShape id="_A2CA87FC-018C-4388-89BC-2CF61CD96961" dmnElementRef="_9E9B68B5-3C47-4D70-9247-717DE2BF93B4" isCollapsed="false" isListedInputData="false">
         <dc:Bounds x="500" y="400" width="160" height="80" />
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="_93930DCC-600A-4CF8-85BD-70B66749FEDC" dmnElementRef="_A083AC8F-2918-4D39-86A3-CB775AF096AD" sourceElement="_A2CA87FC-018C-4388-89BC-2CF61CD96961" targetElement="_FAD78E5D-C607-47AA-99D5-C1A81954BFE5">
-        <di:waypoint x="580" y="440" />
-        <di:waypoint x="580" y="340" />
-      </dmndi:DMNEdge>
       <dmndi:DMNShape id="_32070F3D-EC11-47D7-B348-2EDB621B1980" dmnElementRef="_7B11D688-15D8-4CAD-8A36-ACE2DA61A1EC" isCollapsed="false" isListedInputData="false">
         <dc:Bounds x="180" y="-120" width="160" height="80" />
       </dmndi:DMNShape>
@@ -311,16 +281,23 @@
       <dmndi:DMNShape id="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552" dmnElementRef="_35D85D1B-21D4-4208-9611-98F9C730A178" isCollapsed="false" isListedInputData="false">
         <dc:Bounds x="780" y="80" width="160" height="80" />
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="_C5E6FD34-E742-4692-B7B2-AE9C9C2607E6" dmnElementRef="_5FCD4802-9D0B-4940-9CE7-2659DC1D1389" sourceElement="_FAD78E5D-C607-47AA-99D5-C1A81954BFE5" targetElement="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552">
-        <di:waypoint x="580" y="300" />
-        <di:waypoint x="780" y="120" />
-      </dmndi:DMNEdge>
       <dmndi:DMNEdge id="_EE6E1F8F-FC7A-4D96-9341-4A481D35E028" dmnElementRef="_E0AF3F68-CE81-44A4-9C66-F37ADC4137FC" sourceElement="_8C06DF88-9374-4C50-AE3B-B6C8F211E179" targetElement="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552">
         <di:waypoint x="540" y="-20" />
         <di:waypoint x="780" y="120" />
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="_117B0329-D710-491E-BEC6-D3A763FFA451" dmnElementRef="_D2AF5EA4-F82F-446B-BFDD-BF6CBE00A4A4" sourceElement="_566DE466-6D64-4E60-ADC6-0B00457B5D9E" targetElement="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552">
         <di:waypoint x="260" y="140" />
+        <di:waypoint x="780" y="120" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_FB8633BC-F1F5-4FCD-842B-8709F038DC98" dmnElementRef="_95133295-10AF-45F6-B1A3-369CBFBDA952" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="480" y="260" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_05EE65BA-B8D3-4CD5-83F8-FA52C479309B" dmnElementRef="_E041A3BD-8D5E-4AAF-8D17-5150A337C774" sourceElement="_09E8161C-3F2A-45E0-B99F-BE6034E3C1B7" targetElement="_FB8633BC-F1F5-4FCD-842B-8709F038DC98">
+        <di:waypoint x="260" y="300" />
+        <di:waypoint x="480" y="300" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_04C3C6BC-2F49-4CFF-A8F6-838E8226B083" dmnElementRef="_3133AC05-186C-4F8C-AB83-0885CE56ABF3" sourceElement="_FB8633BC-F1F5-4FCD-842B-8709F038DC98" targetElement="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552">
+        <di:waypoint x="560" y="300" />
         <di:waypoint x="780" y="120" />
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
