@@ -107,24 +107,25 @@ The project demonstrates a modular approach to business rules management through
 1. **form-1040-rules Project**:
    - This is a dedicated rules project that compiles into a KJAR (Knowledge JAR)
    - Contains all Form 1040-specific decision models and rules
+   - Includes both DMN decision models and BPMN process definitions
+   - Allows business processes and rules to be authored directly in this project
    - Follows the standard KIE project structure with kmodule.xml configuration
    - Enables independent versioning and deployment of business rules
    - Can be maintained by a separate team of business analysts or rule authors
 
-<!-- AI! should also indicate that processes and rules are authored directly here as well -->
 2. **perfection-validation-engine**:
    - The main application that consumes and executes the rules
    - Loads the form-1040-rules KJAR as a Maven dependency
    - Provides the runtime environment and infrastructure
 
-
-<!-- AI! indicate that this is just one approach and a single repo with all the rules, processes as well as the frameworks works just as well -->
-This separation of concerns reflects enterprise-level architecture where:
+This separation of concerns reflects one approach to enterprise-level architecture where:
 
 - Rules projects (KJARs) would typically reside in separate Git repositories
 - Multiple teams can work independently on rules and application code
 - Rules can be versioned, tested, and deployed without modifying the core application
 - The same engine can load multiple rule packages for different forms or business domains
+
+Note that a single repository containing all rules, processes, and framework code is also a valid approach, especially for smaller teams or projects. This unified approach can simplify development workflows and reduce complexity in deployment pipelines, while still maintaining logical separation between components.
 
 The engine also demonstrates an alternative approach with rules stored directly in the application's resources directory, which may be suitable for simpler use cases.
 
