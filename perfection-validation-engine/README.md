@@ -55,6 +55,7 @@ The implementation includes several interconnected decision models:
 ![Form 943 Tax Calculation](./images/form-943-final-tax.png)
 
 ## Running the prototype
+<!-- TODO: explain the Kafka integration and how to test it -->
 
 The prototype can be executed by running and starting the application:
 
