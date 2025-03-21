@@ -34,11 +34,12 @@ This is the entry point for the processing a 1040 and orchestrates the other pie
 
 ### Form 943
 
-<!-- TODO: explain the Kafka integration and how to test it -->
+<!-- AI! in ../docs/images there are images.  Add all that start with form-943 -->
 
 <!-- TODO: move this to a separate doc -->
 
 ## Running the prototype
+<!-- TODO: explain the Kafka integration and how to test it -->
 
 The prototype can be executed by running and starting the application:
 
