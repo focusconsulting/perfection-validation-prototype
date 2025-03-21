@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.focus.irs.pv.prototype.messages.Process1040Message;
-
+// TODO: additional test case that uses Kafka (see examples)
 @SpringBootTest(classes = PerfectionAndValidationPrototype.class)
 public class Form1040ProcessTest {
 

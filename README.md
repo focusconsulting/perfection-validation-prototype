@@ -53,9 +53,18 @@ The project consists of two main modules:
 3. Run the application:
 
    ```bash
+   # Start Kafka and Kafka UI in Docker containers
+   docker compose -f 'compose.yaml' up -d --build 'kafka'
+   docker compose -f 'compose.yaml' up -d --build 'kafka-ui' 
+   
+   # Run the Spring Boot application
    cd perfection-validation-engine
    mvn spring-boot:run
    ```
+
+   This sequence first brings up Kafka and Kafka UI in Docker containers, then runs the Spring Boot application. The application connects to the local Kafka instance for message processing. You can access the Kafka UI at http://localhost:8081 to monitor topics and messages.
+
+For more details on running the prototype and example API calls, see the [Perfection/Validation Engine README](./perfection-validation-engine/README.md#running-the-prototype).
 
 ### DMN File Editing
 
@@ -91,35 +100,38 @@ The DMN (Decision Model and Notation) files in this project can be viewed and ed
 
 Note: Both methods require the kie-extended-services to be running for full functionality including validation and testing capabilities. The kie-extended-services runs on port 21345 and provides necessary backend services for DMN editing and validation.
 
-### KIE Decision Registration
+### KIE Resources Registration
 
-This engine demonstrates two methods for registering KIE decisions:
+The project demonstrates a modular approach to business rules management through two separate components:
 
-1. Via KJAR (Knowledge JAR):
-   - Decisions are packaged in the sibling `form-1040-rules` project
-   - The KJAR is built and included as a dependency
+1. **form-1040-rules Project**:
+   - This is a dedicated rules project that compiles into a KJAR (Knowledge JAR)
+   - Contains all Form 1040-specific decision models and rules
+   - Includes both DMN decision models and BPMN process definitions
+   - Allows business processes and rules to be authored directly in this project
+   - Follows the standard KIE project structure with kmodule.xml configuration
+   - Enables independent versioning and deployment of business rules
+   - Can be maintained by a separate team of business analysts or rule authors
 
-2. Direct Resource Storage:
-   - Decisions are stored directly in the project's resources directory
-   - Loaded directly from the application's classpath
+2. **perfection-validation-engine**:
+   - The main application that consumes and executes the rules
+   - Loads the form-1040-rules KJAR as a Maven dependency
+   - Provides the runtime environment and infrastructure
 
-### API Documentation
+This separation of concerns reflects one approach to enterprise-level architecture where:
 
-After starting the Spring Boot application, you can access the OpenAPI documentation at:
+- Rules projects (KJARs) would typically reside in separate Git repositories
+- Multiple teams can work independently on rules and application code
+- Rules can be versioned, tested, and deployed without modifying the core application
+- The same engine can load multiple rule packages for different forms or business domains
 
-```
-http://localhost:8090/v3/api-docs
-```
+Note that a single repository containing all rules, processes, and framework code is also a valid approach, especially for smaller teams or projects. This unified approach can simplify development workflows and reduce complexity in deployment pipelines, while still maintaining logical separation between components.
 
-This endpoint provides a complete list of available API endpoints and their specifications.
+The engine also demonstrates an alternative approach with rules stored directly in the application's resources directory, which may be suitable for simpler use cases.
 
-### Docker Setup (Alternative)
+## Troubleshooting
 
-To run the application using Docker:
-
-```bash
-docker compose up --build
-```
+- Getting an error while running the spring boot application likely means that the form-1040-rules KJAR was not built and installed locally
 
 ## Technology Stack
 
