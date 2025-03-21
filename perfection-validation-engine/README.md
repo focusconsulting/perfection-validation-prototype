@@ -15,7 +15,7 @@ This prototype demonstrates the various technical capabilities of Apache KIE (Ko
 
 ### Kafka
 
-<!-- TODO: Add in the form 943 -->
+<!-- AI! add a description that the BPMN process is integrated with a Kafka queue. Apache KIE provides an easy to set up integration -->
 
 ### Form 1040 Process
 
@@ -27,24 +27,14 @@ This is the entry point for the processing a 1040 and orchestrates the other pie
 
 <!-- TODO: move this to a separate doc -->
 
-
-
-### API Documentation
-
-After starting the Spring Boot application, you can access the OpenAPI documentation at:
-
-```
-http://localhost:8090/v3/api-docs
-```
-
-This endpoint provides a complete list of available API endpoints and their specifications.
-
 ## Running the prototype
 
 The prototype can be executed by running and starting the application:
 
 `./mvnw spring-boot:run -f perfection-validation-engine/pom.xml`
 
+
+<!-- TODO: description of running a message with Kafka -->
 
 <!-- TODO: check that this works or update it -->
 
@@ -86,3 +76,11 @@ This is an example of the how the decisions can only be independently invoked.
 ```sh
  curl -X POST 'http://localhost:8090/calculate-total-taxes' -H 'Content-Type: application/json' -d '{"AGI": 121000}'
  ```
+
+### API Documentation
+
+After starting the Spring Boot application, you can access the OpenAPI documentation at:
+
+```
+http://localhost:8090/v3/api-docs
+```
