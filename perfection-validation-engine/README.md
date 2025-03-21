@@ -4,7 +4,14 @@ This directory serves as the home for various prototypes focused on building dec
 
 ## Implementation details
 
-<!-- AI! write a description that indicates this prototype was meant to demonstrate the various technical capabilities of Apache KIE in an IRS forms context -->
+This prototype demonstrates the various technical capabilities of Apache KIE (Kogito, Drools, jBPM) in the context of IRS form processing. It showcases how business rules, decision models, and process workflows can be applied to tax form validation, perfection, and processing. The implementation illustrates:
+
+- Decision Model and Notation (DMN) for tax calculation rules
+- Business Process Model and Notation (BPMN) for form processing workflows
+- Rule-based validation and correction of form data
+- Integration with enterprise messaging systems
+- Separation of business rules from application code
+- Modular architecture for maintainability and scalability
 
 ### Kafka
 
