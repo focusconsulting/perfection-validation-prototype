@@ -176,11 +176,11 @@
     <bpmn2:sequenceFlow id="_054B4234-4375-4007-A93B-563A33910D6F" sourceRef="_35EA58C2-48BB-4A15-A8AB-6C4322DBE066" targetRef="_A0274275-94F6-4EB7-9578-AF0D5DB20353"/>
     <bpmn2:sequenceFlow id="_83197D06-46AE-4AF7-B318-88CD7AB19EA5" sourceRef="_6F1E572C-D469-4415-8C65-BA709D541DBB" targetRef="_D0B5CF04-8C33-45C9-A8F7-431394CBED59"/>
     <bpmn2:sequenceFlow id="_DCC5F6E9-07CA-452D-9E58-F75079874271" sourceRef="_55E51961-F717-4691-B02F-DD359D955427" targetRef="_D0B5CF04-8C33-45C9-A8F7-431394CBED59"/>
-    <bpmn2:sequenceFlow id="_4E5F895B-1578-4892-9852-66D0FC64F9B0" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_55E51961-F717-4691-B02F-DD359D955427">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction < itemizedDeductions;]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_6F1E572C-D469-4415-8C65-BA709D541DBB">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction >= itemizedDeductions;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_4E5F895B-1578-4892-9852-66D0FC64F9B0" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_55E51961-F717-4691-B02F-DD359D955427">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction < itemizedDeductions;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_1A5D9960-4011-4C99-9288-0A30ED049F52" sourceRef="_A0274275-94F6-4EB7-9578-AF0D5DB20353" targetRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0"/>
     <bpmn2:sequenceFlow id="_3994E2BD-BEDC-4FA2-AFCB-B3A55EECC611" sourceRef="_0C214E50-6C8C-4049-A0E6-54400AFCE2C7" targetRef="_35EA58C2-48BB-4A15-A8AB-6C4322DBE066"/>
@@ -492,8 +492,8 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_1A5D9960-4011-4C99-9288-0A30ED049F52</bpmn2:incoming>
-      <bpmn2:outgoing>_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA</bpmn2:outgoing>
       <bpmn2:outgoing>_4E5F895B-1578-4892-9852-66D0FC64F9B0</bpmn2:outgoing>
+      <bpmn2:outgoing>_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:callActivity id="_0C214E50-6C8C-4049-A0E6-54400AFCE2C7" drools:independent="false" drools:waitForCompletion="true" name="Process itemized deductions" calledElement="pv.deductions">
       <bpmn2:extensionElements>

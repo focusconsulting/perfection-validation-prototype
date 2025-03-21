@@ -133,8 +133,6 @@ The engine also demonstrates an alternative approach with rules stored directly 
 
 - Getting an error while running the spring boot application likely means that the form-1040-rules KJAR was not built and installed locally
 
-## Troubleshooting
-
 ## Technology Stack
 
 - **Java**: Core programming language
