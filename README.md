@@ -100,7 +100,7 @@ The DMN (Decision Model and Notation) files in this project can be viewed and ed
 
 Note: Both methods require the kie-extended-services to be running for full functionality including validation and testing capabilities. The kie-extended-services runs on port 21345 and provides necessary backend services for DMN editing and validation.
 
-<!-- TODO: clean this up -->
+<!-- AI! re-write the KIE Resources Registration section. It meants to explain why there is a second project form-1040-rules.  That project compiles to a KJAR which is then loaded as a resource in the perfection-validation-engine.  In a real implementation these would likely be entirely separate git repositories. -->
 ### KIE Resources Registration
 
 This engine demonstrates two methods for registering KIE decisions:
