@@ -105,9 +105,9 @@ For our Form 943 implementation, we used the following approach:
 
 ## Benefits Observed
 
-<!-- AI! mention that a benefit is that the LLM can produce DMN Decision tables that are almost the entirety of the implementation -->
-
 This approach delivered several advantages:
+
+- **Ready-to-Implement Decision Tables**: LLMs can produce DMN Decision tables that are almost the entirety of the implementation, requiring minimal technical adjustments before deployment
 
 - **Reduced Development Time**: Eliminated multiple requirements gathering sessions
 - **Improved Accuracy**: Maintained consistency between business rules and implementation
