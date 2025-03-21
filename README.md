@@ -64,7 +64,7 @@ The project consists of two main modules:
 
    This sequence first brings up Kafka and Kafka UI in Docker containers, then runs the Spring Boot application. The application connects to the local Kafka instance for message processing. You can access the Kafka UI at http://localhost:8081 to monitor topics and messages.
 
-<!-- TODO: link to nested readme -->
+<!-- AI! add link to nested README, section Running the prototype for more details -->
 
 ### DMN File Editing
 
