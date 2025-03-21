@@ -1,9 +1,5 @@
 # ADR 04: Kafka Integration for Event-Driven Process Execution
 
-## Status
-
-Accepted
-
 ## Context
 
 The Perfection/Validation Engine needs to process tax form data in an asynchronous, scalable manner. We needed a mechanism to:
