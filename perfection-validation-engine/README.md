@@ -4,51 +4,42 @@ This directory serves as the home for various prototypes focused on building dec
 
 ## Implementation details
 
-The current goal of this prototype was to demonstrate how processing a 1040 Form might be broken down into smaller pieces so that the functionality
-could be worked on by a large team.  The rules and corrections are meant to demonstrate that are not exhaustive or necessarily an accurate reflection
-of the business requirements.
+<!-- AI! write a description that indicates this prototype was meant to demonstrate the various technical capabilities of Apache KIE in an IRS forms context -->
+
+### Kafka
+
+<!-- TODO: Add in the form 943 -->
 
 ### Form 1040 Process
 
 This is the entry point for the processing a 1040 and orchestrates the other pieces
 
-### Corrections/Calculate AGI/ Refund, Etc
+### Form 943
 
-This is an example of how a Java service can be directly implemented into the BPMN process. The current implementation is hardcoded to return a default value,
-but this type of node would be a good use case for any complicated logic that is best written in Java.
+<!-- TODO: explain the Kafka integration and how to test it -->
 
-### Standard deduction
+<!-- TODO: move this to a separate doc -->
 
-The standard deduction is calculated via a DMN decision.
 
-- Inputs:
-  - Filing Status
-  - Is Blind?
-  - Is over 65?
 
-Output: what the standard deduction is
+### API Documentation
 
-### Itemized deductions
+After starting the Spring Boot application, you can access the OpenAPI documentation at:
 
-This is a re-usable sub process that is contained in `deductions.bpmn2`.  It shows how pieces of functionality can be extracted from the overall process and
-isolated in separate editable and testable file.
+```
+http://localhost:8090/v3/api-docs
+```
 
-This sub-process demonstrates how custom BPMN tasks can be implemented to consolidate a re-usable set of logic; in this case, evaluating a deduction.  This task
-expects a `Deduction` object and the 1040 data and then uses the name of the deduction to load and evaluate a specific DMN decision.  Implemented in the prototype is
-the evaluation of the teacher expenses deduction.
-
-Finally, after looping over all submitted deductions the total amount of itemized deductions is calculated.
-
-### Tax credits
-
-This is another extracted sub-process that determines tax credits.  It demonstrates how DRL rule units (an alternative to DMN) can be used for making business decisions.
-The syntax for that is not visual and pseudo-code, but does provide additional flexibility in how the rules can be run.
+This endpoint provides a complete list of available API endpoints and their specifications.
 
 ## Running the prototype
 
 The prototype can be executed by running and starting the application:
 
 `./mvnw spring-boot:run -f perfection-validation-engine/pom.xml`
+
+
+<!-- TODO: check that this works or update it -->
 
 After the application is running, you can execute the following to execute the 1040 process:
 
