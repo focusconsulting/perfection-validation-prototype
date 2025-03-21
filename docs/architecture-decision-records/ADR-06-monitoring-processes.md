@@ -1,8 +1,5 @@
 # ADR 06: Process Monitoring with Prometheus and Grafana
 
-## Status
-
-Accepted
 
 ## Context
 
@@ -15,6 +12,7 @@ The Perfection/Validation Engine processes a large number of tax forms, and oper
 5. Alerting on anomalies
 
 Without proper monitoring, it would be difficult to:
+
 - Detect issues before they impact users
 - Understand processing patterns
 - Make data-driven decisions about scaling and optimization
@@ -28,6 +26,7 @@ We have implemented a comprehensive monitoring solution using:
 3. **Grafana**: For metrics visualization and dashboarding
 
 This approach provides:
+
 - Real-time visibility into process execution
 - Historical data for trend analysis
 - Customizable dashboards for different stakeholders

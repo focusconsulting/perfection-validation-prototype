@@ -1,9 +1,5 @@
 # ADR 05: Resilient Process Execution with PostgreSQL Persistence
 
-## Status
-
-Accepted
-
 ## Context
 
 The Perfection/Validation Engine processes tax forms that may take significant time to complete and require multiple steps. During processing, several issues could occur:
