@@ -63,7 +63,8 @@ This approach doesn't eliminate the need for domain expertise or technical knowl
 ## Sample output
 
 The following is the output that we then used to implement the Form 943.
-<!-- AI! Add a commment that the output below could be further improved by embedding more details on Form 943 and iterating on the prompt -->
+
+**Note:** This output could be further improved by embedding more detailed Form 943 instructions and iterating on the prompt. Additional iterations could incorporate specific tax rates, exemption rules, and edge cases from the official IRS documentation to create an even more comprehensive implementation guide.
 
 > # Revised Form 943 Implementation Guide for Apache Kie (Fully Automated)
 > 
