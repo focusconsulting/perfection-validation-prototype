@@ -73,7 +73,9 @@ public class Form1040ProcessingOutput {
     }
 
     public void addError(String error) {
-        this.errors.add(error);
+        if(error != null && !error.isEmpty()) {
+            this.errors.add(error);
+        }
     }
 
     public Boolean isValid() {

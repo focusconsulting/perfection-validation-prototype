@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_LcsbkOiFED2oKY5RJHBWRg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_p_eL8eiGED2FFr9Y1SyBQA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_standardDeductionItem" structureRef="Integer"/>
   <bpmn2:itemDefinition id="_agiItem" structureRef="Float"/>
   <bpmn2:itemDefinition id="_outputItem" structureRef="com.focus.irs.pv.prototype.Form1040ProcessingOutput"/>
@@ -41,9 +41,9 @@
   <bpmn2:itemDefinition id="__A66E8BD2-B59A-41F1-9432-36B2D2CF4C20_messageInputXItem" structureRef="com.focus.irs.pv.prototype.messages.Process1040Message"/>
   <bpmn2:itemDefinition id="__A66E8BD2-B59A-41F1-9432-36B2D2CF4C20_resultOutputXItem" structureRef="com.focus.irs.pv.prototype.Form1040Data"/>
   <bpmn2:itemDefinition id="__6A308BEA-CB09-4536-B38D-39B1FA6E7481_eventOutputXItem" structureRef="com.focus.irs.pv.prototype.messages.Process1040Message"/>
-  <bpmn2:itemDefinition id="messagesType" structureRef="com.focus.irs.pv.prototype.messages.Process1040Message"/>
-  <bpmn2:itemDefinition id="_A1BCD53A-C2E5-4118-8E4B-63D1BB68FC35" structureRef=""/>
-  <bpmn2:itemDefinition id="_20038F6F-5C73-48D9-A137-6DAC482AAC14" structureRef=""/>
+  <bpmn2:itemDefinition id="form1040Type" structureRef="com.focus.irs.pv.prototype.messages.Process1040Message"/>
+  <bpmn2:itemDefinition id="_9598C395-3DAE-404C-B1AD-A3A5A0EFD01B" structureRef=""/>
+  <bpmn2:itemDefinition id="_987F9EF9-5644-454F-9C0F-3B4E5717E0C3" structureRef=""/>
   <bpmn2:itemDefinition id="__B0C11704-7307-4855-B482-663FE3F70023_eventInputXItem" structureRef="com.focus.irs.pv.prototype.Form1040ProcessingOutput"/>
   <bpmn2:itemDefinition id="tamsType" structureRef="com.focus.irs.pv.prototype.Form1040ProcessingOutput"/>
   <bpmn2:itemDefinition id="__CD357AB1-6962-4E25-A311-B30D7F025819_eventInputXItem" structureRef="com.focus.irs.pv.prototype.Form1040ProcessingOutput"/>
@@ -64,11 +64,11 @@
       <bpmn2:outMessageRef>_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20_OutMessage</bpmn2:outMessageRef>
     </bpmn2:operation>
   </bpmn2:interface>
-  <bpmn2:message id="_LctpsOiFED2oKY5RJHBWRg" itemRef="messagesType" name="messages"/>
-  <bpmn2:message id="_LctpseiFED2oKY5RJHBWRg" itemRef="tamsType" name="tams"/>
-  <bpmn2:message id="_LctpsuiFED2oKY5RJHBWRg" itemRef="ersType" name="ers"/>
-  <bpmn2:collaboration id="_0D35F8C6-5EAF-4325-9357-ABD9CABB43B4" name="Default Collaboration">
-    <bpmn2:participant id="_67BA67B4-0B7A-499D-BE8B-183CA7BA94CF" name="Pool Participant" processRef="form1040processor"/>
+  <bpmn2:message id="_p_goMOiGED2FFr9Y1SyBQA" itemRef="form1040Type" name="form1040"/>
+  <bpmn2:message id="_p_goMeiGED2FFr9Y1SyBQA" itemRef="tamsType" name="tams"/>
+  <bpmn2:message id="_p_goMuiGED2FFr9Y1SyBQA" itemRef="ersType" name="ers"/>
+  <bpmn2:collaboration id="_3FD27FC0-704A-488B-B902-953D4E92493A" name="Default Collaboration">
+    <bpmn2:participant id="_C55145C4-2AEE-4684-88F6-E7380699DE20" name="Pool Participant" processRef="form1040processor"/>
   </bpmn2:collaboration>
   <bpmn2:process id="form1040processor" drools:packageName="com.focus.irs.pv.prototype" drools:version="1.0" drools:adHoc="false" name="Form1040Processor" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
@@ -176,11 +176,11 @@
     <bpmn2:sequenceFlow id="_054B4234-4375-4007-A93B-563A33910D6F" sourceRef="_35EA58C2-48BB-4A15-A8AB-6C4322DBE066" targetRef="_A0274275-94F6-4EB7-9578-AF0D5DB20353"/>
     <bpmn2:sequenceFlow id="_83197D06-46AE-4AF7-B318-88CD7AB19EA5" sourceRef="_6F1E572C-D469-4415-8C65-BA709D541DBB" targetRef="_D0B5CF04-8C33-45C9-A8F7-431394CBED59"/>
     <bpmn2:sequenceFlow id="_DCC5F6E9-07CA-452D-9E58-F75079874271" sourceRef="_55E51961-F717-4691-B02F-DD359D955427" targetRef="_D0B5CF04-8C33-45C9-A8F7-431394CBED59"/>
-    <bpmn2:sequenceFlow id="_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_6F1E572C-D469-4415-8C65-BA709D541DBB">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction >= itemizedDeductions;]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_4E5F895B-1578-4892-9852-66D0FC64F9B0" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_55E51961-F717-4691-B02F-DD359D955427">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction < itemizedDeductions;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA" sourceRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0" targetRef="_6F1E572C-D469-4415-8C65-BA709D541DBB">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return standardDeduction >= itemizedDeductions;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_1A5D9960-4011-4C99-9288-0A30ED049F52" sourceRef="_A0274275-94F6-4EB7-9578-AF0D5DB20353" targetRef="_664C01B4-6AFF-4536-AAEE-8B57CCCA67E0"/>
     <bpmn2:sequenceFlow id="_3994E2BD-BEDC-4FA2-AFCB-B3A55EECC611" sourceRef="_0C214E50-6C8C-4049-A0E6-54400AFCE2C7" targetRef="_35EA58C2-48BB-4A15-A8AB-6C4322DBE066"/>
@@ -211,7 +211,7 @@
       <bpmn2:inputSet>
         <bpmn2:dataInputRefs>_CD357AB1-6962-4E25-A311-B30D7F025819_eventInputX</bpmn2:dataInputRefs>
       </bpmn2:inputSet>
-      <bpmn2:messageEventDefinition drools:msgref="ers" messageRef="_LctpsuiFED2oKY5RJHBWRg"/>
+      <bpmn2:messageEventDefinition drools:msgref="ers" messageRef="_p_goMuiGED2FFr9Y1SyBQA"/>
     </bpmn2:endEvent>
     <bpmn2:exclusiveGateway id="_92804135-B2D5-4DDA-B69B-4397BC735D3F" gatewayDirection="Diverging">
       <bpmn2:incoming>_7D2C650A-9245-494C-BBB4-F01949537E42</bpmn2:incoming>
@@ -246,7 +246,7 @@
       <bpmn2:inputSet>
         <bpmn2:dataInputRefs>_B0C11704-7307-4855-B482-663FE3F70023_eventInputX</bpmn2:dataInputRefs>
       </bpmn2:inputSet>
-      <bpmn2:messageEventDefinition drools:msgref="tams" messageRef="_LctpseiFED2oKY5RJHBWRg"/>
+      <bpmn2:messageEventDefinition drools:msgref="tams" messageRef="_p_goMeiGED2FFr9Y1SyBQA"/>
     </bpmn2:endEvent>
     <bpmn2:scriptTask id="_331B732A-1652-49BE-AC91-60C8586695AC" name="Store inputted date" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
@@ -271,7 +271,7 @@ kcontext.setVariable("output", tOutput);</bpmn2:script>
       <bpmn2:outputSet>
         <bpmn2:dataOutputRefs>_6A308BEA-CB09-4536-B38D-39B1FA6E7481_eventOutputX</bpmn2:dataOutputRefs>
       </bpmn2:outputSet>
-      <bpmn2:messageEventDefinition drools:msgref="messages" messageRef="_LctpsOiFED2oKY5RJHBWRg"/>
+      <bpmn2:messageEventDefinition drools:msgref="form1040" messageRef="_p_goMOiGED2FFr9Y1SyBQA"/>
     </bpmn2:startEvent>
     <bpmn2:serviceTask id="_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20" drools:serviceimplementation="Java" drools:serviceinterface="com.focus.irs.pv.prototype.services.form1040.Fetch1040DataService" drools:serviceoperation="fetchData" name="Retrieve 1040 Data" implementation="Java" operationRef="_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20_ServiceOperation">
       <bpmn2:extensionElements>
@@ -492,8 +492,8 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_1A5D9960-4011-4C99-9288-0A30ED049F52</bpmn2:incoming>
-      <bpmn2:outgoing>_4E5F895B-1578-4892-9852-66D0FC64F9B0</bpmn2:outgoing>
       <bpmn2:outgoing>_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA</bpmn2:outgoing>
+      <bpmn2:outgoing>_4E5F895B-1578-4892-9852-66D0FC64F9B0</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:callActivity id="_0C214E50-6C8C-4049-A0E6-54400AFCE2C7" drools:independent="false" drools:waitForCompletion="true" name="Process itemized deductions" calledElement="pv.deductions">
       <bpmn2:extensionElements>
@@ -716,15 +716,15 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
         <di:waypoint x="2237.046801872075" y="149.12792511700468"/>
         <di:waypoint x="2428.046801872075" y="153"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__664C01B4-6AFF-4536-AAEE-8B57CCCA67E0_to_shape__55E51961-F717-4691-B02F-DD359D955427" bpmnElement="_4E5F895B-1578-4892-9852-66D0FC64F9B0">
-        <di:waypoint x="2456.046801872075" y="153"/>
-        <di:waypoint x="2455.046801872075" y="275.461258450338"/>
-        <di:waypoint x="2535.046801872075" y="279"/>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__664C01B4-6AFF-4536-AAEE-8B57CCCA67E0_to_shape__6F1E572C-D469-4415-8C65-BA709D541DBB" bpmnElement="_2BECAC51-5A7A-4C15-A087-F56EDE0CF0EA">
         <di:waypoint x="2456.046801872075" y="153"/>
         <di:waypoint x="2455.046801872075" y="71.45687578066605"/>
         <di:waypoint x="2535.046801872075" y="70.46125845033802"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__664C01B4-6AFF-4536-AAEE-8B57CCCA67E0_to_shape__55E51961-F717-4691-B02F-DD359D955427" bpmnElement="_4E5F895B-1578-4892-9852-66D0FC64F9B0">
+        <di:waypoint x="2456.046801872075" y="153"/>
+        <di:waypoint x="2455.046801872075" y="275.461258450338"/>
+        <di:waypoint x="2535.046801872075" y="279"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__55E51961-F717-4691-B02F-DD359D955427_to_shape__D0B5CF04-8C33-45C9-A8F7-431394CBED59" bpmnElement="_DCC5F6E9-07CA-452D-9E58-F75079874271">
         <di:waypoint x="2612.046801872075" y="279"/>
@@ -1034,7 +1034,7 @@ output.setItemizedDeduction(itemizedDeductions);</bpmn2:script>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_LcsbkOiFED2oKY5RJHBWRg</bpmn2:source>
-    <bpmn2:target>_LcsbkOiFED2oKY5RJHBWRg</bpmn2:target>
+    <bpmn2:source>_p_eL8eiGED2FFr9Y1SyBQA</bpmn2:source>
+    <bpmn2:target>_p_eL8eiGED2FFr9Y1SyBQA</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
