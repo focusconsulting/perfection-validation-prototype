@@ -28,7 +28,7 @@ After processing is complete, the BPMN processes publish the results back to des
 
 ### Form 1040 Process
 
-<!-- AI! description that this was not meant to be an exhaustive implementation, but complicated enough to pressure test Apache KIE -->
+This implementation is not intended to be an exhaustive representation of all Form 1040 rules and validations. Rather, it was designed to be sufficiently complex to effectively pressure test Apache KIE's capabilities in handling real-world tax processing scenarios. The implementation includes enough business logic complexity, data transformations, and decision points to evaluate how the platform performs with tax domain-specific challenges.
 
 This is the entry point for the processing a 1040 and orchestrates the other pieces
 
