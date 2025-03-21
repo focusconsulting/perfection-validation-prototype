@@ -50,16 +50,19 @@ The project consists of two main modules:
    mvn clean install
    ```
 
-<!-- AI! add an explanation that this brings up kafka locally and then runs the application -->
-
 3. Run the application:
 
    ```bash
+   # Start Kafka and Kafka UI in Docker containers
    docker compose -f 'compose.yaml' up -d --build 'kafka'
    docker compose -f 'compose.yaml' up -d --build 'kafka-ui' 
+   
+   # Run the Spring Boot application
    cd perfection-validation-engine
    mvn spring-boot:run
    ```
+
+   This sequence first brings up Kafka and Kafka UI in Docker containers, then runs the Spring Boot application. The application connects to the local Kafka instance for message processing. You can access the Kafka UI at http://localhost:8081 to monitor topics and messages.
 
 <!-- TODO: link to nested readme -->
 
