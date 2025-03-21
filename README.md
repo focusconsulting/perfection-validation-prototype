@@ -50,12 +50,18 @@ The project consists of two main modules:
    mvn clean install
    ```
 
+<!-- AI! add an explanation that this brings up kafka locally and then runs the application -->
+
 3. Run the application:
 
    ```bash
+   docker compose -f 'compose.yaml' up -d --build 'kafka'
+   docker compose -f 'compose.yaml' up -d --build 'kafka-ui' 
    cd perfection-validation-engine
    mvn spring-boot:run
    ```
+
+<!-- TODO: link to nested readme -->
 
 ### DMN File Editing
 
@@ -91,7 +97,8 @@ The DMN (Decision Model and Notation) files in this project can be viewed and ed
 
 Note: Both methods require the kie-extended-services to be running for full functionality including validation and testing capabilities. The kie-extended-services runs on port 21345 and provides necessary backend services for DMN editing and validation.
 
-### KIE Decision Registration
+<!-- TODO: clean this up -->
+### KIE Resources Registration
 
 This engine demonstrates two methods for registering KIE decisions:
 
@@ -120,6 +127,8 @@ To run the application using Docker:
 ```bash
 docker compose up --build
 ```
+
+## Troubleshooting
 
 ## Technology Stack
 
