@@ -7,6 +7,7 @@ Large Language Models (LLMs) can significantly accelerate the development of bus
 ## The Traditional Challenge
 
 Traditionally, implementing business processes and decision models requires:
+
 1. Domain experts to explain business rules
 2. Business analysts to translate requirements into specifications
 3. Developers to implement these specifications in technical formats
@@ -58,6 +59,11 @@ For optimal results when using LLMs for business process authoring:
 5. **Technical Adaptation**: Adjust the generated specifications to fit your exact technical environment
 
 This approach doesn't eliminate the need for domain expertise or technical knowledge, but it significantly accelerates the translation between these domains, allowing teams to focus on refinement rather than initial creation.
+
+## Sample output
+
+The following is the output that we then used to implement the Form 943.
+<!-- AI! Add a commment that the output below could be further improved by embedding more details on Form 943 and iterating on the prompt -->
 
 > # Revised Form 943 Implementation Guide for Apache Kie (Fully Automated)
 > 
