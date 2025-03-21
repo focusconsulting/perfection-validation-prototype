@@ -34,7 +34,21 @@ This is the entry point for the processing a 1040 and orchestrates the other pie
 
 ### Form 943
 
-<!-- AI! in ../docs/images there are images.  Add all that start with form-943 -->
+The Form 943 implementation demonstrates the application of DMN decision models for agricultural employer tax processing:
+
+![Form 943 Process Overview](../docs/images/form-943-process-overview.png)
+
+The implementation includes several interconnected decision models:
+
+![Form 943 Filing Eligibility Decision](../docs/images/form-943-filing-eligibility.png)
+
+![Form 943 Tax Calculation](../docs/images/form-943-tax-calculation.png)
+
+![Form 943 Adjustments Decision](../docs/images/form-943-adjustments.png)
+
+![Form 943 Credits Decision](../docs/images/form-943-credits.png)
+
+![Form 943 Deadline and Penalty Decision](../docs/images/form-943-deadline-penalty.png)
 
 <!-- TODO: move this to a separate doc -->
 
