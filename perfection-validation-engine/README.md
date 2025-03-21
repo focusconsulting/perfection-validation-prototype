@@ -32,6 +32,8 @@ This implementation is not intended to be an exhaustive representation of all Fo
 
 This is the entry point for the processing a 1040 and orchestrates the other pieces
 
+<!-- AI! in ../docs/images there are images.  Add all of the start with form-1040 Important the images capture a subset of implemented processes and decisions -->
+
 ### Form 943
 
 The Form 943 implementation demonstrates the application of DMN decision models for agricultural employer tax processing:
