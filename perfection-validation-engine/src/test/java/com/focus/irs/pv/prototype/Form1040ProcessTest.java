@@ -3,11 +3,10 @@ package com.focus.irs.pv.prototype;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,14 +18,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.focus.irs.pv.prototype.credits.dependents.Dependent;
-import com.focus.irs.pv.prototype.credits.dependents.DependentInformation;
+import com.focus.irs.pv.prototype.messages.Process1040Message;
 
 @SpringBootTest(classes = PerfectionAndValidationPrototype.class)
 public class Form1040ProcessTest {
 
+    // The starting point is an a Kafka message, but in order to unit test we're manually setting the message
+    // and then starting from the next node
+    private static final String FETCH_DATA_STARTING_NODE = "_A66E8BD2-B59A-41F1-9432-36B2D2CF4C20";
+
     @Autowired
-    @Qualifier("pv.form1040processor")
+    @Qualifier("form1040processor")
     Process<? extends Model> form1040Process;
 
     @Test
@@ -35,22 +37,16 @@ public class Form1040ProcessTest {
 
         Model model = form1040Process.createModel();
         Map<String, Object> parameters = new HashMap<>();
-        Form1040ProcessingOutput output = new Form1040ProcessingOutput();
-        Deduction teacherExpenseDeduction = new Deduction(BigDecimal.valueOf(800), "teacher-expense");
-        assertNull(teacherExpenseDeduction.getCorrectedAmount());
-        ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList(teacherExpenseDeduction));
-        Dependent dependent = new Dependent(21, false);
-        Form1040Data data = new Form1040Data(false, false, FilingStatus.S, itemizedDeductions,
-                new DependentInformation(Arrays.asList(dependent)));
-        parameters.put("Form1040", data);
-        parameters.put("output", output);
+        Process1040Message message = new Process1040Message("SINGLE_FILER", "objectstore:123");
+        parameters.put("message", message);
         model.fromMap(parameters);
         ProcessInstance<?> processInstance = form1040Process.createInstance(model);
-        processInstance.start();
+        processInstance.startFrom(FETCH_DATA_STARTING_NODE);
 
         assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.status());
         Model result = (Model) processInstance.variables();
 
+        Form1040ProcessingOutput output = (Form1040ProcessingOutput) result.toMap().get("output");
         // Assert that AGI was correctly calculated
         Float expectedAgi = 50000F;
         assertEquals(result.toMap().get("agi"), expectedAgi);
@@ -58,12 +54,15 @@ public class Form1040ProcessTest {
         assertEquals(result.toMap().get("totalTaxes"), 3540);
         // Validate that the teacher expense deduction amount was correctly modified and
         // that the error code was set
-        assertEquals(teacherExpenseDeduction.getCorrectedAmount(), BigDecimal.valueOf(300));
-        assertEquals(teacherExpenseDeduction.getErrorCodes().size(), 1);
-        assertEquals(teacherExpenseDeduction.getErrorCodes().get(0), ErrorCode.CORRECT_DEDUCTION);
+        Form1040Data form1040Data = output.getInput();
+        assertEquals(form1040Data.getDeductions().getSubmittedDeductions().get(0).getCorrectedAmount(),
+                BigDecimal.valueOf(300));
+        assertEquals(form1040Data.getDeductions().getSubmittedDeductions().get(0).getErrorCodes().size(), 1);
+        assertEquals(form1040Data.getDeductions().getSubmittedDeductions().get(0).getErrorCodes().get(0),
+                ErrorCode.CORRECT_DEDUCTION);
         // Confirm that the form is not eligible for the child tax credit since the only
         // dependent is older than 18
-        assertFalse(data.getDependentInformation().getIsChildTaxCreditAllowed());
+        assertFalse(form1040Data.getDependentInformation().getIsChildTaxCreditAllowed());
     }
 
     @Test
@@ -72,25 +71,22 @@ public class Form1040ProcessTest {
 
         Model model = form1040Process.createModel();
         Map<String, Object> parameters = new HashMap<>();
-        ItemizedDeductions itemizedDeductions = new ItemizedDeductions(Arrays.asList());
-        Dependent dependent = new Dependent(15, false);
-        Form1040Data data = new Form1040Data(false, false, FilingStatus.MFJ, itemizedDeductions,
-                new DependentInformation(Arrays.asList(dependent)));
-        Form1040ProcessingOutput output = new Form1040ProcessingOutput();
-        parameters.put("Form1040", data);
-        parameters.put("output", output);
+        Process1040Message message = new Process1040Message("MARRIED_FILER", "objectstore:123");
+        parameters.put("message", message);
         model.fromMap(parameters);
         ProcessInstance<?> processInstance = form1040Process.createInstance(model);
-        processInstance.start();
+        processInstance.startFrom(FETCH_DATA_STARTING_NODE);
         assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.status());
         Model result = (Model) processInstance.variables();
+
+        Form1040ProcessingOutput output = (Form1040ProcessingOutput) result.toMap().get("output");
         Float expectedAgi = 50000F;
         assertEquals(result.toMap().get("agi"), expectedAgi);
         // Confirm that taxes owed is correct
         assertEquals(result.toMap().get("totalTaxes"), 2080);
         // Confirm that the form is eligible for the child tax credit since the only
         // dependent is under 18
-        assertTrue(data.getDependentInformation().getIsChildTaxCreditAllowed());
+        assertTrue(output.getInput().getDependentInformation().getIsChildTaxCreditAllowed());
     }
 
 }

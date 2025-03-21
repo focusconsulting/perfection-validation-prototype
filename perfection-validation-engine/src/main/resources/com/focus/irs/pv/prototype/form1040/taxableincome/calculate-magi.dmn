@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="calculate-magi" name="calculate-magi">
+  <inputData name="AGI" id="_193D57D5-7044-4270-8150-7764AB01B6E4">
+    <variable name="AGI" id="_980FDD78-770D-48E4-9E34-A7DC95CED820" typeRef="number" />
+  </inputData>
+  <decision name="MAGI" id="_38F5B52C-5CE1-4AEF-9B17-F330F08904C8">
+    <variable name="MAGI" id="_FD4C1D4B-93B2-41EF-BB92-6413D8075F2C" typeRef="number" />
+    <informationRequirement id="_73CDE805-2E53-4BB5-82FF-A48B22F12331">
+      <requiredInput href="#_193D57D5-7044-4270-8150-7764AB01B6E4" />
+    </informationRequirement>
+    <literalExpression id="_B053E131-9F77-44DB-A1B8-B6AF2C975E79" typeRef="number" label="MAGI">
+      <text>AGI</text>
+    </literalExpression>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_67A4B4E9-F548-4A89-B1C8-79E977ECAC02" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_B053E131-9F77-44DB-A1B8-B6AF2C975E79">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_1A4C10E7-7109-4809-96CF-12698FAA5523" dmnElementRef="_193D57D5-7044-4270-8150-7764AB01B6E4" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="260" y="100" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_19AD086A-0253-4B60-A63A-9D23A3692957" dmnElementRef="_38F5B52C-5CE1-4AEF-9B17-F330F08904C8" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="560" y="100" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_440421CB-951C-4948-82AB-B0461799C733" dmnElementRef="_73CDE805-2E53-4BB5-82FF-A48B22F12331" sourceElement="_1A4C10E7-7109-4809-96CF-12698FAA5523" targetElement="_19AD086A-0253-4B60-A63A-9D23A3692957">
+        <di:waypoint x="340" y="140" />
+        <di:waypoint x="560" y="140" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

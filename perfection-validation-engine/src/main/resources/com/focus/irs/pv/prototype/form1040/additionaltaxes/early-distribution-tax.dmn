@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20230324/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="https://kie.org/dmn/extensions/1.0" expressionLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/" namespace="pv" id="early-distribution-tax" name="early-distribution-tax">
+  <itemDefinition id="_9BF54C1E-A0DE-43E9-B68C-F71A506CFD00" name="Penalty" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_021DB67E-EEED-45EF-927C-98330DAD61B2" name="error" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>string</typeRef>
+    </itemComponent>
+    <itemComponent id="_FFA5751A-790F-41CB-B875-9DA484767F4E" name="penaltyAmount" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <itemDefinition id="_C0388EDA-01ED-4BC1-A0B2-73C76704BAA3" name="Errors" isCollection="true" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <typeRef>string</typeRef>
+  </itemDefinition>
+  <itemDefinition id="_6D1F2C6B-0EC9-481B-AE1B-EC7D8B1AE34F" name="Form5329" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+    <itemComponent id="_26EE1157-97C8-4929-AF3F-A3DAE4FBB815" name="exceptionCode" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>string</typeRef>
+    </itemComponent>
+    <itemComponent id="_70B86EA6-7621-4E63-8CB0-C76C465E903B" name="amountClaimed" isCollection="false" typeLanguage="https://www.omg.org/spec/DMN/20230324/FEEL/">
+      <typeRef>number</typeRef>
+    </itemComponent>
+  </itemDefinition>
+  <inputData name="age" id="_B5923211-E299-4967-B77E-0EA49E9A6FA7">
+    <variable name="age" id="_A0B67303-7097-4C2E-BED9-903670CB3A4D" typeRef="number" />
+  </inputData>
+  <inputData name="dispersement1040" id="_2D83121D-82DD-471E-B83E-62EBF1BDD386">
+    <variable name="dispersement1040" id="_2F146016-A9ED-4B20-9187-45ADA049EF92" typeRef="number" />
+  </inputData>
+  <inputData name="form5329" id="_357F5FAC-87AE-4AB6-9498-5DDF5B409B0D">
+    <variable name="form5329" id="_C076FC78-4BE3-4B7A-B27A-91666E2E30DF" typeRef="Form5329" />
+  </inputData>
+  <knowledgeSource name="Exemption codes and limits" id="_9E9B68B5-3C47-4D70-9247-717DE2BF93B4" />
+  <inputData name="dispersement1099R" id="_7B11D688-15D8-4CAD-8A36-ACE2DA61A1EC">
+    <variable name="dispersement1099R" id="_2F6BB131-0C02-4612-83F1-C1A0D85DE876" typeRef="number" />
+  </inputData>
+  <decision name="Determine total dispersement" id="_61BF7E21-B3C7-42B3-95BD-AA7918C7E7BC">
+    <variable name="Determine total dispersement" id="_E4568BEC-8837-40BD-8750-FA794DE3D02B" typeRef="Any" />
+    <informationRequirement id="_FE540910-2D3E-4D89-B5B9-7DDF1D352BFC">
+      <requiredInput href="#_2D83121D-82DD-471E-B83E-62EBF1BDD386" />
+    </informationRequirement>
+    <informationRequirement id="_FE8BD980-24D7-44D4-896B-38A1B4CF2DF4">
+      <requiredInput href="#_7B11D688-15D8-4CAD-8A36-ACE2DA61A1EC" />
+    </informationRequirement>
+    <context id="_EFECC464-79BA-4E47-BC51-79C5D7F70D36" label="Determine total dispersement" typeRef="Any">
+      <contextEntry id="_79D54362-8B9A-446F-AA15-1649637812BA">
+        <variable id="_D9EBE517-825E-4E43-8E70-F11073F25AFD" name="difference" typeRef="number" />
+        <literalExpression id="_2AF4F5A2-9AFE-4819-897C-6C2E7FCFD390" typeRef="number" label="difference">
+          <text>abs(dispersement1040- dispersement1099R)</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_6B60182A-C699-4F7B-BDC8-216736B8E936">
+        <variable id="_8D558805-FEA9-4619-AD40-687D710A1D88" name="differenceThreshold" typeRef="number">
+          <description></description>
+        </variable>
+        <literalExpression id="_EA37B291-099B-4C00-8275-886FDBE09F45" typeRef="number" label="differenceThreshold">
+          <text>10</text>
+        </literalExpression>
+      </contextEntry>
+      <contextEntry id="_474D1258-1E0A-4977-82D7-72061A01B769">
+        <decisionTable id="_F340CF17-6E5C-4624-AEE2-532CAC5DED8B" hitPolicy="UNIQUE" label="Determine total dispersement">
+          <input id="_36C0F6B9-C884-41F4-A54A-55EBDC6B9389">
+            <inputExpression id="_238F06C8-6A6E-4793-AD88-6228272EC992" typeRef="number">
+              <text>difference</text>
+            </inputExpression>
+          </input>
+          <output id="_9B1E697C-2138-4E28-8F12-40C154BC56D0" name="amount" typeRef="number" />
+          <output id="_F4B66CC0-71B3-4CC7-940E-ABEE034C012D" name="error" typeRef="string" />
+          <annotation name="Annotations" />
+          <rule id="_6C771B60-688B-499F-B7A4-1387D33F4AEC">
+            <inputEntry id="_3E06371C-C5D5-4ECE-96EA-EDFB34DE1E59">
+              <text>&lt;= differenceThreshold</text>
+            </inputEntry>
+            <outputEntry id="_4E23D584-FB6A-424B-9F3D-068AC1B47965">
+              <text>dispersement1099R</text>
+            </outputEntry>
+            <outputEntry id="_03AA579B-0D05-4C74-BF3A-8CE016AC69D3">
+              <text>&quot;&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text>// Your annotations here</text>
+            </annotationEntry>
+          </rule>
+          <rule id="_8805A133-72BF-4005-92F8-3628FDB7CAF1">
+            <inputEntry id="_057071DD-4A3E-4C65-8E0A-1CAD8C0FA825">
+              <text>&gt; differenceThreshold</text>
+            </inputEntry>
+            <outputEntry id="_9872346B-65C1-441D-AFC0-D4D9AB22E26D">
+              <text>0</text>
+            </outputEntry>
+            <outputEntry id="_900B0B8E-9563-41CE-95EC-3AB621CE6048">
+              <text>&quot;Mismatch between 1040 and 1099&quot;</text>
+            </outputEntry>
+            <annotationEntry>
+              <text></text>
+            </annotationEntry>
+          </rule>
+        </decisionTable>
+      </contextEntry>
+    </context>
+  </decision>
+  <decision name="Determine penalty" id="_35D85D1B-21D4-4208-9611-98F9C730A178">
+    <variable name="Determine penalty" id="_C6B51521-24DF-4130-93AE-4E8CD7FF9642" typeRef="Penalty" />
+    <informationRequirement id="_E0AF3F68-CE81-44A4-9C66-F37ADC4137FC">
+      <requiredDecision href="#_61BF7E21-B3C7-42B3-95BD-AA7918C7E7BC" />
+    </informationRequirement>
+    <informationRequirement id="_D2AF5EA4-F82F-446B-BFDD-BF6CBE00A4A4">
+      <requiredInput href="#_B5923211-E299-4967-B77E-0EA49E9A6FA7" />
+    </informationRequirement>
+    <informationRequirement id="_3133AC05-186C-4F8C-AB83-0885CE56ABF3">
+      <requiredDecision href="#_95133295-10AF-45F6-B1A3-369CBFBDA952" />
+    </informationRequirement>
+    <decisionTable id="_40FE2B9E-B02F-4344-8580-F3850A9A5C6F" typeRef="Penalty" hitPolicy="UNIQUE" label="Determine penalty">
+      <input id="_A8D92F02-64F5-420E-BAF1-FA29856699B4">
+        <inputExpression id="_96027290-C6BF-4A84-9408-CBADC796CB7E" typeRef="number">
+          <text>age</text>
+        </inputExpression>
+      </input>
+      <output id="_85E23EEB-976D-4D4B-9BC9-3718E75B8726" name="penaltyAmount" typeRef="number" />
+      <output id="_36BCF99D-6BE6-4A68-8DA9-56271BA37FE2" name="error" typeRef="string" />
+      <annotation name="Annotations" />
+      <rule id="_A0AD7886-2580-474D-8877-FDFF01F00DE9">
+        <inputEntry id="_A5623529-8951-4B33-B24F-6A7D447089B4">
+          <text>&gt;59.5</text>
+        </inputEntry>
+        <outputEntry id="_254788B0-628E-438E-A30F-8F78055D9BF3">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="_CE5B820E-A609-41E6-B28F-EC019447208C">
+          <text>&quot;older than 59.5, there should be no penalty&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_FCC528E0-23F0-4261-BB9E-CA38C71C33CA">
+        <inputEntry id="_76479A1E-F904-41AF-AD59-F8348D661CC6">
+          <text>&lt;=59.5</text>
+        </inputEntry>
+        <outputEntry id="_16E8F600-3947-4233-AAD7-6A7DE357AF71">
+          <text>(Determine total dispersement.amount - Determine total exemption) * .1</text>
+        </outputEntry>
+        <outputEntry id="_426451F8-8544-4CD1-8F59-4FBE035CD67D">
+          <text>&quot;&quot;</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision name="Determine total exemption" id="_95133295-10AF-45F6-B1A3-369CBFBDA952">
+    <variable name="Determine total exemption" id="_8DE3DC1D-ABFD-4956-B851-727027C24EE5" typeRef="number" />
+    <informationRequirement id="_E041A3BD-8D5E-4AAF-8D17-5150A337C774">
+      <requiredInput href="#_357F5FAC-87AE-4AB6-9498-5DDF5B409B0D" />
+    </informationRequirement>
+    <decisionTable id="_15FF7510-42FD-4339-ADA7-3E4342F4CEB7" typeRef="number" hitPolicy="UNIQUE" label="Determine total exemption">
+      <input id="_3A0368A8-47F3-45E9-8BE4-FA0ADDE57BB9">
+        <inputExpression id="_A0A8A909-BD00-4B8C-9DDD-46D0F1E341D3" typeRef="string">
+          <text>form5329.exceptionCode</text>
+        </inputExpression>
+      </input>
+      <input id="_CC9C2534-1278-4275-91BD-7CC0784946E4">
+        <inputExpression id="_45601D0D-4046-4BD6-ABD8-9A933DC58521" typeRef="number">
+          <text>form5329.amountClaimed</text>
+        </inputExpression>
+      </input>
+      <output id="_2C1B8A7E-3A73-4E5B-BED2-F09F8E801BED" name="Output-1" />
+      <annotation name="Annotations" />
+      <rule id="_1400B3A8-992A-462D-86B7-85E3FAADA4D4">
+        <inputEntry id="_01D50C3A-999D-41A0-ADBC-C442FAE7D445">
+          <text>&quot;D&quot;</text>
+        </inputEntry>
+        <inputEntry id="_6B7FE381-F82C-4CD2-BB07-570E2E4A794E">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_3AC5009F-8825-4D59-84A2-170D217A5EC6">
+          <text>form5329.amountClaimed</text>
+        </outputEntry>
+        <annotationEntry>
+          <text>// Your annotations here</text>
+        </annotationEntry>
+      </rule>
+      <rule id="_37426C79-F449-48F7-B5EC-6E6175F2F563">
+        <inputEntry id="_5CC6618B-92B6-4363-9A6C-919D04394BB8">
+          <text>&quot;J&quot;</text>
+        </inputEntry>
+        <inputEntry id="_3420085E-36C6-4C91-BE48-4BCD2C1DA28C">
+          <text>&gt;10000</text>
+        </inputEntry>
+        <outputEntry id="_37EE6E12-9859-43D6-BD4C-5899E8F2A127">
+          <text>10000</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+      <rule id="_4E19C12F-2399-451C-AD47-170D6AC20BFE">
+        <inputEntry id="_F0D7DDBA-3A8A-4870-99E5-7BC418872CD1">
+          <text>&quot;J&quot;</text>
+        </inputEntry>
+        <inputEntry id="_BCAC9D20-AA14-4C03-9E1F-EB2E9A522D1E">
+          <text>&lt;=10000</text>
+        </inputEntry>
+        <outputEntry id="_2FD6C1B4-DEA1-4D25-9598-FF73BAE670F4">
+          <text>form5329.amountClaimed</text>
+        </outputEntry>
+        <annotationEntry>
+          <text></text>
+        </annotationEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_8A15E1DC-20A9-463A-8091-6CDB840FBED7" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_EFECC464-79BA-4E47-BC51-79C5D7F70D36">
+            <kie:width>120</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_2AF4F5A2-9AFE-4819-897C-6C2E7FCFD390">
+            <kie:width>931</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F340CF17-6E5C-4624-AEE2-532CAC5DED8B">
+            <kie:width>60</kie:width>
+            <kie:width>191</kie:width>
+            <kie:width>175</kie:width>
+            <kie:width>285</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_EA37B291-099B-4C00-8275-886FDBE09F45">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_4DA0D570-BE4A-41F0-9EDF-5B86C832037C">
+            <kie:width>60</kie:width>
+            <kie:width>167</kie:width>
+            <kie:width>234</kie:width>
+            <kie:width>192</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_40FE2B9E-B02F-4344-8580-F3850A9A5C6F">
+            <kie:width>60</kie:width>
+            <kie:width>176</kie:width>
+            <kie:width>600</kie:width>
+            <kie:width>228</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_15FF7510-42FD-4339-ADA7-3E4342F4CEB7">
+            <kie:width>60</kie:width>
+            <kie:width>167</kie:width>
+            <kie:width>167</kie:width>
+            <kie:width>361</kie:width>
+            <kie:width>240</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_566DE466-6D64-4E60-ADC6-0B00457B5D9E" dmnElementRef="_B5923211-E299-4967-B77E-0EA49E9A6FA7" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="100" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_2D71A0C8-659F-4F89-B42D-0E275EE27951" dmnElementRef="_2D83121D-82DD-471E-B83E-62EBF1BDD386" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="-20" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_09E8161C-3F2A-45E0-B99F-BE6034E3C1B7" dmnElementRef="_357F5FAC-87AE-4AB6-9498-5DDF5B409B0D" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="260" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_A2CA87FC-018C-4388-89BC-2CF61CD96961" dmnElementRef="_9E9B68B5-3C47-4D70-9247-717DE2BF93B4" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="500" y="400" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_32070F3D-EC11-47D7-B348-2EDB621B1980" dmnElementRef="_7B11D688-15D8-4CAD-8A36-ACE2DA61A1EC" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="180" y="-120" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_8C06DF88-9374-4C50-AE3B-B6C8F211E179" dmnElementRef="_61BF7E21-B3C7-42B3-95BD-AA7918C7E7BC" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="460" y="-60" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_CC2C6406-4B5F-48B1-AFBB-4E3F78AECE5F" dmnElementRef="_FE540910-2D3E-4D89-B5B9-7DDF1D352BFC" sourceElement="_2D71A0C8-659F-4F89-B42D-0E275EE27951" targetElement="_8C06DF88-9374-4C50-AE3B-B6C8F211E179">
+        <di:waypoint x="260" y="20" />
+        <di:waypoint x="460" y="-20" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_EB152897-F36E-4B46-A3EE-41B0C00C641C" dmnElementRef="_FE8BD980-24D7-44D4-896B-38A1B4CF2DF4" sourceElement="_32070F3D-EC11-47D7-B348-2EDB621B1980" targetElement="_8C06DF88-9374-4C50-AE3B-B6C8F211E179">
+        <di:waypoint x="260" y="-80" />
+        <di:waypoint x="460" y="-20" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552" dmnElementRef="_35D85D1B-21D4-4208-9611-98F9C730A178" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="780" y="80" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_EE6E1F8F-FC7A-4D96-9341-4A481D35E028" dmnElementRef="_E0AF3F68-CE81-44A4-9C66-F37ADC4137FC" sourceElement="_8C06DF88-9374-4C50-AE3B-B6C8F211E179" targetElement="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552">
+        <di:waypoint x="540" y="-20" />
+        <di:waypoint x="780" y="120" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_117B0329-D710-491E-BEC6-D3A763FFA451" dmnElementRef="_D2AF5EA4-F82F-446B-BFDD-BF6CBE00A4A4" sourceElement="_566DE466-6D64-4E60-ADC6-0B00457B5D9E" targetElement="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552">
+        <di:waypoint x="260" y="140" />
+        <di:waypoint x="780" y="120" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="_FB8633BC-F1F5-4FCD-842B-8709F038DC98" dmnElementRef="_95133295-10AF-45F6-B1A3-369CBFBDA952" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="480" y="260" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_05EE65BA-B8D3-4CD5-83F8-FA52C479309B" dmnElementRef="_E041A3BD-8D5E-4AAF-8D17-5150A337C774" sourceElement="_09E8161C-3F2A-45E0-B99F-BE6034E3C1B7" targetElement="_FB8633BC-F1F5-4FCD-842B-8709F038DC98">
+        <di:waypoint x="260" y="300" />
+        <di:waypoint x="480" y="300" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_04C3C6BC-2F49-4CFF-A8F6-838E8226B083" dmnElementRef="_3133AC05-186C-4F8C-AB83-0885CE56ABF3" sourceElement="_FB8633BC-F1F5-4FCD-842B-8709F038DC98" targetElement="_ABBC9B13-70BB-4D77-82FF-5C3C3351C552">
+        <di:waypoint x="560" y="300" />
+        <di:waypoint x="780" y="120" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

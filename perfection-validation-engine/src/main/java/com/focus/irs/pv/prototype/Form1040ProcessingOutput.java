@@ -1,9 +1,11 @@
 package com.focus.irs.pv.prototype;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This model is initialized at the start of the process and serves to record
@@ -16,10 +18,26 @@ public class Form1040ProcessingOutput {
     private BigDecimal taxesOwed;
     private Integer standardDeduction;
     private Integer itemizedDeduction;
-    private List<Correction<?>> correctionsMade;
+    private Form1040Data input;
+    private List<String> errors;
+
+    // Default constructor for Jackson
+    public Form1040ProcessingOutput() {
+        this.errors = new ArrayList<>();
+    }
 
     @JsonCreator
-    public Form1040ProcessingOutput() {
+    public Form1040ProcessingOutput(
+            @JsonProperty("taxesOwed") BigDecimal taxesOwed,
+            @JsonProperty("standardDeduction") Integer standardDeduction,
+            @JsonProperty("itemizedDeduction") Integer itemizedDeduction,
+            @JsonProperty("input") Form1040Data input,
+            @JsonProperty("errors") List<String> errors) {
+        this.taxesOwed = taxesOwed;
+        this.standardDeduction = standardDeduction;
+        this.itemizedDeduction = itemizedDeduction;
+        this.input = input;
+        this.errors = errors != null ? errors : new ArrayList<>();
     }
 
     public Integer getStandardDeduction() {
@@ -38,16 +56,6 @@ public class Form1040ProcessingOutput {
         this.itemizedDeduction = itemizedDeduction;
     }
 
-    private List<ProcessingError<?>> errors;
-
-    public void addCorrection(Correction<?> correction) {
-        this.correctionsMade.add(correction);
-    }
-
-    public void addProcessingError(ProcessingError<?> error) {
-        this.errors.add(error);
-    }
-
     public BigDecimal getTaxesOwed() {
         return taxesOwed;
     }
@@ -56,19 +64,27 @@ public class Form1040ProcessingOutput {
         this.taxesOwed = taxesOwed;
     }
 
-    public List<Correction<?>> getCorrectionsMade() {
-        return correctionsMade;
-    }
-
-    public void setCorrectionsMade(List<Correction<?>> correctionsMade) {
-        this.correctionsMade = correctionsMade;
-    }
-
-    public List<ProcessingError<?>> getErrors() {
+    public List<String> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<ProcessingError<?>> errors) {
+    public void setErrors(List<String> errors) {
         this.errors = errors;
+    }
+
+    public void addError(String error) {
+        this.errors.add(error);
+    }
+
+    public Boolean isValid() {
+        return this.errors.isEmpty();
+    }
+
+    public Form1040Data getInput() {
+        return input;
+    }
+
+    public void setInput(Form1040Data input) {
+        this.input = input;
     }
 }
