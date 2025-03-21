@@ -48,13 +48,13 @@ These diagrams represent a subset of the implemented processes and decisions in 
 
 The Form 943 implementation demonstrates the application of DMN decision models for agricultural employer tax processing:
 
-![Form 943 Process Overview](../docs/images/form-943-process.png)
+![Form 943 Process Overview](./images/form-943-process.png)
 
 The implementation includes several interconnected decision models:
 
-![Form 943 Filing Eligibility Decision](../docs/images/form-943-validate-taxes-dmn-decision.png)
+![Form 943 Filing Eligibility Decision](./images/form-943-validate-taxes-dmn-decision.png)
 
-![Form 943 Tax Calculation](../docs/images/form-943-final-tax.png)
+![Form 943 Tax Calculation](./images/form-943-final-tax.png)
 
 ## Running the prototype
 <!-- TODO: explain the Kafka integration and how to test it -->
