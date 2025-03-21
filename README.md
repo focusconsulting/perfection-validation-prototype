@@ -113,7 +113,6 @@ The project demonstrates a modular approach to business rules management through
    - Enables independent versioning and deployment of business rules
    - Can be maintained by a separate team of business analysts or rule authors
 
-<!-- AI! should also indicate that processes and rules are authored directly here as well -->
 2. **perfection-validation-engine**:
    - The main application that consumes and executes the rules
    - Loads the form-1040-rules KJAR as a Maven dependency
