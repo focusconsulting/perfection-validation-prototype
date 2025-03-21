@@ -93,7 +93,7 @@ __Note: the `messageId` is used to indicate what sample data should be loaded by
 
 ### Running individual decisions
 
-<!-- AI! Add explanation that nested processes and decisions can invoked via API -->
+In addition to the main process flow, all nested processes and decisions can be directly invoked via REST API endpoints. This allows for testing individual components of the system without running the entire workflow, which is particularly useful during development and debugging.
 
 This is an example of the how the decisions can only be independently invoked.
 
