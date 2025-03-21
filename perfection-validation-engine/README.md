@@ -33,7 +33,7 @@ This implementation is not intended to be an exhaustive representation of all Fo
 This is the entry point for the processing a 1040 and orchestrates the other pieces
 
 The Form 1040 implementation includes several key components visualized below:
-
+<!-- AI! the linked image is wrong it should be ./images -->
 ![Form 1040 Process Overview](../docs/images/form-1040-process-overview.png)
 
 ![Form 1040 Deduction Processing](../docs/images/form-1040-deduction-processing.png)
