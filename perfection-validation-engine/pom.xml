@@ -49,6 +49,10 @@
             <artifactId>jbpm-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-addons-springboot-monitoring-prometheus</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-decisions-spring-boot-starter</artifactId>
         </dependency>
@@ -200,6 +204,32 @@
                                     <includes>**/*.dmn</includes>
                                 </artifactItem>
                             </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.basedir}/docker-compose/grafana/provisioning/dashboards</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${project.build.directory}/classes/META-INF/resources/monitoring/dashboards</directory>
+                                    <filtering>false</filtering>
+                                    <excludes>
+                                        <exclude>**/list.json</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>
