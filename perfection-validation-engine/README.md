@@ -34,11 +34,11 @@ This is the entry point for the processing a 1040 and orchestrates the other pie
 
 The Form 1040 implementation includes several key components visualized below:
 
-![Form 1040 Process Overview](./images/form-1040-process.png)
+![Form 1040 Process Overview](../docs/images/form-1040-process.png)
 
-![Form 1040 Deduction Processing](./images/form-1040-itemized-deduction-sub-process.png)
+![Form 1040 Deduction Processing](../docs/images/form-1040-itemized-deduction-sub-process.png)
 
-![Form 1040 Dependent Credit Decision](./images/form-1040-calculate-final-taxes.png)
+![Form 1040 Calculate taxes](../docs/images/form-1040-calculate-final-taxes.png)
 
 These diagrams represent a subset of the implemented processes and decisions in the system, focusing on the core tax calculation and validation logic.
 
@@ -46,13 +46,13 @@ These diagrams represent a subset of the implemented processes and decisions in 
 
 The Form 943 implementation demonstrates the application of DMN decision models for agricultural employer tax processing:
 
-![Form 943 Process Overview](./images/form-943-process.png)
+![Form 943 Process Overview](../docs/images/form-943-process.png)
 
 The implementation includes several interconnected decision models:
 
-![Form 943 Filing Eligibility Decision](./images/form-943-validate-taxes-dmn-decision.png)
+![Form 943 Validate taxes](../docs/images/form-943-validate-taxes-dmn-decision.png)
 
-![Form 943 Tax Calculation](./images/form-943-final-tax.png)
+![Form 943 Tax Calculation](../docs/images/form-943-final-tax.png)
 
 ## Running the prototype
 
