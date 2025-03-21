@@ -18,13 +18,11 @@ public class Form1040ProcessingOutput {
     private BigDecimal taxesOwed;
     private Integer standardDeduction;
     private Integer itemizedDeduction;
-    private List<Correction<?>> correctionsMade;
     private Form1040Data input;
     private List<String> errors;
 
     // Default constructor for Jackson
     public Form1040ProcessingOutput() {
-        this.correctionsMade = new ArrayList<>();
         this.errors = new ArrayList<>();
     }
 
@@ -33,13 +31,11 @@ public class Form1040ProcessingOutput {
             @JsonProperty("taxesOwed") BigDecimal taxesOwed,
             @JsonProperty("standardDeduction") Integer standardDeduction,
             @JsonProperty("itemizedDeduction") Integer itemizedDeduction,
-            @JsonProperty("correctionsMade") List<Correction<?>> correctionsMade,
             @JsonProperty("input") Form1040Data input,
             @JsonProperty("errors") List<String> errors) {
         this.taxesOwed = taxesOwed;
         this.standardDeduction = standardDeduction;
         this.itemizedDeduction = itemizedDeduction;
-        this.correctionsMade = correctionsMade != null ? correctionsMade : new ArrayList<>();
         this.input = input;
         this.errors = errors != null ? errors : new ArrayList<>();
     }
@@ -60,27 +56,12 @@ public class Form1040ProcessingOutput {
         this.itemizedDeduction = itemizedDeduction;
     }
 
-    public void addCorrection(Correction<?> correction) {
-        if (this.correctionsMade == null) {
-            this.correctionsMade = new ArrayList<>();
-        }
-        this.correctionsMade.add(correction);
-    }
-
     public BigDecimal getTaxesOwed() {
         return taxesOwed;
     }
 
     public void setTaxesOwed(BigDecimal taxesOwed) {
         this.taxesOwed = taxesOwed;
-    }
-
-    public List<Correction<?>> getCorrectionsMade() {
-        return correctionsMade;
-    }
-
-    public void setCorrectionsMade(List<Correction<?>> correctionsMade) {
-        this.correctionsMade = correctionsMade;
     }
 
     public List<String> getErrors() {
