@@ -34,11 +34,11 @@ This is the entry point for the processing a 1040 and orchestrates the other pie
 
 The Form 1040 implementation includes several key components visualized below:
 
-![Form 1040 Process Overview](../docs/images/form-1040-process.png)
+![Form 1040 Process Overview](./images/form-1040-process.png)
 
-![Form 1040 Deduction Processing](../docs/images/form-1040-itemized-deduction-sub-process.png)
+![Form 1040 Deduction Processing](./images/form-1040-itemized-deduction-sub-process.png)
 
-![Form 1040 Dependent Credit Decision](../docs/images/form-1040-calculate-final-taxes.png)
+![Form 1040 Dependent Credit Decision](./images/form-1040-calculate-final-taxes.png)
 
 These diagrams represent a subset of the implemented processes and decisions in the system, focusing on the core tax calculation and validation logic.
 
