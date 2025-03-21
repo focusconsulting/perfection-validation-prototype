@@ -40,8 +40,6 @@ The Form 1040 implementation includes several key components visualized below:
 
 ![Form 1040 Dependent Credit Decision](../docs/images/form-1040-calculate-final-taxes.png)
 
-![Form 1040 Standard Deduction Decision](../docs/images/form-1040-standard-deduction-decision.png)
-
 These diagrams represent a subset of the implemented processes and decisions in the system, focusing on the core tax calculation and validation logic.
 
 ### Form 943
@@ -57,49 +55,45 @@ The implementation includes several interconnected decision models:
 ![Form 943 Tax Calculation](./images/form-943-final-tax.png)
 
 ## Running the prototype
-<!-- TODO: explain the Kafka integration and how to test it -->
 
 The prototype can be executed by running and starting the application:
 
 `./mvnw spring-boot:run -f perfection-validation-engine/pom.xml`
 
+If this is successful, you should see something like:
 
-<!-- TODO: description of running a message with Kafka -->
+![Spring startup](../docs/images/spring-startup.png)
 
-<!-- TODO: check that this works or update it -->
+### Starting the process via a Kafka message
 
-After the application is running, you can execute the following to execute the 1040 process:
+1. Go to http://localhost:8081/topics and you should see that the topics that are used are created
+![Kafka topics](../docs/images/kafka-topics.png)
+2. Click the 1040 topic
+![1040 topic](../docs/images/kafka-1040-topic.png)
+3. Create a new record with the following contents. (click produce record and change the type to JSON):
 
-```sh
-curl -X POST 'http://localhost:8090/form1040processor' \
--H 'Content-Type: application/json' \
--d '{
-  "form1040": {
-    "filingStatus": "S",
-    "isOver65": false,
-    "isBlind": false,
-    "deductions": {
-      "submittedDeductions": [
-        {
-          "name": "teacher-expense",
-          "amount": 400
-        }
-      ]
-    },
-    "dependentInformation": {
-      "dependents": [
-        {
-          "age": 10,
-          "isClaimedOnAnotherReturn": false
-        }
-      ]
-    }
-  },
-  "output": {
-
-  }
-}'
+__Note: the `messageId` is used to indicate what sample data should be loaded by the fetch service__
+```json
+{
+  "specversion": "1.0",
+  "id": "21627e26-31eb-43e7-8343-92a696fd96b1",
+  "source": "",
+  "type": "form1040", 
+  "time": "2025-04-21T13:25:16Z",
+  "data": {
+	  "messageId": "SINGLE_FILER",
+    "dataBlob": "objectStorage://single_filer"
+	}
+}
 ```
+![Add 1040 message](../docs/images/add-1040-message.png)
+
+4. Confirm that it worked, by checking the TAMS topic
+![TAMS topic](../docs/images/kafka-1040-tams-message.png)
+
+### Running individual decisions
+
+<!-- AI! Add explanation that nested processes and decisions can invoked via API -->
 
 This is an example of the how the decisions can only be independently invoked.
 
