@@ -15,7 +15,14 @@ This prototype demonstrates the various technical capabilities of Apache KIE (Ko
 
 ### Kafka
 
-<!-- AI! add a description that the BPMN process is integrated with a Kafka queue. Apache KIE provides an easy to set up integration -->
+The prototype leverages Apache KIE's seamless integration with Kafka message queues. The BPMN processes are configured to listen to specific Kafka topics, allowing for event-driven workflow execution. This integration enables:
+
+- Asynchronous processing of tax form submissions
+- Scalable handling of high-volume form processing
+- Reliable message delivery with built-in retry mechanisms
+- Decoupled architecture between form submission and processing components
+
+The integration requires minimal configuration, as Apache KIE provides out-of-the-box connectors that map Kafka messages to process variables and automatically trigger process instances when messages arrive on the configured topics.
 
 ### Form 1040 Process
 
