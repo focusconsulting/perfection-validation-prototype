@@ -1,0 +1,1 @@
+<!-- AI!  Add an ADR indicating how the prototype integrates prometheus for metrics and visualizes them with grafana -->
