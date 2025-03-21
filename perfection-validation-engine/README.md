@@ -14,7 +14,6 @@ This prototype demonstrates the various technical capabilities of Apache KIE (Ko
 - Modular architecture for maintainability and scalability
 
 ### Kafka
-<!-- AI! this section should also indicate that the process ends by putting a message back to kafka -->
 
 The prototype leverages Apache KIE's seamless integration with Kafka message queues. The BPMN processes are configured to listen to specific Kafka topics, allowing for event-driven workflow execution. This integration enables:
 
@@ -24,6 +23,8 @@ The prototype leverages Apache KIE's seamless integration with Kafka message que
 - Decoupled architecture between form submission and processing components
 
 The integration requires minimal configuration, as Apache KIE provides out-of-the-box connectors that map Kafka messages to process variables and automatically trigger process instances when messages arrive on the configured topics.
+
+After processing is complete, the BPMN processes publish the results back to designated Kafka topics, creating a full event-driven cycle. This allows downstream systems to consume and further process the validation results without direct coupling to the validation engine.
 
 ### Form 1040 Process
 
