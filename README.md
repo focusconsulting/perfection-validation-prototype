@@ -100,18 +100,29 @@ The DMN (Decision Model and Notation) files in this project can be viewed and ed
 
 Note: Both methods require the kie-extended-services to be running for full functionality including validation and testing capabilities. The kie-extended-services runs on port 21345 and provides necessary backend services for DMN editing and validation.
 
-<!-- AI! re-write the KIE Resources Registration section. It meants to explain why there is a second project form-1040-rules.  That project compiles to a KJAR which is then loaded as a resource in the perfection-validation-engine.  In a real implementation these would likely be entirely separate git repositories. -->
 ### KIE Resources Registration
 
-This engine demonstrates two methods for registering KIE decisions:
+The project demonstrates a modular approach to business rules management through two separate components:
 
-1. Via KJAR (Knowledge JAR):
-   - Decisions are packaged in the sibling `form-1040-rules` project
-   - The KJAR is built and included as a dependency
+1. **form-1040-rules Project**:
+   - This is a dedicated rules project that compiles into a KJAR (Knowledge JAR)
+   - Contains all Form 1040-specific decision models and rules
+   - Follows the standard KIE project structure with kmodule.xml configuration
+   - Enables independent versioning and deployment of business rules
+   - Can be maintained by a separate team of business analysts or rule authors
 
-2. Direct Resource Storage:
-   - Decisions are stored directly in the project's resources directory
-   - Loaded directly from the application's classpath
+2. **perfection-validation-engine**:
+   - The main application that consumes and executes the rules
+   - Loads the form-1040-rules KJAR as a Maven dependency
+   - Provides the runtime environment and infrastructure
+
+This separation of concerns reflects enterprise-level architecture where:
+- Rules projects (KJARs) would typically reside in separate Git repositories
+- Multiple teams can work independently on rules and application code
+- Rules can be versioned, tested, and deployed without modifying the core application
+- The same engine can load multiple rule packages for different forms or business domains
+
+The engine also demonstrates an alternative approach with rules stored directly in the application's resources directory, which may be suitable for simpler use cases.
 
 ### API Documentation
 
