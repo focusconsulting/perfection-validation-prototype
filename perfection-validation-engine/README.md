@@ -32,7 +32,17 @@ This implementation is not intended to be an exhaustive representation of all Fo
 
 This is the entry point for the processing a 1040 and orchestrates the other pieces
 
-<!-- AI! in ../docs/images there are images.  Add all of the start with form-1040 Important the images capture a subset of implemented processes and decisions -->
+The Form 1040 implementation includes several key components visualized below:
+
+![Form 1040 Process Overview](../docs/images/form-1040-process-overview.png)
+
+![Form 1040 Deduction Processing](../docs/images/form-1040-deduction-processing.png)
+
+![Form 1040 Dependent Credit Decision](../docs/images/form-1040-dependent-credit-decision.png)
+
+![Form 1040 Standard Deduction Decision](../docs/images/form-1040-standard-deduction-decision.png)
+
+These diagrams represent a subset of the implemented processes and decisions in the system, focusing on the core tax calculation and validation logic.
 
 ### Form 943
 
