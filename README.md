@@ -64,7 +64,7 @@ The project consists of two main modules:
 
    This sequence first brings up Kafka and Kafka UI in Docker containers, then runs the Spring Boot application. The application connects to the local Kafka instance for message processing. You can access the Kafka UI at http://localhost:8081 to monitor topics and messages.
 
-<!-- AI! add link to nested README, section Running the prototype for more details -->
+For more details on running the prototype and example API calls, see the [Perfection/Validation Engine README](./perfection-validation-engine/README.md#running-the-prototype).
 
 ### DMN File Editing
 
