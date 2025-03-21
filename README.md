@@ -129,25 +129,9 @@ Note that a single repository containing all rules, processes, and framework cod
 
 The engine also demonstrates an alternative approach with rules stored directly in the application's resources directory, which may be suitable for simpler use cases.
 
-### API Documentation
-
-After starting the Spring Boot application, you can access the OpenAPI documentation at:
-
-```
-http://localhost:8090/v3/api-docs
-```
-
-This endpoint provides a complete list of available API endpoints and their specifications.
-
-### Docker Setup (Alternative)
-
-To run the application using Docker:
-
-```bash
-docker compose up --build
-```
-
 ## Troubleshooting
+
+- Getting an error while running the spring boot application likely means that the form-1040-rules KJAR was not built and installed locally
 
 ## Technology Stack
 

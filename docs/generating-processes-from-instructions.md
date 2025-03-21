@@ -1,5 +1,3 @@
-<!-- TODO: how to use LLM to generate business process and decisions -->
-
 # Leveraging LLMs to Accelerate Business Process and Decision Authoring
 
 Large Language Models (LLMs) can significantly accelerate the development of business processes and decision models by bridging the gap between domain expertise and technical implementation. This approach is particularly valuable when working with complex regulatory requirements like tax forms.
@@ -43,7 +41,6 @@ For our Form 943 implementation, we used the following approach:
 This approach delivered several advantages:
 
 - **Ready-to-Implement Decision Tables**: LLMs can produce DMN Decision tables that are almost the entirety of the implementation, requiring minimal technical adjustments before deployment
-
 - **Reduced Development Time**: Eliminated multiple requirements gathering sessions
 - **Improved Accuracy**: Maintained consistency between business rules and implementation
 - **Technical Alignment**: Generated artifacts that map directly to our technology stack

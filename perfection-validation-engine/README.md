@@ -33,12 +33,12 @@ This implementation is not intended to be an exhaustive representation of all Fo
 This is the entry point for the processing a 1040 and orchestrates the other pieces
 
 The Form 1040 implementation includes several key components visualized below:
-<!-- AI! the linked image is wrong it should be ./images -->
-![Form 1040 Process Overview](../docs/images/form-1040-process-overview.png)
 
-![Form 1040 Deduction Processing](../docs/images/form-1040-deduction-processing.png)
+![Form 1040 Process Overview](../docs/images/form-1040-process.png)
 
-![Form 1040 Dependent Credit Decision](../docs/images/form-1040-dependent-credit-decision.png)
+![Form 1040 Deduction Processing](../docs/images/form-1040-itemized-deduction-sub-process.png)
+
+![Form 1040 Dependent Credit Decision](../docs/images/form-1040-calculate-final-taxes.png)
 
 ![Form 1040 Standard Deduction Decision](../docs/images/form-1040-standard-deduction-decision.png)
 
@@ -48,21 +48,13 @@ These diagrams represent a subset of the implemented processes and decisions in 
 
 The Form 943 implementation demonstrates the application of DMN decision models for agricultural employer tax processing:
 
-![Form 943 Process Overview](../docs/images/form-943-process-overview.png)
+![Form 943 Process Overview](../docs/images/form-943-process.png)
 
 The implementation includes several interconnected decision models:
 
-![Form 943 Filing Eligibility Decision](../docs/images/form-943-filing-eligibility.png)
+![Form 943 Filing Eligibility Decision](../docs/images/form-943-validate-taxes-dmn-decision.png)
 
-![Form 943 Tax Calculation](../docs/images/form-943-tax-calculation.png)
-
-![Form 943 Adjustments Decision](../docs/images/form-943-adjustments.png)
-
-![Form 943 Credits Decision](../docs/images/form-943-credits.png)
-
-![Form 943 Deadline and Penalty Decision](../docs/images/form-943-deadline-penalty.png)
-
-<!-- TODO: move this to a separate doc -->
+![Form 943 Tax Calculation](../docs/images/form-943-final-tax.png)
 
 ## Running the prototype
 <!-- TODO: explain the Kafka integration and how to test it -->
