@@ -1,5 +1,29 @@
 <!-- TODO: explain the various pieces of the form processes and decisions technically -->
 
+# Technical tools available in Apache KIE
+
+## BPMN
+
+<!-- AI! add explanation for how BPMN can capture the processing of a form as well as provide to isolate functionality via embeddable subprocesses -->
+
+### Triggering processes
+
+<!-- AI! indicate that events from a Kafka queue or invocation as a REST endpoint are possible -->
+
+### Task types
+
+## Decisions
+
+<!-- AI! explain that decisions power much of the logic of the BPMN process -->
+
+### DMN
+
+<!-- AI! explain DMN, emphasize that is more visual and friendly to non-technical analysis -->
+
+### DRL
+
+<!-- AI! indicate that its more flexible but is closer to code -->
+
 
 ### Corrections/Calculate AGI/ Refund, Etc
 
