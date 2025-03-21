@@ -27,7 +27,39 @@ Our implementation primarily uses Kafka for asynchronous processing, which provi
 
 ### Task types
 
-<!-- AI! indicate that there script tasks, decision tasks, tasks that execute a java function, and custom implemented tasks -->
+Apache KIE supports various task types in BPMN processes, each serving different purposes:
+
+1. **Script Tasks**: Allow embedding code directly in the process definition
+   - Can contain Java, JavaScript, or other scripting languages
+   - Useful for simple transformations, calculations, or variable manipulations
+   - Example: The "Store deduction info" task in Form 1040 process that updates output variables
+
+2. **Business Rule Tasks**: Connect processes to decision models
+   - Link to DMN models for complex decision logic
+   - Can reference external rule assets by name, namespace, and model
+   - Example: The "Determine Standard Deduction" task that evaluates filing status and age
+
+3. **Service Tasks**: Execute Java service methods
+   - Invoke methods on Spring components or other Java classes
+   - Support parameter mapping between process variables and service inputs/outputs
+   - Example: The "Calculate AGI" task that calls a service to compute Adjusted Gross Income
+
+4. **Custom Tasks**: Implement specialized functionality
+   - Can be created by implementing the WorkItemHandler interface
+   - Allow for reusable, complex operations with custom UI representation
+   - Example: The "DeductionTaskWorkItemHandler" that processes individual deductions
+
+5. **Call Activities**: Invoke subprocesses
+   - Enable modular process design by calling other BPMN processes
+   - Support data mapping between parent and child processes
+   - Example: The "Process itemized deductions" activity that calls a separate process
+
+6. **Human Tasks**: Involve human actors in the process
+   - Assign work to users or groups
+   - Support forms, deadlines, and notifications
+   - Not used in the current implementation but available for interactive scenarios
+
+Each task type is visually distinct in the BPMN diagram and configured through specific properties in the process editor.
 
 ## Decisions
 
