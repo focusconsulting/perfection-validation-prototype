@@ -1,0 +1,1 @@
+<!-- AI! update this ADR to document how the prototype uses postgres to persist inflight processes so they can be restarted -->
