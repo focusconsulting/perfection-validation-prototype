@@ -50,6 +50,8 @@ The project consists of two main modules:
    mvn clean install
    ```
 
+<!-- AI! add an explanation that this brings up kafka locally and then runs the application -->
+
 3. Run the application:
 
    ```bash
@@ -132,6 +134,8 @@ The engine also demonstrates an alternative approach with rules stored directly 
 ## Troubleshooting
 
 - Getting an error while running the spring boot application likely means that the form-1040-rules KJAR was not built and installed locally
+
+## Troubleshooting
 
 ## Technology Stack
 
