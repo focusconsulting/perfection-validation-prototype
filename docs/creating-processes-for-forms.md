@@ -27,6 +27,8 @@ Our implementation primarily uses Kafka for asynchronous processing, which provi
 
 ### Task types
 
+<!-- AI! indicate that there script tasks, decision tasks, tasks that execute a java function, and custom implemented tasks -->
+
 ## Decisions
 
 Decisions are a core component of form processing logic in Apache KIE. They power the business rules that determine:
