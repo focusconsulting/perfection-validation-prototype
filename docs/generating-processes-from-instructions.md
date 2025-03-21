@@ -65,6 +65,11 @@ The following is the output that we then used to implement the Form 943.
 
 **Note:** This output could be further improved by embedding more detailed Form 943 instructions and iterating on the prompt. Additional iterations could incorporate specific tax rates, exemption rules, and edge cases from the official IRS documentation to create an even more comprehensive implementation guide.
 
+<!-- AI! Write an explanation of how an LLM can be leveraged to accelerate business process and decision authoring.  I used AnythingLLM and embedded the Form 943 instructions. The prompt I used was: 
+"You are a tax expert and I am a Java developer.  Together we need to implement the rules, corrections and validations for the Form 943.  The technologies that I'm using is Apache Kie, specifically BPMN, DMN and DRL.  Please provide to me a description of the process that I will implement in BPMN as well as the decisions.
+
+Important: you can assume that the input data has basic integrity. For example, our process does not need to confirm if something is correctly formatted date." -->
+
 > # Revised Form 943 Implementation Guide for Apache Kie (Fully Automated)
 > 
 > As a tax expert, I'll outline a fully automated implementation for processing Form 943 (Employer's Annual Federal Tax Return for Agricultural Employees) using Apache Kie technologies, with a focus on DMN and automated processing of XML input data.
