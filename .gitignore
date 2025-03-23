@@ -35,3 +35,4 @@ build/
 ### Mac OS ###
 .DS_Store
 .aider*
+perfection-validation-engine/docker-compose/grafana/provisioning/dashboards/

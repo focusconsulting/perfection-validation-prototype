@@ -6,10 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 import org.kie.kogito.Model;
 import org.kie.kogito.process.Process;
@@ -17,9 +15,8 @@ import org.kie.kogito.process.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import com.focus.irs.pv.prototype.messages.Process1040Message;
-// TODO: additional test case that uses Kafka (see examples)
+
 @SpringBootTest(classes = PerfectionAndValidationPrototype.class)
 public class Form1040ProcessTest {
 
@@ -30,6 +27,7 @@ public class Form1040ProcessTest {
     @Autowired
     @Qualifier("form1040processor")
     Process<? extends Model> form1040Process;
+
 
     @Test
     public void testProcess1040FormSingle() {
@@ -64,7 +62,7 @@ public class Form1040ProcessTest {
         // dependent is older than 18
         assertFalse(form1040Data.getDependentInformation().getIsChildTaxCreditAllowed());
     }
-
+    
     @Test
     public void testProcess1040FormMFJ() {
         assertNotNull(form1040Process);
